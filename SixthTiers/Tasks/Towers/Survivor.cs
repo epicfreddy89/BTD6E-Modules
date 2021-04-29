@@ -31,7 +31,7 @@ using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace SixthTiers.Tasks.Towers {
     public class Survivor : TowerTask {
-        public static TowerModel underWorld;
+        public static TowerModel survivor;
         private static int time = -1;
         public Survivor() {
             identifier = "Survivor";
@@ -43,24 +43,24 @@ namespace SixthTiers.Tasks.Towers {
                 }
                 tts.tower.namedMonkeyName = identifier;
                 tts.tower.worth = 0;
-                tts.tower.UpdateRootModel(underWorld);
+                tts.tower.UpdateRootModel(survivor);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
             gameLoad += gm => {
-                underWorld = gm.towers.First(a => a.name.Contains("SniperMonkey-205")).Clone()
+                survivor = gm.towers.First(a => a.name.Contains("SniperMonkey-205")).Clone()
                     .Cast<TowerModel>();
 
-                underWorld.cost = 0;
-                underWorld.name = "Survivor";
-                underWorld.baseId = "Survivor";
-                underWorld.display = "Survivor";
-                underWorld.dontDisplayUpgrades = true;
-                underWorld.portrait = new("SurvivorIcon");
-                underWorld.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "Survivor";
+                survivor.cost = 0;
+                survivor.name = "Survivor";
+                survivor.baseId = "Survivor";
+                survivor.display = "Survivor";
+                survivor.dontDisplayUpgrades = true;
+                survivor.portrait = new("SurvivorIcon");
+                survivor.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "Survivor";
 
-                var beh = underWorld.behaviors;
+                var beh = survivor.behaviors;
 
                 for (var i = 0; i < beh.Length; i++)
                     if (beh[i].GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
@@ -76,7 +76,7 @@ namespace SixthTiers.Tasks.Towers {
                         beh[i] = am;
                     }
 
-                underWorld.behaviors = beh.Add(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
+                survivor.behaviors = beh.Add(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
             };
             recurring += tts => {};
             onLeave += () => { time = -1; };

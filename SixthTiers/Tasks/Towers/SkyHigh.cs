@@ -30,7 +30,7 @@ using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace SixthTiers.Tasks.Towers {
     public class SkyHigh : TowerTask {
-        public static TowerModel underWorld;
+        public static TowerModel skyHigh;
         private static int time = -1;
         public SkyHigh() {
             identifier = "Sky High";
@@ -42,24 +42,24 @@ namespace SixthTiers.Tasks.Towers {
                 }
                 tts.tower.namedMonkeyName = identifier;
                 tts.tower.worth = 0;
-                tts.tower.UpdateRootModel(underWorld);
+                tts.tower.UpdateRootModel(skyHigh);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
             gameLoad += gm => {
-                underWorld = gm.towers.First(a => a.name.Contains("DartMonkey-025")).Clone()
+                skyHigh = gm.towers.First(a => a.name.Contains("DartMonkey-025")).Clone()
                     .Cast<TowerModel>();
 
-                underWorld.cost = 0;
-                underWorld.name = "Sky High";
-                underWorld.baseId = "SkyHigh";
-                underWorld.display = "SkyHigh";
-                underWorld.dontDisplayUpgrades = true;
-                underWorld.portrait = new("SkyHighIcon");
-                underWorld.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "SkyHigh";
+                skyHigh.cost = 0;
+                skyHigh.name = "Sky High";
+                skyHigh.baseId = "SkyHigh";
+                skyHigh.display = "SkyHigh";
+                skyHigh.dontDisplayUpgrades = true;
+                skyHigh.portrait = new("SkyHighIcon");
+                skyHigh.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "SkyHigh";
 
-                var beh = underWorld.behaviors;
+                var beh = skyHigh.behaviors;
 
                 for (var i = 0; i < beh.Length; i++)
                     if (beh[i].GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
@@ -120,7 +120,7 @@ namespace SixthTiers.Tasks.Towers {
                         beh[i] = am;
                     }
 
-                underWorld.behaviors = beh;
+                skyHigh.behaviors = beh;
             };
             recurring += tts => {};
             onLeave += () => { time = -1; };
