@@ -1,0 +1,128 @@
+﻿
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Assets.Scripts.Models;
+using Assets.Scripts.Models.Audio;
+using Assets.Scripts.Models.Effects;
+using Assets.Scripts.Models.GenericBehaviors;
+using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Models.Towers.Behaviors;
+using Assets.Scripts.Models.Towers.Behaviors.Abilities;
+using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
+using Assets.Scripts.Models.Towers.Behaviors.Attack;
+using Assets.Scripts.Models.Towers.Behaviors.Emissions;
+using Assets.Scripts.Models.Towers.Projectiles;
+using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
+using Assets.Scripts.Models.Towers.Weapons.Behaviors;
+using Assets.Scripts.Simulation.SMath;
+using Assets.Scripts.Unity;
+using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
+using Assets.Scripts.Utils;
+using Harmony;
+using Il2CppSystem;
+using MelonLoader;
+using SixthTiers.Utils;
+using UnhollowerBaseLib;
+using UnhollowerRuntimeLib;
+using UnityEngine;
+using v = Assets.Scripts.Simulation.SMath.Vector3;
+
+namespace SixthTiers.Tasks.Towers {
+    public class UnderWorld : TowerTask {
+        public static TowerModel underWorld;
+        private static int time = -1;
+        public UnderWorld() {
+            identifier = "Under World";
+            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
+            onComplete += tts => {
+                if (time < 50) {
+                    time++;
+                    return;
+                }
+                tts.tower.namedMonkeyName = identifier;
+                tts.tower.worth = 0;
+                tts.tower.UpdateRootModel(underWorld);
+                tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
+                AbilityMenu.instance.TowerChanged(tts);
+                AbilityMenu.instance.RebuildAbilities();
+            };
+            gameLoad += gm => {
+                underWorld = gm.towers.First(a => a.name.Contains("WizardMonkey-502")).Clone()
+                    .Cast<TowerModel>();
+
+                underWorld.range = 130;
+                underWorld.cost = 0;
+                underWorld.name = "Under World";
+                underWorld.baseId = "UnderWorld";
+                underWorld.display = "Underworld";
+                underWorld.dontDisplayUpgrades = true;
+                underWorld.portrait = new("UnderworldIcon");
+                underWorld.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "Underworld";
+
+                SpriteReference sr = new("UnderworldAbility");
+                CreateEffectOnAbilityModel effectOnAbility = new("CreateEffectOnAbilityModel_Ability_", new("EffectModel_", "14b648f9ccb204d4eb8a79cc203c670f", 1.0f, 50.0f, false, false, true, false, false, false, false), false, false, true, false, false);
+                CreateEffectOnAbilityModel effectOnAbility2 = new("CreateEffectOnAbilityModel_Ability_", new("EffectModel_", "587c28ba86e6282419d8a89066ba4fd0", 1.0f, 15.0f, false, false, true, false, false, false, false), false, false, true, false, false);
+                CreateEffectOnAbilityModel effectOnAbility3 = new("CreateEffectOnAbilityModel_Ability_", new("EffectModel_", "617f1117bf0d35d4b9e59c80128982a6", 1.0f, 60.0f, false, false, true, false, false, false, false), false, false, true, false, false);
+                CreateSoundOnAbilityModel soundOnAbility = new("CreateSoundOnAbilityModel_Ability", new("SoundModel_ActivatedUnholyGatesSound", "c72781a0643d41c4b976110d1516fabc"), SoundModel.blank, SoundModel.blank);
+                EffectModel effectModel = new("EffectModel_", "617f1117bf0d35d4b9e59c80128982a6", 1.0f, 60.0f, false, false, true, false, false, false, false);
+                DamageUpModel damageUpModel = new("DamageUpModel_", 899, 5000, new("assetPathIG", "4fb0baaa656410f4ba1f2fd07b37eda4"));
+                SwitchDisplayModel switchDisplayModel = new("SwitchDisplayModel_", 14.7f, true, "UnderworldInverted", effectModel, false);
+
+                var UnholyGatesModel = new AbilityModel("AbilityModel_Ability", "Unholy Gates", "The wizard summons unholy creatures to help him out against the bloons.", 1, -59, sr, 40.0f, new(new Model[] { effectOnAbility, soundOnAbility, damageUpModel, effectOnAbility2, switchDisplayModel }), false, false, "", 0.0f, 0, 99999, true, false);
+                UnholyGatesModel.icon = new("UnderworldAbility");
+                var beh = underWorld.behaviors;
+                for (var i = 0; i < beh.Length; i++)
+                    if (beh[i].GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
+                        var att = beh[i].Cast<AttackModel>();
+                        att.range = 130;
+                        for (var j = 0; j < att.weapons.Length; j++)
+                            if (att.weapons[j] != null && att.weapons[j].projectile != null &&
+                                att.weapons[j].projectile.display != null &&
+                                !att.weapons[j].projectile.display.Trim().Equals("")) {
+                                if (att.weapons[j].projectile.id.Contains("DB")) {
+                                    att.weapons[j].projectile.display = "ac751aad50cdbef41a9e1f6bbac5349a";
+                                    att.weapons[j].projectile.pierce = 155550;
+                                    var pbhav = att.weapons[j].projectile.behaviors;
+                                    for (var k = 0; k < pbhav.Length; k++)
+                                        if (pbhav[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
+                                            var pb = pbhav[k].Cast<DamageModel>();
+                                            pb.damage *= 10;
+                                            pbhav[k] = pb;
+                                        }
+
+                                    att.weapons[j].projectile.behaviors = pbhav;
+                                }
+
+                                if (att.weapons[j].projectile.id.Contains("Base")) {
+                                    att.weapons[j].rate /= 2;
+                                    att.weapons[j].projectile.pierce = 155550;
+                                    att.weapons[j].projectile.display = "ffa3be03eb9b2d24da77aeff09693b00";
+                                    var pbhav = att.weapons[j].projectile.behaviors;
+                                    for (var k = 0; k < pbhav.Length; k++) {
+                                        if (pbhav[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
+                                            var pb = pbhav[k].Cast<DamageModel>();
+                                            pb.damage *= 13;
+                                            pbhav[k] = pb;
+                                        }
+                                        if (pbhav[k].GetIl2CppType() == Il2CppType.Of<TravelStraitModel>()) {
+                                            var pb = pbhav[k].Cast<TravelStraitModel>();
+                                            pb.lifespan *= 3;
+                                            pbhav[k] = pb;
+                                        }
+                                    }
+
+                                    att.weapons[j].projectile.behaviors = pbhav;
+                                }
+                            }
+                    }
+
+                underWorld.behaviors = beh.Add(UnholyGatesModel);
+            };
+            recurring += tts => {};
+            onLeave += () => { time = -1; };
+            CacheBuilder.toBuild.PushAll("Underworld", "UnderworldIcon", "UnderworldAbility", "UnderworldInverted");
+            CacheBuilder.Build();
+        }
+    }
+}
