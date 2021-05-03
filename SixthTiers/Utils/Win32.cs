@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 
 namespace SixthTiers.Utils {
+    internal class Win32 {
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool FlushInstructionCache(IntPtr hProcess, IntPtr lpBaseAddress, UIntPtr dwSize);
 
