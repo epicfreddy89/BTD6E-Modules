@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Assets.Scripts.Models;
 using Assets.Scripts.Unity.Display;
 using Assets.Scripts.Utils;
 using Harmony;
-using Il2CppSystem;
 using Il2CppSystem.IO;
+using Il2CppSystem.Reflection;
 using MelonLoader;
 using SixthTiers.Resources;
 using SixthTiers.Utils;
@@ -14,9 +18,13 @@ using TMPro;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
+using BindingFlags = System.Reflection.BindingFlags;
 using Color = UnityEngine.Color;
+using Convert = System.Convert;
 using DateTime = System.DateTime;
 using Image = UnityEngine.UI.Image;
+using IntPtr = System.IntPtr;
+using Marshal = Il2CppSystem.Runtime.InteropServices.Marshal;
 using Object = UnityEngine.Object;
 
 namespace SixthTiers.Tasks {
@@ -36,8 +44,9 @@ namespace SixthTiers.Tasks {
             public static Dictionary<string, UnityDisplayNode> protos = new();
 
             [HarmonyPrefix]
-            public static bool Prefix(Factory __instance, string objectId, Action<UnityDisplayNode> onComplete) {
+            public static bool Prefix(Factory __instance, string objectId, Il2CppSystem.Action<UnityDisplayNode> onComplete) {
                 if (!protos.ContainsKey(objectId)) {
+                    var assets = shaderBundle.LoadAllAssets();
                     if (objectId.Equals("WhiteWedding")) {
                         UnityDisplayNode udn = null;
                         __instance.FindAndSetupPrototypeAsync("e6c683076381222438dfc733a602c157",
@@ -50,6 +59,7 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }
@@ -75,6 +85,7 @@ namespace SixthTiers.Tasks {
                                         Il2CppType.Of<SkinnedMeshRenderer>())
                                     {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }
@@ -100,6 +111,7 @@ namespace SixthTiers.Tasks {
                                         Il2CppType.Of<SkinnedMeshRenderer>())
                                     {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }
@@ -122,6 +134,7 @@ namespace SixthTiers.Tasks {
                                 for (var i = 0; i < nudn.genericRenderers.Length; i++) {
                                     if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<MeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<MeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }
@@ -144,6 +157,7 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }
@@ -166,7 +180,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -211,7 +224,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -256,7 +268,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -280,7 +291,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -304,7 +314,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -328,7 +337,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -373,7 +381,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -397,7 +404,6 @@ namespace SixthTiers.Tasks {
                                     if (nudn.genericRenderers[i].GetIl2CppType() ==
                                         Il2CppType.Of<MeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<MeshRenderer>();
-                                        var assets = shaderBundle.LoadAllAssets();
                                         smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
@@ -420,6 +426,7 @@ namespace SixthTiers.Tasks {
                                 for (var i = 0; i < nudn.genericRenderers.Length; i++) {
                                     if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<MeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<MeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }

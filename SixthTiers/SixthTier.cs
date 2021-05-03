@@ -11,9 +11,10 @@ using SixthTiers.Utils;
 
 namespace SixthTiers {
     public class SixthTier : MelonMod {
-        static SixthTier (){
-            //AppDomain.CurrentDomain.Load(File.ReadAllBytes(@"D:\Steam Library\steamapps\common\BloonsTD6\IL2CPP Utilities_x64.dll"));
-        }
+
+        public static HarmonyInstance harmony { get; set; }
+
+        static SixthTier (){}
         public static List<TowerTask> towers = new() {
             new WhiteAlbum(),
             new BigJuggus(),
@@ -26,6 +27,7 @@ namespace SixthTiers {
             new Survivor()
         };
         public override void OnApplicationStart() {
+            harmony = Harmony;
             MelonLogger.Msg(ConsoleColor.Red, "Sixth Tier Expansion Loaded!");
             CacheBuilder.Build();
         }
