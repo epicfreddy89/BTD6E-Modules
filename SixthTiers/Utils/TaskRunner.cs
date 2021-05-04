@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.Map;
@@ -20,22 +21,24 @@ namespace SixthTiers.Utils {
         public static class Update {
             [HarmonyPostfix]
             public static void Postfix(ref InGame __instance) {
-                if (__instance == null) {
-                    for (var j = 0; j < SixthTier.towers.Count; j++)
-                        SixthTier.towers[j].onLeave();
-                    return;
-                }
+                if (__instance == null) { RunLeave(); return; }
                 if (__instance.bridge == null) return;
 
-                var at = __instance.bridge.GetAllTowers();
-                for (var i = 0; i < at.Count; i++)
-                    for (var j = 0; j < SixthTier.towers.Count; j++)
-                        if (SixthTier.towers[j].requirements(at[i]))
-                            if (at[i].tower.namedMonkeyName != SixthTier.towers[j].identifier)
-                                SixthTier.towers[j].onComplete(at[i]);
-                            else if (at[i].tower.namedMonkeyName == SixthTier.towers[i].identifier)
-                                SixthTier.towers[j].recurring(at[i]);
+                var allTowers = __instance.bridge.GetAllTowers();
+                var allSixthTiers = SixthTier.towers;
+                for (var indexOfTowers = 0; indexOfTowers < allTowers.Count; indexOfTowers++) {
+                    var towerToSimulation = allTowers.ToArray()[indexOfTowers];
+                    for (var indexOfSixthTiers = 0; indexOfSixthTiers < allSixthTiers.Count; indexOfSixthTiers++) {
+                        if (!allSixthTiers[indexOfSixthTiers].requirements(towerToSimulation)) continue;
+                        if (towerToSimulation.tower.namedMonkeyName != SixthTier.towers[indexOfSixthTiers].identifier)
+                            SixthTier.towers[indexOfSixthTiers].onComplete(towerToSimulation);
+                        else if (towerToSimulation.tower.namedMonkeyName == SixthTier.towers[indexOfTowers].identifier)
+                            SixthTier.towers[indexOfSixthTiers].recurring(towerToSimulation);
+                    }
+                }
             }
+
+            private static void RunLeave() { for (var towerIndex = SixthTier.towers.Count - 1; towerIndex >= 0; towerIndex--) SixthTier.towers[towerIndex].onLeave(); }
         }
     }
 }

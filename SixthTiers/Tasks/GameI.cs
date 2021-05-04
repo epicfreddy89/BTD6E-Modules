@@ -34,18 +34,8 @@ namespace SixthTiers.Tasks {
             [HarmonyPostfix]
             public static void Postfix(ref GameModel __result) {
                 for (var i = 0; i < SixthTier.towers.Count; i++) SixthTier.towers[i].gameLoad(__result);
-                //__result.towers = __result.towers.Add(SixthTier.towers.Select(a=>a.getTower));
+                __result.towers = __result.towers.Add(SixthTier.towers.Select(a => a.getTower));
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

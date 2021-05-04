@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Models;
 using UnhollowerBaseLib;
 
@@ -35,6 +36,14 @@ namespace SixthTiers.Utils {
             while (enumerator.MoveNext()) bases.Add(enumerator.Current);
 
             return new(bases.ToArray());
+        }
+
+        public static Il2CppSystem.Collections.Generic.IEnumerable<C> SelectI<T, R, C>(this IEnumerable<T> enumerable, Func<T, R> predicate) where R : Model where C : Model {
+            var bases = new Il2CppSystem.Collections.Generic.List<C>();
+            var enumerator = enumerable.GetEnumerator();
+            while (enumerator.MoveNext())
+                bases.Add(predicate(enumerator.Current).Cast<C>());
+            return bases.Cast<Il2CppSystem.Collections.Generic.IEnumerable<C>>();
         }
     }
 }
