@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.Bloons.Behaviors;
@@ -98,19 +99,11 @@ namespace GodTier {
         [HarmonyPatch(typeof(StandardTowerPurchaseButton), "SetTower")]
         public static class SetTower {
             public static StandardTowerPurchaseButton stpb = null;
-            [HarmonyPrefix]
-            internal static bool Fix(ref StandardTowerPurchaseButton __instance, ref TowerModel towerModel,
+            [HarmonyPostfix]
+            internal static void Fix(ref StandardTowerPurchaseButton __instance, ref TowerModel towerModel,
                 ref bool showTowerCount, ref bool hero, ref int buttonIndex) {
-                if (towerModel.name.Contains(Godzilla.name)) {
-                    var text = assets.LoadAsset("TowerContainerMovie").Cast<Texture2D>();
-                    __instance.UpdateTowerDisplay();
-                    __instance.bg.overrideSprite = Sprite.Create(text, new(0, 0, text.width, text.height), new());
-                    __instance.UpdateIcon();
-                }
-
                 stpb = __instance;
-
-                return true;
+                return;
             }
         }
 
@@ -500,6 +493,8 @@ namespace GodTier {
                 if (!protos.ContainsKey(objectId) && objectId.Equals("Godzilla0")) {
                     var udn = GetGodzilla(__instance.PrototypeRoot);
                     udn.name = "Godzilla";
+                    var a = assets.LoadAsset("GodzillaMaterial");
+                    udn.genericRenderers[0].material = a.Cast<Material>();
                     udn.RecalculateGenericRenderers();
                     udn.isSprite = false;
                     onComplete.Invoke(udn);
@@ -512,8 +507,8 @@ namespace GodTier {
                     udn.name = "Godzilla1";
                     udn.RecalculateGenericRenderers();
                     udn.isSprite = false;
-                    var a = assets.LoadAsset("Godzilla_E0");
-                    udn.genericRenderers[0].material.mainTexture = a.Cast<Texture2D>();
+                    var a = assets.LoadAsset("GodzillaMaterialBlu");
+                    udn.genericRenderers[0].material = a.Cast<Material>();
                     onComplete.Invoke(udn);
                     protos.Add(objectId, udn);
                     return false;
@@ -524,8 +519,8 @@ namespace GodTier {
                     udn.name = "Godzilla2";
                     udn.RecalculateGenericRenderers();
                     udn.isSprite = false;
-                    var a = assets.LoadAsset("Godzilla_E1");
-                    udn.genericRenderers[0].material.mainTexture = a.Cast<Texture2D>();
+                    var a = assets.LoadAsset("GodzillaMaterialRed");
+                    udn.genericRenderers[0].material = a.Cast<Material>();
                     onComplete.Invoke(udn);
                     protos.Add(objectId, udn);
                     return false;

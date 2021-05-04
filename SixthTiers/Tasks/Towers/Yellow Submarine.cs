@@ -33,6 +33,7 @@ namespace SixthTiers.Tasks.Towers
         public Yellow_Submarine()
         {
             identifier = "Yellow Submarine";
+            getTower = yellowSubmarine;
             requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50)

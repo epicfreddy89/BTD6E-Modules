@@ -34,6 +34,7 @@ namespace SixthTiers.Tasks.Towers {
         private static int time = -1;
         public UnderWorld() {
             identifier = "Under World";
+            getTower = underWorld;
             requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50) {

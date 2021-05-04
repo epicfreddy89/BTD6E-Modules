@@ -33,6 +33,7 @@ namespace SixthTiers.Tasks.Towers {
         public PointOfNoReturn()
         {
             identifier = "Point of no Return";
+            getTower = PONR;
             requirements += tts => tts.tower.towerModel.baseId.Equals("BombShooter") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50)

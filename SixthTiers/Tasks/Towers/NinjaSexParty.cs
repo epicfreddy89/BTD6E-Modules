@@ -33,6 +33,7 @@ namespace SixthTiers.Tasks.Towers {
         public NinjaSexParty()
         {
             identifier = "NSP";
+            getTower = NSP;
             requirements += tts => tts.tower.towerModel.baseId.Equals("NinjaMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50)

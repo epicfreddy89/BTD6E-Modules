@@ -35,6 +35,7 @@ namespace SixthTiers.Tasks.Towers {
         private static int time = -1;
         public Survivor() {
             identifier = "Survivor";
+            getTower = survivor;
             requirements += tts => tts.tower.towerModel.baseId.Equals("SniperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50) {

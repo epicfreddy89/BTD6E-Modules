@@ -181,6 +181,7 @@ namespace SixthTiers.Tasks {
                                         Il2CppType.Of<SkinnedMeshRenderer>()) {
                                         var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
                                         smr.material.shader = assets[0].Cast<Shader>();
+                                        smr.material.SetColor("Outline Color", Color.black);
                                         smr.material.mainTexture = CacheBuilder.Get(objectId);
                                         nudn.genericRenderers[i] = smr;
                                     }

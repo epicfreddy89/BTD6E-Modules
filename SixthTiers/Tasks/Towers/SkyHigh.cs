@@ -34,6 +34,7 @@ namespace SixthTiers.Tasks.Towers {
         private static int time = -1;
         public SkyHigh() {
             identifier = "Sky High";
+            getTower = skyHigh;
             requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50) {

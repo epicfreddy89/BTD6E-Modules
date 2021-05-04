@@ -28,6 +28,7 @@ namespace SixthTiers.Tasks.Towers {
         private static int time = -1;
         public WhiteAlbum() {
             identifier = "White Wedding";
+            getTower = whiteWedding;
             requirements += tts => tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > 1000000;
             onComplete += tts => {
                 if (time < 50) {

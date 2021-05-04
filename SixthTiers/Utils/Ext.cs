@@ -25,5 +25,16 @@ namespace SixthTiers.Utils {
 
             return new(bases.ToArray());
         }
+        public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> reference, IEnumerable<T> enumerable) where T : Model
+        {
+            var bases = new List<T>();
+            foreach (var tmp in reference)
+                bases.Add(tmp);
+
+            var enumerator = enumerable.GetEnumerator();
+            while (enumerator.MoveNext()) bases.Add(enumerator.Current);
+
+            return new(bases.ToArray());
+        }
     }
 }

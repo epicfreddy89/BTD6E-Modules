@@ -42,6 +42,7 @@ namespace SixthTiers.Tasks.Towers {
         private static int time = -1;
         public BigJuggus() {
             identifier = "Big Juggus";
+            getTower = bigJuggus;
             requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50) {

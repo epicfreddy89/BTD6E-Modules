@@ -33,6 +33,7 @@ namespace SixthTiers.Tasks.Towers {
         public BlackHoleSun()
         {
             identifier = "Black Hole Sun";
+            getTower = BHS;
             requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
             onComplete += tts => {
                 if (time < 50)
