@@ -35,7 +35,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public UnderWorld() {
             identifier = "Under World";
             getTower = underWorld;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.UNDERWORLD) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
@@ -88,7 +88,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                     for (var k = 0; k < pbhav.Length; k++)
                                         if (pbhav[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                             var pb = pbhav[k].Cast<DamageModel>();
-                                            pb.damage *= 10;
+                                            pb.damage *= 10 * Globals.SixthTierDamageMulti;
                                             pbhav[k] = pb;
                                         }
 
@@ -103,7 +103,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                     for (var k = 0; k < pbhav.Length; k++) {
                                         if (pbhav[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                             var pb = pbhav[k].Cast<DamageModel>();
-                                            pb.damage *= 13;
+                                            pb.damage *= 13 * Globals.SixthTierDamageMulti;
                                             pbhav[k] = pb;
                                         }
                                         if (pbhav[k].GetIl2CppType() == Il2CppType.Of<TravelStraitModel>()) {
@@ -123,7 +123,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("Underworld", "UnderworldIcon", "UnderworldAbility", "UnderworldInverted");
-            CacheBuilder.Build();
         }
     }
 }

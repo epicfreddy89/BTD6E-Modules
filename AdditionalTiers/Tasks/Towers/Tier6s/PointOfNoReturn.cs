@@ -26,7 +26,7 @@ using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class PointOfNoReturn : TowerTask{
+    public class PointOfNoReturn : TowerTask {
         public static TowerModel PONR;
         private static int time = -1;
 
@@ -34,7 +34,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         {
             identifier = "Point of no Return";
             getTower = PONR;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("BombShooter") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("BombShooter") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.POINTOFNORETURN) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50)
                 {
@@ -102,7 +102,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                             }
                             if (am.weapons[0].projectile.behaviors[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                 var p = am.weapons[0].projectile.behaviors[k].Cast<DamageModel>();
-                                p.damage *= 10;
+                                p.damage *= 10 * Globals.SixthTierDamageMulti;
                                 am.weapons[0].projectile.behaviors[k] = p;
                             }
                         }
@@ -121,7 +121,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                         for (var k = 0; k < am.weapons[0].projectile.behaviors.Length; k++)
                             if (am.weapons[0].projectile.behaviors[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                 var p = am.weapons[0].projectile.behaviors[k].Cast<DamageModel>();
-                                p.damage *= 10;
+                                p.damage *= 10 * Globals.SixthTierDamageMulti;
                                 am.weapons[0].projectile.behaviors[k] = p;
                             }
                     }
@@ -145,7 +145,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("PONR", "PONRProj", "PONRIcon");
-            CacheBuilder.Build();
         }
     }
 }

@@ -28,12 +28,12 @@ namespace AdditionalTiers.Utils {
                 var allAdditionalTiers = AdditionalTiers.towers;
                 for (var indexOfTowers = 0; indexOfTowers < allTowers.Count; indexOfTowers++) {
                     var towerToSimulation = allTowers.ToArray()[indexOfTowers];
-                    for (var indexOfSixthTiers = 0; indexOfSixthTiers < allAdditionalTiers.Count; indexOfSixthTiers++) {
-                        if (!allAdditionalTiers[indexOfSixthTiers].requirements(towerToSimulation)) continue;
-                        if (towerToSimulation.tower.namedMonkeyName != AdditionalTiers.towers[indexOfSixthTiers].identifier)
-                            AdditionalTiers.towers[indexOfSixthTiers].onComplete(towerToSimulation);
-                        else if (towerToSimulation.tower.namedMonkeyName == AdditionalTiers.towers[indexOfTowers].identifier)
-                            AdditionalTiers.towers[indexOfSixthTiers].recurring(towerToSimulation);
+                    for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Count; indexOfAdditionalTiers++) {
+                        if (!allAdditionalTiers[indexOfAdditionalTiers].requirements(towerToSimulation)) continue;
+                        if (towerToSimulation.tower.namedMonkeyName != AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
+                            AdditionalTiers.towers[indexOfAdditionalTiers].onComplete(towerToSimulation);
+                        else if (towerToSimulation.tower.namedMonkeyName == AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
+                            AdditionalTiers.towers[indexOfAdditionalTiers].recurring(towerToSimulation);
                     }
                 }
             }

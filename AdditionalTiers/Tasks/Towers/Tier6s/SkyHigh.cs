@@ -35,7 +35,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public SkyHigh() {
             identifier = "Sky High";
             getTower = skyHigh;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > ((int)AddedTierEnum.SKYHIGH) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
@@ -95,7 +95,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                 if (we.projectile.behaviors[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                     var dm = we.projectile.behaviors[k].Cast<DamageModel>();
 
-                                    dm.damage *= 2;
+                                    dm.damage *= 2 * Globals.SixthTierDamageMulti;
 
                                     we.projectile.behaviors[k] = dm;
                                 }
@@ -126,7 +126,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("SkyHigh", "SkyHighProj", "SkyHighIcon");
-            CacheBuilder.Build();
         }
     }
 }

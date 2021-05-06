@@ -26,7 +26,7 @@ using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class NinjaSexParty : TowerTask{
+    public class NinjaSexParty : TowerTask {
         public static TowerModel NSP;
         private static int time = -1;
 
@@ -34,7 +34,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         {
             identifier = "NSP";
             getTower = NSP;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("NinjaMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("NinjaMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.NINJASEXPARTY) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50)
                 {
@@ -87,7 +87,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                             if (am.weapons[0].projectile.behaviors[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                 var p = am.weapons[0].projectile.behaviors[k].Cast<DamageModel>();
                                 p.immuneBloonProperties = BloonProperties.Lead;
-                                p.damage *= 5;
+                                p.damage *= 5 * Globals.SixthTierDamageMulti;
                                 am.weapons[0].projectile.behaviors[k] = p;
                             }
                         }
@@ -105,7 +105,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("NinjaSexParty", "NinjaSexPartyIcon", "NinjaSexPartyProj");
-            CacheBuilder.Build();
         }
     }
 }

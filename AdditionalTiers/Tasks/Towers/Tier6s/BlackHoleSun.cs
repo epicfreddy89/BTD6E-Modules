@@ -26,7 +26,7 @@ using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class BlackHoleSun : TowerTask{
+    public class BlackHoleSun : TowerTask {
         public static TowerModel BHS;
         private static int time = -1;
 
@@ -34,7 +34,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         {
             identifier = "Black Hole Sun";
             getTower = BHS;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.BLACKHOLESUN) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50)
                 {
@@ -93,7 +93,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                 if (am.weapons[j].projectile.behaviors[k].GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                     var p = am.weapons[j].projectile.behaviors[k].Cast<DamageModel>();
                                     p.immuneBloonProperties = BloonProperties.Lead;
-                                    p.damage *= 2;
+                                    p.damage *= 2 * Globals.SixthTierDamageMulti;
                                     am.weapons[j].projectile.behaviors[k] = p;
                                 }
                             }
@@ -137,7 +137,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("BlackHoleSun", "BlackHoleSunIcon", "BlackHoleSunProjectile");
-            CacheBuilder.Build();
         }
     }
 }

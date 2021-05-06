@@ -29,7 +29,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public WhiteAlbum() {
             identifier = "White Wedding";
             getTower = whiteWedding;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > 1000000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > ((int)AddedTierEnum.WHITEWEDDING) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
@@ -93,7 +93,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("WhiteWedding", "WhiteWeddingProjectile", "WhiteWeddingOrbitProjectile", "WhiteWeddingIcon");
-            CacheBuilder.Build();
         }
     }
 }

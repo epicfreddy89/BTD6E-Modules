@@ -5,11 +5,11 @@ using MelonLoader;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SixthTiers")]
+[assembly: AssemblyTitle("AdditionalTiers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("1330 Studios LLC")]
-[assembly: AssemblyProduct("SixthTiers")]
+[assembly: AssemblyProduct("AdditionalTiers")]
 [assembly: AssemblyCopyright("Copyright © 1330 Studios LLC 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -34,5 +34,3 @@ using MelonLoader;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Sixth Tier Addon", "1.1", "KosmicDev")]

@@ -43,7 +43,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public BigJuggus() {
             identifier = "Big Juggus";
             getTower = bigJuggus;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.BIGJUGGUS) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
@@ -123,7 +123,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                         var b = attack.weapons[j].projectile.behaviors[i];
                         if (b.GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                             var p = b.Cast<DamageModel>();
-                            p.damage = 25000;
+                            p.damage = 25000 * Globals.SixthTierDamageMulti;
                             attack.weapons[j].projectile.behaviors[i] = p;
                         }
 
@@ -155,7 +155,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("BigJuggus", "BigJuggusProj", "BigJuggusIcon", "SmallerJuggus", "SmallerJuggusProj", "SmallerJuggusIcon");
-            CacheBuilder.Build();
         }
     }
 }

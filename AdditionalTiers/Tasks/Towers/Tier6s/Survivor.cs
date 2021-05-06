@@ -36,7 +36,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public Survivor() {
             identifier = "Survivor";
             getTower = survivor;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("SniperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("SniperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > ((int)AddedTierEnum.SURVIVOR) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
@@ -82,7 +82,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("Survivor", "SurvivorIcon");
-            CacheBuilder.Build();
         }
     }
 }

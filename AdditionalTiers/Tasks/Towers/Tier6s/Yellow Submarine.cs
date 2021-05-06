@@ -31,7 +31,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public Yellow_Submarine() {
             identifier = "Yellow Submarine";
             getTower = yellowSubmarine;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.YELLOWSUBMARINE) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
                 if (time < 50)
                 {
@@ -95,7 +95,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                 if (bh.GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                     var dm = bh.Cast<DamageModel>();
 
-                                    dm.damage *= 3;
+                                    dm.damage *= 3 * Globals.SixthTierDamageMulti;
 
                                     bh = dm;
                                 }
@@ -133,7 +133,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("YellowSubmarine", "YellowSubmarineIcon");
-            CacheBuilder.Build();
         }
     }
 }
