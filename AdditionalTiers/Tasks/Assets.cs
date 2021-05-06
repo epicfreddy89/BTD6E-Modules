@@ -70,6 +70,29 @@ namespace AdditionalTiers.Tasks {
                             }));
                         return false;
                     }
+                    if (objectId.Equals("SuperFly")) {
+                        UnityDisplayNode udn = null;
+                        __instance.FindAndSetupPrototypeAsync("06b880ab7e2941b4f9de3e132ba1e11e",
+                            new System.Action<UnityDisplayNode>(oudn => {
+                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
+                                nudn.name = objectId + "(Clone)";
+                                nudn.isSprite = true;
+                                nudn.RecalculateGenericRenderers();
+                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
+                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
+                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
+                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
+                                        smr.material.shader = assets[0].Cast<Shader>();
+                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
+                                        nudn.genericRenderers[i] = smr;
+                                    }
+                                }
+
+                                udn = nudn;
+                                onComplete.Invoke(udn);
+                            }));
+                        return false;
+                    }
                     if (objectId.Equals("BigJuggus"))
                     {
                         UnityDisplayNode udn = null;

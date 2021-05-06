@@ -208,6 +208,12 @@
   <data name="SurvivorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>SurvivorIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SuperFly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SuperFly.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SuperFlyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SuperFlyIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

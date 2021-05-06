@@ -18,6 +18,8 @@ using Harmony;
 using Il2CppSystem;
 using MelonLoader;
 using AdditionalTiers.Utils;
+using Assets.Scripts.Models.Towers.TowerFilters;
+using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
@@ -39,6 +41,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(superFly);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
+                Globals.SixthTierPopCountMulti /= 10;
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
@@ -46,38 +49,59 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 superFly = gm.towers.First(a => a.name.Contains("MonkeyVillage-520")).Clone()
                     .Cast<TowerModel>();
 
-                superFly.range = 150;
+                superFly.range = 500;
                 superFly.cost = 0;
                 superFly.name = "Super Fly";
                 superFly.baseId = "SuperFly";
-                //superFly.display = "SuperFly";
+                superFly.display = "SuperFly";
                 superFly.dontDisplayUpgrades = true;
-                //superFly.portrait = new("superFlyIcon");
-                //superFly.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "superFly";
+                superFly.portrait = new("SuperFlyIcon");
+                superFly.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "SuperFly";
                 var beh = superFly.behaviors;
-                ProjectileModel proj = null;
                 for (var i = 0; i < beh.Length; i++) {
                     var behavior = beh[i];
-                    if (behavior.GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
-                        var am = behavior.Cast<AttackModel>();
-
-                        for (var j = 0; j < am.weapons.Length; j++) {
-                            am.weapons[j].projectile.pierce *= 5;
-                            am.weapons[j].projectile.scale *= 1.25f;
-                            proj = am.weapons[j].projectile.Clone().Cast<ProjectileModel>();
-                        }
-
-                        beh[i] = am;
+                    if (behavior.GetIl2CppType() == Il2CppType.Of<PierceSupportModel>()) {
+                        PierceSupportModel a = behavior.Cast<PierceSupportModel>();
+                        a.pierce = 5;
+                        a.filters = new Il2CppReferenceArray<TowerFilterModel>(0);
+                        behavior = a;
                     }
-
+                    if (behavior.GetIl2CppType() == Il2CppType.Of<ProjectileSpeedSupportModel>()) {
+                        ProjectileSpeedSupportModel a = behavior.Cast<ProjectileSpeedSupportModel>();
+                        a.multiplier = 0.5f;
+                        a.filters = new Il2CppReferenceArray<TowerFilterModel>(0);
+                        behavior = a;
+                    }
+                    if (behavior.GetIl2CppType() == Il2CppType.Of<RangeSupportModel>()) {
+                        RangeSupportModel a = behavior.Cast<RangeSupportModel>();
+                        // There's 2 RangeSupportModels
+                        if (a.multiplier == .1f)
+                            a.multiplier = .25f;
+                        if (a.additive == 5)
+                            a.additive = 10;
+                        a.filters = new Il2CppReferenceArray<TowerFilterModel>(0);
+                        behavior = a;
+                    }
+                    if (behavior.GetIl2CppType() == Il2CppType.Of<FreeUpgradeSupportModel>()) {
+                        FreeUpgradeSupportModel a = behavior.Cast<FreeUpgradeSupportModel>();
+                        a.upgrade = 3;
+                        a.filters = new Il2CppReferenceArray<TowerFilterModel>(0);
+                        behavior = a;
+                    }
+                    if (behavior.GetIl2CppType() == Il2CppType.Of<AbilityCooldownScaleSupportModel>()) {
+                        AbilityCooldownScaleSupportModel a = behavior.Cast<AbilityCooldownScaleSupportModel>();
+                        a.filters = new Il2CppReferenceArray<TowerFilterModel>(0);
+                        behavior = a;
+                    }
+                    
                     beh[i] = behavior;
                 }
 
-                superFly.behaviors = beh.Remove(a=>a.GetIl2CppType()==Il2CppType.Of<AttackModel>()).Add(new OrbitModel("OrbitModel_", proj));
+                superFly.behaviors = beh.Remove(a=>a.GetIl2CppType()==Il2CppType.Of<AttackModel>());
             };
             recurring += tts => {};
-            onLeave += () => { time = -1; };
-            CacheBuilder.toBuild.PushAll();
+            onLeave += () => { time = -1; Globals.Load(); };
+            CacheBuilder.toBuild.PushAll("SuperFly", "SuperFlyIcon");
         }
     }
 }
