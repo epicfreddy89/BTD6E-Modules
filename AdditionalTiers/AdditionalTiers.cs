@@ -39,7 +39,7 @@ namespace AdditionalTiers {
             
             Globals.Load();
 
-            MelonLogger.Msg(ConsoleColor.Red, "Sixth Tier Expansion Loaded!");
+            MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
         }
 
