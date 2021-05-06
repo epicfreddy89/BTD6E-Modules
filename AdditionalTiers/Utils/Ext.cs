@@ -4,7 +4,7 @@ using System.Linq;
 using Assets.Scripts.Models;
 using UnhollowerBaseLib;
 
-namespace SixthTiers.Utils {
+namespace AdditionalTiers.Utils {
     public static class Ext {
         public static Il2CppReferenceArray<T> Remove<T>(this Il2CppReferenceArray<T> reference, Func<T, bool> predicate) where T : Model
         {

@@ -7,8 +7,8 @@
     <ProjectGuid>{3FE2743E-4B45-4EB3-811B-27C37D25102B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SixthTiers</RootNamespace>
-    <AssemblyName>SixthTiers</AssemblyName>
+    <RootNamespace>AdditionalTiers</RootNamespace>
+    <AssemblyName>AdditionalTiers</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LangVersion>9</LangVersion>
@@ -339,7 +339,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
-    <Compile Include="SixthTier.cs" />
+    <Compile Include="AdditionalTiers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\Assets.cs" />
     <Compile Include="Tasks\GameI.cs" />

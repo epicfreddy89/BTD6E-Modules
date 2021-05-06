@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SixthTiers.Resources {
+namespace AdditionalTiers.Resources {
     using System;
     
     

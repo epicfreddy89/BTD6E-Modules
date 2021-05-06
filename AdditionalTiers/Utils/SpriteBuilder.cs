@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace SixthTiers.Utils {
+namespace AdditionalTiers.Utils {
     public class SpriteBuilder {
         private static readonly Dictionary<Texture2D, Sprite> cache = new ();
 

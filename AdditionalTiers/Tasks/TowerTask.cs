@@ -4,7 +4,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Unity.Bridge;
 
-namespace SixthTiers.Tasks {
+namespace AdditionalTiers.Tasks {
     public class TowerTask {
         public Func<TowerToSimulation, bool> requirements;
         public Action<TowerToSimulation> onComplete;

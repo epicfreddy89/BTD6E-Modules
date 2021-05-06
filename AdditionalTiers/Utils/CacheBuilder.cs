@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ServiceModel.Channels;
 using MelonLoader;
-using SixthTiers.Resources;
+using AdditionalTiers.Resources;
 using UnityEngine;
 
-namespace SixthTiers.Utils {
+namespace AdditionalTiers.Utils {
     public class CacheBuilder {
         public static AssetStack<string> toBuild = new();
         private static readonly Dictionary<string, string> built = new();

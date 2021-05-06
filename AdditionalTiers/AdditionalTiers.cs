@@ -5,16 +5,16 @@ using System.Reflection.Emit;
 using Assets.Scripts.Unity.UI_New.InGame;
 using Harmony;
 using MelonLoader;
-using SixthTiers.Tasks;
-using SixthTiers.Tasks.Towers;
-using SixthTiers.Utils;
+using AdditionalTiers.Tasks;
+using AdditionalTiers.Tasks.Towers;
+using AdditionalTiers.Utils;
 
-namespace SixthTiers {
-    public class SixthTier : MelonMod {
+namespace AdditionalTiers {
+    public class AdditionalTiers : MelonMod {
 
         public static HarmonyInstance harmony { get; set; }
 
-        static SixthTier (){}
+        static AdditionalTiers (){}
         public static List<TowerTask> towers = new() {
             new WhiteAlbum(),
             new BigJuggus(),

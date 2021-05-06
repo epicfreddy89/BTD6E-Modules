@@ -18,8 +18,8 @@ using Assets.Scripts.Simulation.Towers.Weapons;
 using Assets.Scripts.Utils;
 using Harmony;
 using MelonLoader;
-using SixthTiers.Resources;
-using SixthTiers.Utils;
+using AdditionalTiers.Resources;
+using AdditionalTiers.Utils;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
@@ -27,14 +27,14 @@ using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using IList = Il2CppSystem.Collections.IList;
 
-namespace SixthTiers.Tasks {
+namespace AdditionalTiers.Tasks {
     public class GameI {
         [HarmonyPatch(typeof(GameModelLoader), nameof(GameModelLoader.Load))]
         public static class Loaded {
             [HarmonyPostfix]
             public static void Postfix(ref GameModel __result) {
-                for (var i = 0; i < SixthTier.towers.Count; i++) SixthTier.towers[i].gameLoad(__result);
-                __result.towers = __result.towers.Add(SixthTier.towers.Select(a => a.getTower));
+                for (var i = 0; i < AdditionalTiers.towers.Count; i++) AdditionalTiers.towers[i].gameLoad(__result);
+                __result.towers = __result.towers.Add(AdditionalTiers.towers.Select(a => a.getTower));
             }
         }
     }

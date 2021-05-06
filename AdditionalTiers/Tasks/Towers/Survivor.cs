@@ -23,13 +23,13 @@ using Assets.Scripts.Utils;
 using Harmony;
 using Il2CppSystem;
 using MelonLoader;
-using SixthTiers.Utils;
+using AdditionalTiers.Utils;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
-namespace SixthTiers.Tasks.Towers {
+namespace AdditionalTiers.Tasks.Towers {
     public class Survivor : TowerTask {
         public static TowerModel survivor;
         private static int time = -1;

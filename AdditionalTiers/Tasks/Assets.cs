@@ -12,8 +12,8 @@ using Harmony;
 using Il2CppSystem.IO;
 using Il2CppSystem.Reflection;
 using MelonLoader;
-using SixthTiers.Resources;
-using SixthTiers.Utils;
+using AdditionalTiers.Resources;
+using AdditionalTiers.Utils;
 using TMPro;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
@@ -27,7 +27,7 @@ using IntPtr = System.IntPtr;
 using Marshal = Il2CppSystem.Runtime.InteropServices.Marshal;
 using Object = UnityEngine.Object;
 
-namespace SixthTiers.Tasks {
+namespace AdditionalTiers.Tasks {
     public class Assets {
         private static AssetBundle _shader = null;
 

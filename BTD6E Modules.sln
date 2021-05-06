@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixthTiers", "SixthTiers\SixthTiers.csproj", "{3FE2743E-4B45-4EB3-811B-27C37D25102B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdditionalTiers", "AdditionalTiers\AdditionalTiers.csproj", "{3FE2743E-4B45-4EB3-811B-27C37D25102B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maps", "Maps\Maps.csproj", "{549D9653-6933-406E-BA55-C6D8082DF2DD}"
 EndProject

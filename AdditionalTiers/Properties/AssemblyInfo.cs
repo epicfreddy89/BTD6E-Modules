@@ -35,4 +35,4 @@ using MelonLoader;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(SixthTiers.SixthTier), "Sixth Tier Addon", "1.1", "KosmicDev")]
+[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Sixth Tier Addon", "1.1", "KosmicDev")]
