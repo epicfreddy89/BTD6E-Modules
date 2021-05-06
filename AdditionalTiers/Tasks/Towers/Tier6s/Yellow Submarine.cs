@@ -24,14 +24,11 @@ using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
-namespace AdditionalTiers.Tasks.Towers
-{
-    public class Yellow_Submarine : TowerTask
-    {
+namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public class Yellow_Submarine : TowerTask {
         public static TowerModel yellowSubmarine;
         private static int time = -1;
-        public Yellow_Submarine()
-        {
+        public Yellow_Submarine() {
             identifier = "Yellow Submarine";
             getTower = yellowSubmarine;
             requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > 100000;
@@ -48,8 +45,7 @@ namespace AdditionalTiers.Tasks.Towers
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
-            gameLoad += gm =>
-            {
+            gameLoad += gm => {
                 yellowSubmarine = gm.towers.First(a => a.name.Contains("MonkeySub-052")).Clone()
                     .Cast<TowerModel>();
 
@@ -64,10 +60,8 @@ namespace AdditionalTiers.Tasks.Towers
                     .Cast<DisplayModel>().display = "YellowSubmarine";
                 var beh = yellowSubmarine.behaviors;
                 ProjectileModel projectile = null;
-                for (int i = 0; i < beh.Length; i++)
-                {
-                    if (beh[i].GetIl2CppType() == Il2CppType.Of<PreEmptiveStrikeLauncherModel>())
-                    {
+                for (int i = 0; i < beh.Length; i++) {
+                    if (beh[i].GetIl2CppType() == Il2CppType.Of<PreEmptiveStrikeLauncherModel>()) {
                         var am = beh[i].Cast<PreEmptiveStrikeLauncherModel>();
                         am.emissionModel = new ArcEmissionModel("ArcEmissionModel_", 3, 0, 72.5f, null, false, false).Cast<EmissionModel>();
                         am.projectileModel.behaviors = am.projectileModel.behaviors.Add(
@@ -78,13 +72,11 @@ namespace AdditionalTiers.Tasks.Towers
                         beh[i] = am;
                     }
 
-                    if (beh[i].GetIl2CppType() == Il2CppType.Of<AttackModel>())
-                    {
+                    if (beh[i].GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
                         var am = beh[i].Cast<AttackModel>();
 
                         am.range = 2000;
-                        for (int j = 0; j < am.weapons.Length; j++)
-                        {
+                        for (int j = 0; j < am.weapons.Length; j++) {
                             am.weapons[j].rate /=5;
                             am.weapons[j].rateFrames /=5;
 
@@ -115,15 +107,12 @@ namespace AdditionalTiers.Tasks.Towers
                         beh[i] = am;
                     }
 
-                    if (beh[i].GetIl2CppType() == Il2CppType.Of<AbilityModel>())
-                    {
+                    if (beh[i].GetIl2CppType() == Il2CppType.Of<AbilityModel>()) {
                         var am = beh[i].Cast<AbilityModel>();
                         am.icon = new("YellowSubmarineIcon");
                         var ab = am.behaviors;
-                        for (int j = 0; j < ab.Length; j++)
-                        {
-                            if (ab[j].GetIl2CppType() == Il2CppType.Of<ActivateAttackModel>())
-                            {
+                        for (int j = 0; j < ab.Length; j++) {
+                            if (ab[j].GetIl2CppType() == Il2CppType.Of<ActivateAttackModel>()) {
                                 var aam = ab[j].Cast<ActivateAttackModel>();
 
                                 for (int k = 0; k < aam.attacks.Length; k++)

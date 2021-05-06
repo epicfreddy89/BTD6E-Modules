@@ -343,16 +343,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\Assets.cs" />
     <Compile Include="Tasks\GameI.cs" />
-    <Compile Include="Tasks\Towers\BigJuggus.cs" />
-    <Compile Include="Tasks\Towers\BlackHoleSun.cs" />
-    <Compile Include="Tasks\Towers\Flamingo.cs" />
-    <Compile Include="Tasks\Towers\NinjaSexParty.cs" />
-    <Compile Include="Tasks\Towers\PointOfNoReturn.cs" />
-    <Compile Include="Tasks\Towers\SkyHigh.cs" />
-    <Compile Include="Tasks\Towers\Survivor.cs" />
-    <Compile Include="Tasks\Towers\UnderWorld.cs" />
-    <Compile Include="Tasks\Towers\WhiteWedding.cs" />
-    <Compile Include="Tasks\Towers\Yellow Submarine.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\BigJuggus.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\BlackHoleSun.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\Flamingo.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\NinjaSexParty.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\PointOfNoReturn.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\SkyHigh.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\Survivor.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\UnderWorld.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\WhiteWedding.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\Yellow Submarine.cs" />
     <Compile Include="Tasks\TowerTask.cs" />
     <Compile Include="Utils\AssetStack.cs" />
     <Compile Include="Utils\CacheBuilder.cs" />
@@ -361,7 +361,6 @@
     <Compile Include="Utils\TaskRunner.cs" />
     <Compile Include="Utils\Win32.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images.resx">
       <Generator>ResXFileCodeGenerator</Generator>

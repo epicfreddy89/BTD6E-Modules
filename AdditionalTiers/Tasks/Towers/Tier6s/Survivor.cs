@@ -29,7 +29,7 @@ using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
-namespace AdditionalTiers.Tasks.Towers {
+namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class Survivor : TowerTask {
         public static TowerModel survivor;
         private static int time = -1;

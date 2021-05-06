@@ -36,7 +36,7 @@ using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
-namespace AdditionalTiers.Tasks.Towers {
+namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class BigJuggus : TowerTask {
         public static TowerModel bigJuggus;
         private static int time = -1;

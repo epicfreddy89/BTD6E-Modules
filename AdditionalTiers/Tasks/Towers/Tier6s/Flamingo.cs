@@ -22,7 +22,7 @@ using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
-namespace AdditionalTiers.Tasks.Towers {
+namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class Flamingo : TowerTask{
         public static TowerModel yellowSubmarine;
         private static int time = -1;

@@ -25,7 +25,7 @@ using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
 
-namespace AdditionalTiers.Tasks.Towers {
+namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class NinjaSexParty : TowerTask{
         public static TowerModel NSP;
         private static int time = -1;

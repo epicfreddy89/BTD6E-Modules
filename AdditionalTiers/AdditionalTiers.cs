@@ -6,7 +6,7 @@ using Assets.Scripts.Unity.UI_New.InGame;
 using Harmony;
 using MelonLoader;
 using AdditionalTiers.Tasks;
-using AdditionalTiers.Tasks.Towers;
+using AdditionalTiers.Tasks.Towers.Tier6s;
 using AdditionalTiers.Utils;
 
 namespace AdditionalTiers {
