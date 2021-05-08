@@ -41,6 +41,7 @@ namespace AdditionalTiers {
 
             MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
+            Tasks.Assets.DisplayFactory.Build();
         }
 
         public override void OnApplicationQuit() => CacheBuilder.Flush();

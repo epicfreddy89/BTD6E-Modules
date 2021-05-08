@@ -145,6 +145,8 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("PONR", "PONRProj", "PONRIcon");
+            assetsToRead.Add(new ("PONR", "31a16eecf9211a64b8dcdfad2ff7974e", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new ("PONRProj", "e5edd901992846e409326a506d272633", RendererType.MESHRENDERER));
         }
     }
 }

@@ -123,6 +123,8 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("Underworld", "UnderworldIcon", "UnderworldAbility", "UnderworldInverted");
+            assetsToRead.Add(new ("Underworld", "8ccff862eab169c4884bac8bbd878529", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new ("UnderworldInverted", "8ccff862eab169c4884bac8bbd878529", RendererType.SKINNEDMESHRENDERER));
         }
     }
 }

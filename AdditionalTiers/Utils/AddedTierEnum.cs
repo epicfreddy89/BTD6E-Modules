@@ -11,4 +11,17 @@
         WHITEWEDDING = 1000000,
         YELLOWSUBMARINE = 100000
     }
+// I dont wanna put this elsewhere.
+    public class AddedTierName {
+        public static readonly string BIGJUGGUS = "DartMonkey-520";
+        public static readonly string BLACKHOLESUN = "DartMonkey-250";
+        public static readonly string NINJASEXPARTY = "NinjaMonkey-520";
+        public static readonly string POINTOFNORETURN = "BombShooter-250";
+        public static readonly string SKYHIGH = "DartMonkey-025";
+        public static readonly string SUPERFLY = "MonkeyVillage-520";
+        public static readonly string SURVIVOR = "SniperMonkey-205";
+        public static readonly string UNDERWORLD = "WizardMonkey-502";
+        public static readonly string WHITEWEDDING = "SuperMonkey-205";
+        public static readonly string YELLOWSUBMARINE = "MonkeySub-052";
+    }
 }

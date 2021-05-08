@@ -26,6 +26,7 @@ using Image = UnityEngine.UI.Image;
 using IntPtr = System.IntPtr;
 using Marshal = Il2CppSystem.Runtime.InteropServices.Marshal;
 using Object = UnityEngine.Object;
+using Type = Il2CppSystem.Type;
 
 namespace AdditionalTiers.Tasks {
     public class Assets {
@@ -41,499 +42,94 @@ namespace AdditionalTiers.Tasks {
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.FindAndSetupPrototypeAsync))]
         public class DisplayFactory {
-            public static Dictionary<string, UnityDisplayNode> protos = new();
+            public static List<AssetInfo> allAssetsKnown = new();
 
             [HarmonyPrefix]
             public static bool Prefix(Factory __instance, string objectId, Il2CppSystem.Action<UnityDisplayNode> onComplete) {
-                if (!protos.ContainsKey(objectId)) {
-                    var assets = shaderBundle.LoadAllAssets();
-                    if (objectId.Equals("WhiteWedding")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("e6c683076381222438dfc733a602c157",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
+                var assets = shaderBundle.LoadAllAssets();
+
+                using (var enumerator = allAssetsKnown.GetEnumerator()) {
+                    while (enumerator.MoveNext()) {
+                        AssetInfo curAsset = enumerator.Current;
+                        if (objectId.Equals(curAsset.CustomAssetName)) {
+                            UnityDisplayNode udn = null;
+                            __instance.FindAndSetupPrototypeAsync(curAsset.BTDAssetName, new System.Action<UnityDisplayNode>(
+                                btdUDN => {
+                                    var instance = Object.Instantiate(btdUDN, __instance.PrototypeRoot);
+                                    instance.name = objectId + "(Clone)";
+                                    if (curAsset.RendererType == RendererType.SPRITERENDERER)
+                                        instance.isSprite = true;
+                                    instance.RecalculateGenericRenderers();
+                                    
+                                    Il2CppSystem.Type rendererType = null;
+                                    switch (curAsset.RendererType) {
+                                        case RendererType.MESHRENDERER:
+                                            rendererType = Il2CppType.Of<MeshRenderer>();
+                                            break;
+                                        case RendererType.SPRITERENDERER:
+                                            rendererType = Il2CppType.Of<SpriteRenderer>();
+                                            break;
+                                        case RendererType.SKINNEDMESHRENDERER:
+                                            rendererType = Il2CppType.Of<SkinnedMeshRenderer>();
+                                            break;
                                     }
-                                }
 
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("SuperFly")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("06b880ab7e2941b4f9de3e132ba1e11e",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
+                                    if (rendererType == null)
+                                        throw new NullReferenceException("rendererType is still null, don't leave things unset.");
+                                    
+                                    for (int i = 0; i < instance.genericRenderers.Length; i++) {
+                                        if (instance.genericRenderers[i].GetIl2CppType() == rendererType) {
+                                            if (curAsset.RendererType != RendererType.SPRITERENDERER) {
+                                                var renderer = instance.genericRenderers[i].Cast<Renderer>();
+                                                renderer.material.shader = assets[0].Cast<Shader>();
+                                                renderer.material.mainTexture = CacheBuilder.Get(objectId);
+                                            } else
+                                                instance.genericRenderers[i].Cast<SpriteRenderer>().sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
+                                        }
                                     }
-                                }
 
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("BigJuggus"))
-                    {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("b194c58ed09f1aa468e935b453c6843c",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++)
-                                {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>())
-                                    {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("YellowSubmarine"))
-                    {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("62ff4c3f34f9c3c4c9fce1ac3d122ee0",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++)
-                                {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>())
-                                    {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    
-                    if (objectId.Equals("BigJuggusProj")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("c4b8e7aa3e07d764fb9c3c773ceec2ab",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<MeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<MeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("SmallerJuggus")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("b194c58ed09f1aa468e935b453c6843c",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("BlackHoleSun")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("8f3b1daf26cefc34cbf78aa45210317b",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.SetColor("Outline Color", Color.black);
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("BlackHoleSunProjectile")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("ae8cebf807b15984daf0219b66f42897",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SpriteRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SpriteRenderer>();
-                                        smr.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("NinjaSexParty")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("9cd388b906451874abb35c8608c1d6ed",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("NinjaSexPartyProj")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("ae8cebf807b15984daf0219b66f42897",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SpriteRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SpriteRenderer>();
-                                        smr.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("PONR")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("31a16eecf9211a64b8dcdfad2ff7974e",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("Underworld")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("8ccff862eab169c4884bac8bbd878529",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("UnderworldInverted")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("8ccff862eab169c4884bac8bbd878529",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("SkyHigh")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("f7a1b5c14ded01146b80bd7121f3fcd7",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("SkyHighProj")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("ae8cebf807b15984daf0219b66f42897",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SpriteRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SpriteRenderer>();
-                                        smr.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("Survivor")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("1001186d3e8034b45929adb7ab6f048e",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("PONRProj")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("e5edd901992846e409326a506d272633",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() ==
-                                        Il2CppType.Of<MeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<MeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("SmallerJuggusProj")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("c4b8e7aa3e07d764fb9c3c773ceec2ab",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<MeshRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<MeshRenderer>();
-                                        smr.material.shader = assets[0].Cast<Shader>();
-                                        smr.material.mainTexture = CacheBuilder.Get(objectId);
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-                    if (objectId.Equals("UpgradedText")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("3dcdbc19136c60846ab944ada06695c0",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                var nktmp = nudn.GetComponentInChildren<NK_TextMeshPro>();
-                                nktmp.m_fontColorGradient = new(Color.red, Color.red, new(255,255,0), Color.white);
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-
-                    if (objectId.Equals("WhiteWeddingProjectile")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("ae8cebf807b15984daf0219b66f42897",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SpriteRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SpriteRenderer>();
-                                        smr.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
-                    }
-
-                    if (objectId.Equals("WhiteWeddingOrbitProjectile")) {
-                        UnityDisplayNode udn = null;
-                        __instance.FindAndSetupPrototypeAsync("e23d594d3bf5af44c8b1e2445fe10a9e",
-                            new System.Action<UnityDisplayNode>(oudn => {
-                                var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
-                                nudn.name = objectId + "(Clone)";
-                                nudn.isSprite = true;
-                                nudn.RecalculateGenericRenderers();
-                                for (var i = 0; i < nudn.genericRenderers.Length; i++) {
-                                    if (nudn.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SpriteRenderer>()) {
-                                        var smr = nudn.genericRenderers[i].Cast<SpriteRenderer>();
-                                        smr.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
-                                        nudn.genericRenderers[i] = smr;
-                                    }
-                                }
-
-                                udn = nudn;
-                                onComplete.Invoke(udn);
-                            }));
-                        return false;
+                                    udn = instance;
+                                    onComplete.Invoke(udn);
+                                }));
+                            return false;
+                        }
                     }
                 }
-
-                if (protos.ContainsKey(objectId)) {
-                    onComplete.Invoke(protos[objectId]);
+                
+                if (objectId.Equals("UpgradedText")) {
+                    UnityDisplayNode udn = null;
+                    __instance.FindAndSetupPrototypeAsync("3dcdbc19136c60846ab944ada06695c0",
+                        new System.Action<UnityDisplayNode>(oudn => {
+                            var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
+                            nudn.name = objectId + "(Clone)";
+                            nudn.isSprite = true;
+                            nudn.RecalculateGenericRenderers();
+                            var nktmp = nudn.GetComponentInChildren<NK_TextMeshPro>();
+                            nktmp.m_fontColorGradient = new(Color.red, Color.red, new(255,255,0), Color.white);
+                            udn = nudn;
+                            onComplete.Invoke(udn);
+                        }));
                     return false;
                 }
-
                 return true;
+            }
+
+            private static void AddAllInfo(List<AssetInfo> assets) {
+                using (var enumerator = assets.GetEnumerator())
+                    while (enumerator.MoveNext())
+                        allAssetsKnown.Add(enumerator.Current);
+            }
+
+            public static void Build() {
+                for (int i = 0; i < AdditionalTiers.towers.Count; i++) {
+                    var assets = AdditionalTiers.towers[i].assetsToRead;
+                    if (assets != null) AddAllInfo(assets);
+                }
             }
         }
 
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-        public record ResourceLoader_Patch
-        {
+        public class ResourceLoader_Patch {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, Image image)
             {

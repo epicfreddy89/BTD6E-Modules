@@ -133,6 +133,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("YellowSubmarine", "YellowSubmarineIcon");
+            assetsToRead.Add(new ("YellowSubmarine", "62ff4c3f34f9c3c4c9fce1ac3d122ee0", RendererType.SKINNEDMESHRENDERER));
         }
     }
 }

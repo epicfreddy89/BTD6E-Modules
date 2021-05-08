@@ -93,6 +93,9 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("WhiteWedding", "WhiteWeddingProjectile", "WhiteWeddingOrbitProjectile", "WhiteWeddingIcon");
+            assetsToRead.Add(new ("WhiteWedding", "e6c683076381222438dfc733a602c157", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new ("WhiteWeddingProjectile", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
+            assetsToRead.Add(new ("WhiteWeddingOrbitProjectile", "e23d594d3bf5af44c8b1e2445fe10a9e", RendererType.SPRITERENDERER));
         }
     }
 }

@@ -82,6 +82,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("Survivor", "SurvivorIcon");
+            assetsToRead.Add(new ("Survivor", "1001186d3e8034b45929adb7ab6f048e", RendererType.SKINNEDMESHRENDERER));
         }
     }
 }

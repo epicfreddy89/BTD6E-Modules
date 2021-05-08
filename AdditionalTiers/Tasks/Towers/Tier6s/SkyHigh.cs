@@ -126,6 +126,8 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => {};
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("SkyHigh", "SkyHighProj", "SkyHighIcon");
+            assetsToRead.Add(new ("SkyHigh", "f7a1b5c14ded01146b80bd7121f3fcd7", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new ("SkyHighProj", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
         }
     }
 }

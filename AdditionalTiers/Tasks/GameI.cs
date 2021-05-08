@@ -34,7 +34,6 @@ namespace AdditionalTiers.Tasks {
             [HarmonyPostfix]
             public static void Postfix(ref GameModel __result) {
                 for (var i = 0; i < AdditionalTiers.towers.Count; i++) AdditionalTiers.towers[i].gameLoad(__result);
-                //__result.towers = __result.towers.Add(AdditionalTiers.towers.Select(a => a.getTower));
             }
         }
     }

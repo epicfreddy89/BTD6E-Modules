@@ -355,6 +355,7 @@
     <Compile Include="Tasks\Towers\Tier6s\Yellow Submarine.cs" />
     <Compile Include="Tasks\TowerTask.cs" />
     <Compile Include="Utils\AddedTierEnum.cs" />
+    <Compile Include="Utils\AssetInfo.cs" />
     <Compile Include="Utils\AssetStack.cs" />
     <Compile Include="Utils\CacheBuilder.cs" />
     <Compile Include="Utils\Ext.cs" />

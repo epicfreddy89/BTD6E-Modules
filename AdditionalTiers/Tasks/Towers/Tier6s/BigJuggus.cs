@@ -155,6 +155,10 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             recurring += tts => { };
             onLeave += () => { time = -1; };
             CacheBuilder.toBuild.PushAll("BigJuggus", "BigJuggusProj", "BigJuggusIcon", "SmallerJuggus", "SmallerJuggusProj", "SmallerJuggusIcon");
+            assetsToRead.Add(new ("BigJuggus", "b194c58ed09f1aa468e935b453c6843c", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new ("BigJuggusProj", "c4b8e7aa3e07d764fb9c3c773ceec2ab", RendererType.MESHRENDERER));
+            assetsToRead.Add(new ("SmallerJuggus", "b194c58ed09f1aa468e935b453c6843c", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new ("SmallerJuggusProj", "c4b8e7aa3e07d764fb9c3c773ceec2ab", RendererType.MESHRENDERER));
         }
     }
 }
