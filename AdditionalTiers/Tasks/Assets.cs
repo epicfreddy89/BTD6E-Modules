@@ -114,16 +114,13 @@ namespace AdditionalTiers.Tasks {
                 return true;
             }
 
-            private static void AddAllInfo(List<AssetInfo> assets) {
-                using (var enumerator = assets.GetEnumerator())
-                    while (enumerator.MoveNext())
-                        allAssetsKnown.Add(enumerator.Current);
-            }
-
             public static void Build() {
                 for (int i = 0; i < AdditionalTiers.towers.Count; i++) {
                     var assets = AdditionalTiers.towers[i].assetsToRead;
-                    if (assets != null) AddAllInfo(assets);
+                    if (assets != null) 
+                        using (var enumerator = assets.GetEnumerator())
+                            while (enumerator.MoveNext())
+                                allAssetsKnown.Add(enumerator.Current);
                 }
             }
         }
