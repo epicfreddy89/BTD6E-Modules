@@ -104,7 +104,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };
-            CacheBuilder.toBuild.PushAll("NinjaSexParty", "NinjaSexPartyIcon", "NinjaSexPartyProj");
             assetsToRead.Add(new ("NinjaSexParty", "9cd388b906451874abb35c8608c1d6ed", RendererType.SKINNEDMESHRENDERER));
             assetsToRead.Add(new ("NinjaSexPartyProj", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
         }

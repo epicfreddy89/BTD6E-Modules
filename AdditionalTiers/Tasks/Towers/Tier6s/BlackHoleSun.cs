@@ -136,7 +136,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };
-            CacheBuilder.toBuild.PushAll("BlackHoleSun", "BlackHoleSunIcon", "BlackHoleSunProjectile");
             assetsToRead.Add(new("BlackHoleSun", "8f3b1daf26cefc34cbf78aa45210317b", RendererType.SKINNEDMESHRENDERER));
             assetsToRead.Add(new("BlackHoleSunProjectile", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
         }

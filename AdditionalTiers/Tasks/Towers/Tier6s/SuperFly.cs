@@ -101,7 +101,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             };
             recurring += tts => {};
             onLeave += () => { time = -1; Globals.Load(); };
-            CacheBuilder.toBuild.PushAll("SuperFly", "SuperFlyIcon");
             assetsToRead.Add(new ("SuperFly", "06b880ab7e2941b4f9de3e132ba1e11e", RendererType.SKINNEDMESHRENDERER));
         }
     }

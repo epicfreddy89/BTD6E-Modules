@@ -123,6 +123,8 @@ namespace AdditionalTiers.Tasks {
                                 allAssetsKnown.Add(enumerator.Current);
                 }
             }
+
+            public static void Flush() => allAssetsKnown.Clear();
         }
 
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]

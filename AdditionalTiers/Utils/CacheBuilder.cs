@@ -1,22 +1,25 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Resources;
 using System.ServiceModel.Channels;
 using MelonLoader;
 using AdditionalTiers.Resources;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AdditionalTiers.Utils {
     public class CacheBuilder {
-        public static AssetStack<string> toBuild = new();
         private static readonly Dictionary<string, string> built = new();
         private static readonly Dictionary<string, byte[]> builtBytes = new();
 
         public static void Build() {
-            while (toBuild.Count > 0) {
-                var id = toBuild.Pop();
-                if (Images.ResourceManager.GetObject(id) is not byte[] bitmap) break;
-                //var v = id.Contains("center") ? 0.5f : 0f;
-                built.Add(id, Convert.ToBase64String(bitmap));
+            ResourceSet resourceSet = Images.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            foreach (DictionaryEntry v in resourceSet) {
+                if (v.Key is string id && v.Value is Byte[] bytes) {
+                    built.Add(id, Convert.ToBase64String(bytes));
+                }
             }
         }
 
@@ -32,10 +35,7 @@ namespace AdditionalTiers.Utils {
             return textNew;
         }
 
-        public static void Flush(bool shouldFlushStack = true) {
-            if (shouldFlushStack) toBuild.Clear();
-            built.Clear();
-        }
+        public static void Flush() => built.Clear();
 
         private static Texture2D LoadTextureFromBytes(byte[] FileData) {
             Texture2D Tex2D = new Texture2D(2, 2);

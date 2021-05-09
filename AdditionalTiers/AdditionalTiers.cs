@@ -44,6 +44,9 @@ namespace AdditionalTiers {
             Tasks.Assets.DisplayFactory.Build();
         }
 
-        public override void OnApplicationQuit() => CacheBuilder.Flush();
+        public override void OnApplicationQuit() {
+            Tasks.Assets.DisplayFactory.Flush();
+            CacheBuilder.Flush();
+        }
     }
 }

@@ -21,19 +21,20 @@ namespace AdditionalTiers.Utils {
         public static class Update {
             [HarmonyPostfix]
             public static void Postfix(ref InGame __instance) {
-                if (__instance == null) { RunLeave(); return; }
-                if (__instance.bridge == null) return;
+                if (__instance == null || __instance.bridge == null || __instance.bridge.GetAllTowers() == null) { RunLeave(); return; }
 
                 var allTowers = __instance.bridge.GetAllTowers();
                 var allAdditionalTiers = AdditionalTiers.towers;
                 for (var indexOfTowers = 0; indexOfTowers < allTowers.Count; indexOfTowers++) {
                     var towerToSimulation = allTowers.ToArray()[indexOfTowers];
-                    for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Count; indexOfAdditionalTiers++) {
-                        if (!allAdditionalTiers[indexOfAdditionalTiers].requirements(towerToSimulation)) continue;
-                        if (towerToSimulation.tower.namedMonkeyName != AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
-                            AdditionalTiers.towers[indexOfAdditionalTiers].onComplete(towerToSimulation);
-                        else if (towerToSimulation.tower.namedMonkeyName == AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
-                            AdditionalTiers.towers[indexOfAdditionalTiers].recurring(towerToSimulation);
+                    if (towerToSimulation != null) {
+                        for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Count; indexOfAdditionalTiers++) {
+                            if (!allAdditionalTiers[indexOfAdditionalTiers].requirements(towerToSimulation)) continue;
+                            if (towerToSimulation.tower.namedMonkeyName != AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
+                                AdditionalTiers.towers[indexOfAdditionalTiers].onComplete(towerToSimulation);
+                            else if (towerToSimulation.tower.namedMonkeyName == AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
+                                AdditionalTiers.towers[indexOfAdditionalTiers].recurring(towerToSimulation);
+                        }
                     }
                 }
             }
