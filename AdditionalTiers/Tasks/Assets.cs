@@ -82,6 +82,7 @@ namespace AdditionalTiers.Tasks {
                                             if (curAsset.RendererType != RendererType.SPRITERENDERER) {
                                                 var renderer = instance.genericRenderers[i].Cast<Renderer>();
                                                 renderer.material.shader = assets[0].Cast<Shader>();
+                                                renderer.material.SetColor("_OutlineColor", Color.black);
                                                 renderer.material.mainTexture = CacheBuilder.Get(objectId);
                                             } else
                                                 instance.genericRenderers[i].Cast<SpriteRenderer>().sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));

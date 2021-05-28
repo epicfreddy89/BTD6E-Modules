@@ -217,4 +217,196 @@
   <data name="Shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="energy0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy6.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy7.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy8.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy9.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy10.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy11.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy12.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy13.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy14.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy15.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy16.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy17.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy18.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy19.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy20.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy21.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy22.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy23.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy24.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy25.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy26.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy27.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy28.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy29.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy30.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy31.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy32.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy33.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy34" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy34.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy35" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy35.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy36.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy37" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy37.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy38" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy38.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy39" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy39.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy40.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy41.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy42" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy42.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy43" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy43.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy44" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy44.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy45.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy46" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy46.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy47" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy47.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy48.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy49" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy49.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy50.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy51" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy51.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy52" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy52.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy53" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy53.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy54" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy54.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy55" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy55.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy56" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy56.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy57" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy57.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy58" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy58.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy59" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy59.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy60.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy61" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy61.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy62" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy62.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="energy63" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy63.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
