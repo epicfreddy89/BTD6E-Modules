@@ -34,7 +34,10 @@ using AdditionalTiers.Utils;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
+using Math = System.Math;
+using Quaternion = UnityEngine.Quaternion;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
+using Vector3 = UnityEngine.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class BigJuggus : TowerTask {
@@ -52,7 +55,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 tts.tower.namedMonkeyName = identifier;
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(bigJuggus);
-                tts.tower.display.SetScaleOffset(new(1.25f, 1.25f, 1.25f));
+                tts.TAdd(scale1:.25f);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();

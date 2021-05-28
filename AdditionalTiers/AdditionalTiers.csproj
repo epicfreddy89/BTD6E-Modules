@@ -357,8 +357,11 @@
     <Compile Include="Utils\AddedTierEnum.cs" />
     <Compile Include="Utils\AssetInfo.cs" />
     <Compile Include="Utils\CacheBuilder.cs" />
+    <Compile Include="Utils\CameraUtil.cs" />
     <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Globals.cs" />
+    <Compile Include="Utils\MonkeyTransform.cs" />
+    <Compile Include="Utils\NumericExtensions.cs" />
     <Compile Include="Utils\SpriteBuilder.cs" />
     <Compile Include="Utils\TaskRunner.cs" />
     <Compile Include="Utils\Win32.cs" />
