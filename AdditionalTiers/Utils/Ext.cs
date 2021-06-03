@@ -38,12 +38,21 @@ namespace AdditionalTiers.Utils {
             return new(bases.ToArray());
         }
 
-        public static Il2CppSystem.Collections.Generic.IEnumerable<C> SelectI<T, R, C>(this IEnumerable<T> enumerable, Func<T, R> predicate) where R : Model where C : Model {
-            var bases = new Il2CppSystem.Collections.Generic.List<C>();
+        public static Il2CppSystem.Collections.Generic.IEnumerable<TC> SelectI<T, TR, TC>(this IEnumerable<T> enumerable, Func<T, TR> predicate) where TR : Model where TC : Model {
+            var bases = new Il2CppSystem.Collections.Generic.List<TC>();
             var enumerator = enumerable.GetEnumerator();
             while (enumerator.MoveNext())
-                bases.Add(predicate(enumerator.Current).Cast<C>());
-            return bases.Cast<Il2CppSystem.Collections.Generic.IEnumerable<C>>();
+                bases.Add(predicate(enumerator.Current).Cast<TC>());
+            return bases.Cast<Il2CppSystem.Collections.Generic.IEnumerable<TC>>();
+        }
+
+        public static string GetPtr(this object o) => $"0x{o.GetIntPtr().ToString("X")}";
+
+        public static IntPtr GetIntPtr(this object o) {
+            unsafe {
+                var tr = __makeref(o);
+                return *(IntPtr*) (&tr);
+            }
         }
     }
 }
