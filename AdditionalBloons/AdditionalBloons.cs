@@ -25,6 +25,8 @@ namespace AdditionalBloons {
             Harmony.Patch(AccessTools.Method(typeof(InGame), nameof(InGame.Update)), postfix: new HarmonyMethod(AccessTools.Method(typeof(BloonTaskRunner), nameof(BloonTaskRunner.Run))));
             Harmony.Patch(AccessTools.Method(typeof(Bloon), nameof(Bloon.Damage)), prefix: new HarmonyMethod(AccessTools.Method(typeof(BloonTaskRunner), nameof(BloonTaskRunner.Damage))));
             Harmony.Patch(AccessTools.Method(typeof(Spawner), nameof(Spawner.Emit)), prefix: new HarmonyMethod(AccessTools.Method(typeof(BloonTaskRunner), nameof(BloonTaskRunner.Emit))));
+            Harmony.Patch(AccessTools.Method(typeof(InGame), nameof(InGame.Quit)), postfix: new HarmonyMethod(AccessTools.Method(typeof(BloonTaskRunner), nameof(BloonTaskRunner.Quit))));
+            Harmony.Patch(AccessTools.Method(typeof(InGame), nameof(InGame.Restart)), postfix: new HarmonyMethod(AccessTools.Method(typeof(BloonTaskRunner), nameof(BloonTaskRunner.Quit))));
 
             CacheBuilder.Build();
 

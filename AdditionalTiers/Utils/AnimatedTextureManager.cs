@@ -25,11 +25,11 @@ namespace AdditionalTiers.Utils {
         }
 
         public class TextureInfo {
-            public IntPtr Renderer { get; }
+            public object Renderer { get; }
             public Texture2D[] Textures { get; }
             public int tick;
             
-            public TextureInfo(IntPtr renderer, Texture2D[] textures) {
+            public TextureInfo(object renderer, Texture2D[] textures) {
                 Renderer = renderer;
                 Textures = textures;
             }

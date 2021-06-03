@@ -89,7 +89,7 @@ namespace AdditionalTiers.Tasks {
                                                 var spriteRenderer = instance.genericRenderers[i].Cast<SpriteRenderer>();
                                                 spriteRenderer.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
                                                 unsafe {
-                                                    //AnimatedTextureManager.textures.Add(new(spriteRenderer.GetIntPtr(), AnimatedAssets.textures.ToArray()));
+                                                    AnimatedTextureManager.textures.Add(new(spriteRenderer.GetIntPtr(), AnimatedAssets.textures.ToArray()));
                                                 }
                                             }
                                         }

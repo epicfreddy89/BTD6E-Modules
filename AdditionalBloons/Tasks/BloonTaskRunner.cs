@@ -15,7 +15,7 @@ namespace AdditionalBloons.Tasks {
 
         // Key of bloontask which stores all needed info, Value of KeyValuePair with key of amount sent out of total and value of time spent
         private static Dictionary<BloonTask, KeyValuePair<int, int>> bloonTasks = new();
-        private static Random rand = new();
+        private static Random rand = new(System.DateTime.Now.Millisecond);
 
         internal static void Run() {
             //Add to dictionary from queue
@@ -88,7 +88,7 @@ namespace AdditionalBloons.Tasks {
 
         internal static bool Emit(ref Spawner __instance) {
             if (!__instance.isSandbox) {
-                int i = 0;
+                var i = 0;
                 if (__instance.CurrentRound < 50)
                     i = rand.Next(100);
                 else if (__instance.CurrentRound < 100)
@@ -107,6 +107,12 @@ namespace AdditionalBloons.Tasks {
             }
 
             return true;
+        }
+
+        internal static void Quit() {
+            bloonQueue.Clear();
+            bloonTasks.Clear();
+            rand = new(System.DateTime.Now.Millisecond);
         }
     }
 }
