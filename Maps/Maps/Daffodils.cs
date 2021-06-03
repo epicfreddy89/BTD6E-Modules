@@ -84,19 +84,6 @@ namespace Maps.Maps {
                 return true;
             }
 
-            [HarmonyPatch(typeof(MapLoader), nameof(MapLoader.ResetMap))]
-            public class MapRestart_Patch {
-                [HarmonyPrefix]
-                public static bool Prefix(MapLoader __instance) {
-                    if (__instance.currentMapName.Equals(Name)) {
-                        InGame.instance.Restart(false);
-                        return false;
-                    }
-
-                    return true;
-                }
-            }
-
             [HarmonyPatch(typeof(UI), nameof(UI.DestroyAndUnloadMapScene))]
             public class MapClear_Patch {
                 [HarmonyPrefix]
