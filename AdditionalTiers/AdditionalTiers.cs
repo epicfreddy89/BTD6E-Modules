@@ -8,6 +8,7 @@ using MelonLoader;
 using AdditionalTiers.Tasks;
 using AdditionalTiers.Tasks.Towers.Tier6s;
 using AdditionalTiers.Utils;
+using UnhollowerRuntimeLib;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.1", "1330 Studios LLC")]
@@ -38,6 +39,7 @@ namespace AdditionalTiers {
             }
             
             Globals.Load();
+            ClassInjector.RegisterTypeInIl2Cpp<AnimatedSpriteRenderer>();
 
             MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
@@ -47,6 +49,10 @@ namespace AdditionalTiers {
         public override void OnApplicationQuit() {
             Tasks.Assets.DisplayFactory.Flush();
             CacheBuilder.Flush();
+        }
+
+        public override void OnUpdate() {
+            AnimatedTextureManager.OnUpdate();
         }
     }
 }

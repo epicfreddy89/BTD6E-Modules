@@ -84,8 +84,14 @@ namespace AdditionalTiers.Tasks {
                                                 renderer.material.shader = assets[0].Cast<Shader>();
                                                 renderer.material.SetColor("_OutlineColor", Color.black);
                                                 renderer.material.mainTexture = CacheBuilder.Get(objectId);
-                                            } else
-                                                instance.genericRenderers[i].Cast<SpriteRenderer>().sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
+                                            }
+                                            else {
+                                                var spriteRenderer = instance.genericRenderers[i].Cast<SpriteRenderer>();
+                                                spriteRenderer.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
+                                                unsafe {
+                                                    //AnimatedTextureManager.textures.Add(new(spriteRenderer.GetIntPtr(), AnimatedAssets.textures.ToArray()));
+                                                }
+                                            }
                                         }
                                     }
 
@@ -155,6 +161,17 @@ namespace AdditionalTiers.Tasks {
                             image.sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new(), 10.2f);
                         }
                     }
+                }
+            }
+        }
+
+        public static class AnimatedAssets {
+            private static List<Texture2D> _textures = new();
+
+            public static List<Texture2D> textures {
+                get {
+                    if (_textures == null) for (var index = 0; index < 64; index++) _textures.Add(CacheBuilder.Get("energy" + index));
+                    return _textures;
                 }
             }
         }
