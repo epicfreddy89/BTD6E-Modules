@@ -1,10 +1,10 @@
 ﻿using System;
+using AdditionalTiers.Utils.Math;
 using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.UI_New.InGame;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace AdditionalTiers.Utils {
+namespace AdditionalTiers.Utils.Scene {
     public class CameraUtil {
         public static Action<int, float> shakeCamera = (step, intensity) => {
             var camera = getCamera();

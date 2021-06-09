@@ -1,8 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
-using UnityEngine;
 
-namespace AdditionalTiers.Utils {
+namespace AdditionalTiers.Utils.Assets {
     [JsonObject(MemberSerialization.OptIn)]
     public record AssetInfo {
         [JsonProperty]

@@ -1,6 +1,6 @@
-﻿namespace AdditionalTiers.Utils {
+﻿namespace AdditionalTiers.Utils.Towers {
     public enum AddedTierEnum : long {
-        BIGJUGGUS = 100000,
+        BIGJUGGUS = 1,
         BLACKHOLESUN = 100000,
         NINJASEXPARTY = 100000,
         POINTOFNORETURN = 100000,
@@ -9,7 +9,8 @@
         SURVIVOR = 100000,
         UNDERWORLD = 100000,
         WHITEWEDDING = 1000000,
-        YELLOWSUBMARINE = 100000
+        YELLOWSUBMARINE = 100000,
+        WHITESNAKE = 1
     }
 // I dont wanna put this elsewhere.
     public class AddedTierName {
@@ -23,5 +24,6 @@
         public static readonly string UNDERWORLD = "WizardMonkey-502";
         public static readonly string WHITEWEDDING = "SuperMonkey-205";
         public static readonly string YELLOWSUBMARINE = "MonkeySub-052";
+        public static readonly string WHITESNAKE = "WizardMonkey-050";
     }
 }

@@ -1,7 +1,6 @@
-﻿using Assets.Scripts.Simulation.Behaviors;
-using Assets.Scripts.Unity.Bridge;
+﻿using Assets.Scripts.Unity.Bridge;
 
-namespace AdditionalTiers.Utils {
+namespace AdditionalTiers.Utils.Towers {
     public static class MonkeyTransform {
         public static void TAdd(this TowerToSimulation tts, bool allSame = true, float scale1 = 0, float scale2 = 0, float scale3 = 0) {
             var curScale = tts.tower.display.scaleOffset;

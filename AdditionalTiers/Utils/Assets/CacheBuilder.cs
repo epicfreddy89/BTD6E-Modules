@@ -3,13 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Resources;
-using System.ServiceModel.Channels;
-using MelonLoader;
 using AdditionalTiers.Resources;
-using Newtonsoft.Json;
 using UnityEngine;
 
-namespace AdditionalTiers.Utils {
+namespace AdditionalTiers.Utils.Assets {
     public class CacheBuilder {
         private static readonly Dictionary<string, string> built = new();
         private static readonly Dictionary<string, byte[]> builtBytes = new();
