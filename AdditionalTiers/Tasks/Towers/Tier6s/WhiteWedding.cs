@@ -18,6 +18,8 @@ using Harmony;
 using Il2CppSystem;
 using MelonLoader;
 using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 using v = Assets.Scripts.Simulation.SMath.Vector3;

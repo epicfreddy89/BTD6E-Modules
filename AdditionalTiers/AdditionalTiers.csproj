@@ -351,21 +351,26 @@
     <Compile Include="Tasks\Towers\Tier6s\SuperFly.cs" />
     <Compile Include="Tasks\Towers\Tier6s\Survivor.cs" />
     <Compile Include="Tasks\Towers\Tier6s\UnderWorld.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\WhiteSnake.cs" />
     <Compile Include="Tasks\Towers\Tier6s\WhiteWedding.cs" />
     <Compile Include="Tasks\Towers\Tier6s\Yellow Submarine.cs" />
     <Compile Include="Tasks\TowerTask.cs" />
-    <Compile Include="Utils\AddedTierEnum.cs" />
-    <Compile Include="Utils\AnimatedSpriteRenderer.cs" />
-    <Compile Include="Utils\AnimatedTextureManager.cs" />
-    <Compile Include="Utils\AssetInfo.cs" />
-    <Compile Include="Utils\CacheBuilder.cs" />
-    <Compile Include="Utils\CameraUtil.cs" />
+    <Compile Include="Utils\Assets\AssetInfo.cs" />
+    <Compile Include="Utils\Assets\CacheBuilder.cs" />
+    <Compile Include="Utils\Assets\SpriteBuilder.cs" />
+    <Compile Include="Utils\Components\AnimatedDarkFlameTexture.cs" />
+    <Compile Include="Utils\Components\AnimatedEnergyTexture.cs" />
+    <Compile Include="Utils\Components\AnimatedFlameTexture.cs" />
     <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Globals.cs" />
-    <Compile Include="Utils\MonkeyTransform.cs" />
-    <Compile Include="Utils\NumericExtensions.cs" />
-    <Compile Include="Utils\SpriteBuilder.cs" />
+    <Compile Include="Utils\Math\Bounds.cs" />
+    <Compile Include="Utils\Math\NumericExtensions.cs" />
+    <Compile Include="Utils\Scene\CameraUtil.cs" />
     <Compile Include="Utils\TaskRunner.cs" />
+    <Compile Include="Utils\Timer.cs" />
+    <Compile Include="Utils\Towers\AddedTierEnum.cs" />
+    <Compile Include="Utils\Towers\MonkeyTransform.cs" />
+    <Compile Include="Utils\Towers\TaskRunner.cs" />
     <Compile Include="Utils\Win32.cs" />
   </ItemGroup>
   <ItemGroup>

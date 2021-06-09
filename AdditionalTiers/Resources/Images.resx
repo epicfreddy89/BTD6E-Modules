@@ -214,6 +214,21 @@
   <data name="SuperFlyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>SuperFlyIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Whitesnake" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Whitesnake.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WhitesnakeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WhitesnakeIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WhitesnakeProj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Energy\energy0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WhitesnakePheonix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WhitesnakePheonix.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WhitesnakeDarkPheonix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WhitesnakeDarkPheonix.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -408,5 +423,71 @@
   </data>
   <data name="energy63" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Energy\energy63.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WhitesnakePheonixProj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame6.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame7.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame8.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Flame9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\Flame9.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WhitesnakeDarkPheonixProj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame6.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame7.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame8.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DarkFlame9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Flame\DarkFlame9.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

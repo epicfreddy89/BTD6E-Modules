@@ -20,6 +20,8 @@ using Harmony;
 using Il2CppSystem;
 using MelonLoader;
 using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;

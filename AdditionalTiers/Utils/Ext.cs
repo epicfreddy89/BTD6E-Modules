@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Models;
+using Il2CppSystem.Reflection;
+using Il2CppSystem.Runtime.InteropServices;
 using UnhollowerBaseLib;
+using UnhollowerRuntimeLib;
+using Array = Il2CppSystem.Array;
+using Byte = Il2CppSystem.Byte;
+using FieldInfo = System.Reflection.FieldInfo;
+using BindingFlags = System.Reflection.BindingFlags;
 
 namespace AdditionalTiers.Utils {
     public static class Ext {
@@ -46,13 +53,16 @@ namespace AdditionalTiers.Utils {
             return bases.Cast<Il2CppSystem.Collections.Generic.IEnumerable<TC>>();
         }
 
-        public static string GetPtr(this object o) => $"0x{o.GetIntPtr().ToString("X")}";
+        public static string GetPtr(this Il2CppSystem.Object o) => $"0x{o.Pointer.ToString("X")}";
 
-        public static IntPtr GetIntPtr(this object o) {
-            unsafe {
-                var tr = __makeref(o);
-                return *(IntPtr*) (&tr);
+        public static bool Is<T>(this Il2CppSystem.Object obj, out T ex) where T : Il2CppObjectBase {
+            if (obj.GetIl2CppType() == Il2CppType.Of<T>()) {
+                ex = obj.Cast<T>();
+                return true;
             }
+
+            ex = default;
+            return false;
         }
     }
 }
