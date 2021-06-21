@@ -15,35 +15,16 @@ namespace AdditionalTiers.Utils {
     public static class Ext {
         public static Il2CppReferenceArray<T> Remove<T>(this Il2CppReferenceArray<T> reference, Func<T, bool> predicate) where T : Model
         {
-            List<T> bases = new List<T>();
+            var bases = new List<T>();
             foreach (var tmp in reference)
                 if (!predicate(tmp))
                     bases.Add(tmp);
 
             return new (bases.ToArray());
         }
-        public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> reference, params T[] newPart) where T : Model
-        {
-            var bases = new List<T>();
-            foreach (var tmp in reference)
-                bases.Add(tmp);
+        public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> reference, params T[] newPart) where T : Model => ConcatArrayParams(reference, newPart);
 
-            foreach (var tmp in newPart)
-                bases.Add(tmp);
-
-            return new(bases.ToArray());
-        }
-        public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> reference, IEnumerable<T> enumerable) where T : Model
-        {
-            var bases = new List<T>();
-            foreach (var tmp in reference)
-                bases.Add(tmp);
-
-            var enumerator = enumerable.GetEnumerator();
-            while (enumerator.MoveNext()) bases.Add(enumerator.Current);
-
-            return new(bases.ToArray());
-        }
+        public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> reference, IEnumerable<T> enumerable) where T : Model => ConcatArrayEnumerable(reference, enumerable);
 
         public static Il2CppSystem.Collections.Generic.IEnumerable<TC> SelectI<T, TR, TC>(this IEnumerable<T> enumerable, Func<T, TR> predicate) where TR : Model where TC : Model {
             var bases = new Il2CppSystem.Collections.Generic.List<TC>();
@@ -64,5 +45,23 @@ namespace AdditionalTiers.Utils {
             ex = default;
             return false;
         }
+
+        private static T[] ConcatArray<T>(T[] a, T[] b) {
+            var m = a.Length;
+            var n = b.Length;
+            var arr = new T[m + n];
+            
+            for (var i = 0; i < m + n; i++)
+                if (i < m)
+                    arr[i] = a[i];
+                else
+                    arr[i] = b[i - m];
+
+            return arr;
+        }
+        
+        private static T[] ConcatArrayParams<T>(T[] a, params T[] b) => ConcatArray(a, b);
+
+        private static T[] ConcatArrayEnumerable<T>(T[] a, IEnumerable<T> e) => ConcatArray(a, e.ToArray());
     }
 }

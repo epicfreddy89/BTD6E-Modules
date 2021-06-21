@@ -13,7 +13,7 @@ using Assets.Scripts.Simulation.SMath;
 using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame;
 using Assets.Scripts.Unity.UI_New.InGame.BloonMenu;
-using Harmony;
+using HarmonyLib;
 using MelonLoader;
 using Newtonsoft.Json;
 using UnhollowerBaseLib;

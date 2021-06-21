@@ -11,7 +11,7 @@ using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.Player;
 using Assets.Scripts.Unity.UI_New.InGame;
-using Harmony;
+using HarmonyLib;
 using MelonLoader;
 using UnhollowerRuntimeLib;
 
@@ -28,7 +28,7 @@ namespace AdditionalTiers.Utils {
                 for (var indexOfTowers = 0; indexOfTowers < allTowers.Count; indexOfTowers++) {
                     var towerToSimulation = allTowers.ToArray()[indexOfTowers];
                     if (towerToSimulation != null && !towerToSimulation.destroyed)
-                        for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Count; indexOfAdditionalTiers++) {
+                        for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Length; indexOfAdditionalTiers++) {
                             if (!allAdditionalTiers[indexOfAdditionalTiers].requirements(towerToSimulation)) continue;
                             if (towerToSimulation.tower.namedMonkeyName != AdditionalTiers.towers[indexOfAdditionalTiers].identifier)
                                 AdditionalTiers.towers[indexOfAdditionalTiers].onComplete(towerToSimulation);
@@ -44,7 +44,7 @@ namespace AdditionalTiers.Utils {
         private class Reset {
             [HarmonyPostfix]
             private static void RunLeave() {
-                for (var towerIndex = AdditionalTiers.towers.Count - 1; towerIndex >= 0; towerIndex--)
+                for (var towerIndex = AdditionalTiers.towers.Length - 1; towerIndex >= 0; towerIndex--)
                     AdditionalTiers.towers[towerIndex].onLeave();
             }
         }

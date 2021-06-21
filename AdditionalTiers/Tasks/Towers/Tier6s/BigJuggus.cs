@@ -27,7 +27,7 @@ using Assets.Scripts.Unity.Towers.Emissions;
 using Assets.Scripts.Unity.UI_New.InGame;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
 using Assets.Scripts.Utils;
-using Harmony;
+using HarmonyLib;
 using Il2CppSystem;
 using MelonLoader;
 using AdditionalTiers.Utils;

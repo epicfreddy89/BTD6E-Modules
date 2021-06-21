@@ -39,7 +39,7 @@ using Assets.Scripts.Unity.UI_New.Upgrade;
 using Assets.Scripts.Utils;
 using GodTier.Towers;
 using GodTier.Utils;
-using Harmony;
+using HarmonyLib;
 using MelonLoader;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
@@ -47,6 +47,9 @@ using UnityEngine;
 using Color = UnityEngine.Color;
 using Image = UnityEngine.UI.Image;
 using Object = UnityEngine.Object;
+
+[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
+[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.2", "1330 Studios LLC")]
 
 namespace GodTier {
     public class GodTier : MelonMod {
@@ -93,25 +96,6 @@ namespace GodTier {
                     unlockedUpgrades.Add("Atomic Blasts");
                 if (!unlockedUpgrades.Contains("Thermonuclear Instability"))
                     unlockedUpgrades.Add("Thermonuclear Instability");
-            }
-        }
-
-        [HarmonyPatch(typeof(StandardTowerPurchaseButton), "SetTower")]
-        public static class SetTower {
-            public static StandardTowerPurchaseButton stpb = null;
-            [HarmonyPostfix]
-            internal static void Fix(ref StandardTowerPurchaseButton __instance, ref TowerModel towerModel,
-                ref bool showTowerCount, ref bool hero, ref int buttonIndex) {
-                stpb = __instance;
-                return;
-            }
-        }
-
-        [HarmonyPatch(typeof(Hotkeys), nameof(Hotkeys.Setup))]
-        public static class setupHotkeys {
-            [HarmonyPostfix]
-            public static void fix(ref Hotkeys __instance) {
-                __instance.towerHotkeys.Add(new() {keyCode1 = KeyCode.I, keyCode2 = KeyCode.None, towerBaseId = Godzilla.name, towerPurchaseButton = SetTower.stpb});
             }
         }
 

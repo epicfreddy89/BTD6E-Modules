@@ -1,6 +1,6 @@
 ﻿namespace AdditionalTiers.Utils.Towers {
     public enum AddedTierEnum : long {
-        BIGJUGGUS = 1,
+        BIGJUGGUS = 100000,
         BLACKHOLESUN = 100000,
         NINJASEXPARTY = 100000,
         POINTOFNORETURN = 100000,
@@ -10,7 +10,7 @@
         UNDERWORLD = 100000,
         WHITEWEDDING = 1000000,
         YELLOWSUBMARINE = 100000,
-        WHITESNAKE = 1
+        WHITESNAKE = 100000
     }
 // I dont wanna put this elsewhere.
     public class AddedTierName {

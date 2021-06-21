@@ -98,7 +98,7 @@
         <Reference Include="Il2CppSystem.Xml.Linq, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.Xml.Linq.dll</HintPath>
         </Reference>
-        <Reference Include="MelonLoader, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null">
+        <Reference Include="MelonLoader, Version=0.4.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.dll</HintPath>
         </Reference>
         <Reference Include="Mono.CompilerServices.SymbolWriter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
@@ -171,7 +171,7 @@
         <Reference Include="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\System.Xml.Linq.dll</HintPath>
         </Reference>
-        <Reference Include="UnhollowerBaseLib, Version=0.4.13.0, Culture=neutral, PublicKeyToken=null">
+        <Reference Include="UnhollowerBaseLib, Version=0.4.15.1, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
         </Reference>
         <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, PublicKeyToken=null">
@@ -239,12 +239,6 @@
         </Reference>
         <Reference Include="UnityEngine.HotReloadModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.HotReloadModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.Il2CppAssetBundleManager, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.Il2CppImageConversionManager, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ImageConversionModule, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -371,9 +365,6 @@
         </Reference>
         <Reference Include="UnityEngine.VRModule, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.VRModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.WindModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-          <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.WindModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.XRModule, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
           <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnityEngine.XRModule.dll</HintPath>

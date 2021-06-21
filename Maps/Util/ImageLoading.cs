@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -37,7 +37,7 @@ namespace BTD6_Expansion.Utilities
             SpriteMeshType spriteType = SpriteMeshType.Tight, uint extrude = 0, Vector2 pivot = default)
         {
             if (cachedSprites.ContainsKey(identifier))
-                return cachedSprites.GetValueSafe(identifier);
+                return cachedSprites[identifier];
 
             try
             {

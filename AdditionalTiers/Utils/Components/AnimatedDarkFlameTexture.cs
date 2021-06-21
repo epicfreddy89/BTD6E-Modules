@@ -1,9 +1,11 @@
 ﻿using System;
 using Assets.Scripts.Utils;
+using MelonLoader;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 
 namespace AdditionalTiers.Utils.Components {
+    [RegisterTypeInIl2Cpp]
     public class AnimatedDarkFlameTexture : MonoBehaviour {
         public AnimatedDarkFlameTexture(IntPtr obj0) : base(obj0) {
             ClassInjector.DerivedConstructorBody(this);

@@ -13,5 +13,14 @@ namespace AdditionalTiers.Utils {
             }
             after();
         }
+        public static IEnumerator Countdown(float time, float decrement, float gap, Action after, Action<float> during) {
+            var counter = time;
+            while (counter > 0) {
+                during(counter);
+                yield return new WaitForSeconds(gap);
+                counter-=decrement;
+            }
+            after();
+        }
     }
 }

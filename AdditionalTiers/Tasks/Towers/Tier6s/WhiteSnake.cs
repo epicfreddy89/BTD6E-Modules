@@ -21,7 +21,7 @@ using Assets.Scripts.Simulation.SMath;
 using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
 using Assets.Scripts.Utils;
-using Harmony;
+using HarmonyLib;
 using Il2CppSystem;
 using MelonLoader;
 using AdditionalTiers.Utils;
@@ -29,18 +29,24 @@ using AdditionalTiers.Utils.Assets;
 using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models.Store.Loot;
 using Assets.Scripts.Models.Towers.Behaviors.Attack.Behaviors;
+using Assets.Scripts.Models.Towers.Weapons;
 using Assets.Scripts.Simulation.Towers;
+using Assets.Scripts.Simulation.Towers.Projectiles;
 using Assets.Scripts.Simulation.Towers.Weapons;
 using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.UI_New.InGame;
+using Assets.Scripts.Unity.UI_New.InGame.TowerSelectionMenu;
 using Newtonsoft.Json;
 using UnhollowerBaseLib;
 using UnhollowerBaseLib.Attributes;
 using UnhollowerRuntimeLib;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using Action = System.Action;
 using Bounds = AdditionalTiers.Utils.Math.Bounds;
 using Delegate = System.Delegate;
+using Object = UnityEngine.Object;
 using Timer = AdditionalTiers.Utils.Timer;
 using Type = System.Type;
 using v = Assets.Scripts.Simulation.SMath.Vector3;
@@ -50,6 +56,8 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public static TowerModel whitesnake;
         public static TowerModel whitesnakePheonix;
         public static TowerModel whitesnakeDarkPheonix;
+        public static GameObject canvasObj;
+        public static GameObject buttonObj;
         private static int _time = -1;
         public Whitesnake() {
             identifier = "Whitesnake";
@@ -70,8 +78,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                         towerToSimulation.destroyed = true;
                         sim.simulation.SellTower(towerToSimulation.tower, -1);
                     }
-
-                
 
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
@@ -165,15 +171,14 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                             weap.projectile.behaviors = weap.projectile.behaviors.Add(new DamagePercentOfMaxModel("DPOMM_", 0.0033f, new string[] {"NA"}, false),
                                 new TrackTargetWithinTimeModel("TTWM_", 9999999, true, false, 365, false, float.MaxValue, false, 3.48f, true));
 
-                            for (var j = 0; j < weap.projectile.behaviors.Length; j++) {
+                            for (var j = 0; j < weap.projectile.behaviors.Length; j++)
                                 if (weap.projectile.behaviors[j].Is<TravelStraitModel>(out var tsm)) {
                                     tsm.Speed *= 1.25f;
                                     tsm.speedFrames *= 1.25f;
                                     
                                     weap.projectile.behaviors[j] = tsm;
                                 }
-                            }
-                            
+
                             am.weapons[i1] = weap;
                         }
 
@@ -191,7 +196,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 
                 #endregion
 
-
                 #region Dark Pheonix
                 
                 whitesnakeDarkPheonix = gm.towers.FirstOrDefault(a => a.baseId.Equals("PermaPhoenix")).Clone().Cast<TowerModel>();
@@ -208,7 +212,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                             weap.rate *= 2;
                             weap.rateFrames *= 2;
 
-                            weap.emission = new AdoraEmissionModel("AEM_", 5, 60, null);
                             weap.projectile.ignorePierceExhaustion = true;
                             weap.projectile.display = "WhitesnakeDarkPheonixProj";
                             weap.projectile.behaviors = weap.projectile.behaviors.Add(new TrackTargetWithinTimeModel("TTWM_", 9999999, true, false, 365, false, float.MaxValue, false, 3.48f, true));
@@ -249,7 +252,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 whitesnake.behaviors = whitesnake.behaviors.Add(new TowerCreateTowerModel("TCTM_", whitesnakeDarkPheonix, true));
             };
             recurring += tts => { };
-            onLeave += () => { _time = -1; };
+            onLeave += () => { _time = -1; Object.Destroy(canvasObj); Object.Destroy(buttonObj); canvasObj = buttonObj = null; };
             assetsToRead.Add(new ("Whitesnake", "d8a45c17dcf700a499c031dff73684a1", RendererType.SKINNEDMESHRENDERER));
             assetsToRead.Add(new ("WhitesnakeProj", "bdbeaa256e6c63b45829535831843376", RendererType.SPRITERENDERER));
             assetsToRead.Add(new ("WhitesnakePheonix", "1e5aa5cc44941da43a90880b50d5d112", RendererType.SKINNEDMESHRENDERER));
@@ -260,12 +263,29 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         
         [HarmonyPatch(typeof(Weapon), nameof(Weapon.Emit))]
         public class WeaponHook {
+            private static bool _allowOthersToSpawn = true;
             [HarmonyPrefix]
-            public static bool Fix(Weapon __instance, Tower owner) {
-                if (__instance.weaponModel.name.EndsWith("WSW1")) MelonCoroutines.Start(Timer.Countdown(11, () => {  },
-                    left => { if (left == 9) __instance.Sim.CreateTextEffect(new(owner.Position.ToUnity()), "UpgradedText", 10, "Recharging...", false); }));
+            public static bool Fix(Weapon __instance, Tower owner, ref int elapsed) {
+                if (__instance.weaponModel.name.EndsWith("WSW1")) {
+                    if (!_allowOthersToSpawn)
+                        return false;
+                    MelonCoroutines.Start(Timer.Countdown(11, () => { _allowOthersToSpawn = true; }, left => { _allowOthersToSpawn = false; if (left == 9) __instance.Sim.CreateTextEffect(new(owner.Position.ToUnity()), "UpgradedText", 10, "Recharging...", false); }));
+                }
+
                 return true;
             }
+        }
+
+        [HarmonyPatch(typeof(TowerSelectionMenu), nameof(TowerSelectionMenu.Show))]
+        public class TsmShowHook {
+            [HarmonyPostfix]
+            public static void Fix(TowerSelectionMenu __instance) { if (__instance.selectedTower.position.x > 0) canvasObj?.SetActive(false); }
+        }
+
+        [HarmonyPatch(typeof(TowerSelectionMenu), nameof(TowerSelectionMenu.DeselectTower))]
+        public class TsmCloseHook {
+            [HarmonyPostfix]
+            public static void Fix(TowerSelectionMenu __instance) { MelonCoroutines.Start(Timer.Countdown(0.07f, 0.01f, 0.01f, () => { canvasObj?.SetActive(true);}, f => { })); }
         }
     }
 }

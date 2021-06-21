@@ -16,7 +16,7 @@ using Assets.Scripts.Simulation.Bloons;
 using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Simulation.Towers.Weapons;
 using Assets.Scripts.Utils;
-using Harmony;
+using HarmonyLib;
 using MelonLoader;
 using AdditionalTiers.Resources;
 using AdditionalTiers.Utils;
@@ -33,7 +33,7 @@ namespace AdditionalTiers.Tasks {
         public static class Loaded {
             [HarmonyPostfix]
             public static void Postfix(ref GameModel __result) {
-                for (var i = 0; i < AdditionalTiers.towers.Count; i++) AdditionalTiers.towers[i].gameLoad(__result);
+                for (var i = 0; i < AdditionalTiers.towers.Length; i++) AdditionalTiers.towers[i].gameLoad(__result);
             }
         }
     }

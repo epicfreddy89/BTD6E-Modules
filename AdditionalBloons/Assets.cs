@@ -11,7 +11,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Simulation.Towers;
 using Assets.Scripts.Unity.Display;
 using Assets.Scripts.Utils;
-using Harmony;
+using HarmonyLib;
 using Il2CppSystem.IO;
 using Il2CppSystem.Reflection;
 using MelonLoader;

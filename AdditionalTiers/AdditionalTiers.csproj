@@ -131,7 +131,7 @@
     <Reference Include="Il2CppSystem.Xml.Linq, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
       <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.Xml.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="MelonLoader, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="MelonLoader, Version=0.4.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="NCalc, Version=3.7.1.6, Culture=neutral, PublicKeyToken=null">
@@ -203,7 +203,7 @@
     <Reference Include="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\System.Xml.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="UnhollowerBaseLib, Version=0.4.13.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="UnhollowerBaseLib, Version=0.4.15.1, Culture=neutral, PublicKeyToken=null">
       <HintPath>D:\Steam Library\steamapps\common\BloonsTD6\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, PublicKeyToken=null">
@@ -365,10 +365,12 @@
     <Compile Include="Utils\Globals.cs" />
     <Compile Include="Utils\Math\Bounds.cs" />
     <Compile Include="Utils\Math\NumericExtensions.cs" />
+    <Compile Include="Utils\RefAction.cs" />
     <Compile Include="Utils\Scene\CameraUtil.cs" />
     <Compile Include="Utils\TaskRunner.cs" />
     <Compile Include="Utils\Timer.cs" />
     <Compile Include="Utils\Towers\AddedTierEnum.cs" />
+    <Compile Include="Utils\Towers\HighlightManager.cs" />
     <Compile Include="Utils\Towers\MonkeyTransform.cs" />
     <Compile Include="Utils\Towers\TaskRunner.cs" />
     <Compile Include="Utils\Win32.cs" />

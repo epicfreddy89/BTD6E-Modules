@@ -15,7 +15,7 @@ using Assets.Scripts.Unity.UI_New.InGame;
 using Assets.Scripts.Unity.UI_New.Main.MapSelect;
 using Assets.Scripts.Utils;
 using BTD6_Expansion.Utilities;
-using Harmony;
+using HarmonyLib;
 using Maps.Maps;
 using Maps.Util;
 using MelonLoader;
@@ -25,50 +25,42 @@ using UnityEngine;
 using Image = UnityEngine.UI.Image;
 using Task = Il2CppSystem.Threading.Tasks.Task;
 
-namespace Maps
-{
-    class Entry : MelonMod
-    {
+[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
+[assembly: MelonInfo(typeof(Maps.Entry), "Maps", "1.2", "1330 Studios LLC")]
+namespace Maps {
+    class Entry : MelonMod {
         public static AssetBundle SceneBundle = null;
-        public override void OnApplicationStart()
-        {
+        public override void OnApplicationStart() {
             SceneBundle = AssetBundle.LoadFromMemory(Properties.Resources.map);
             MelonLogger.Msg(ConsoleColor.Red, "Maps Loaded!");
         }
 
         [HarmonyPatch(typeof(InGame), "Update")]
-        public class Update_Patch
-        {
+        public class Update_Patch {
             private static float lastX = 0, lastY = 0;
             private static bool run = false;
 
             [HarmonyPostfix]
-            public static void Postfix()
-            {
+            public static void Postfix() {
                 var cursorPosition = InGame.instance.inputManager.cursorPositionWorld;
-                if (Input.GetKeyDown(KeyCode.LeftBracket))
-                {
+                if (Input.GetKeyDown(KeyCode.LeftBracket)) {
                     run = !run;
-                    if (lastX != cursorPosition.x || lastY != cursorPosition.y)
-                    {
+                    if (lastX != cursorPosition.x || lastY != cursorPosition.y) {
                         Console.WriteLine("initArea.Add(new(" + Math.Round(cursorPosition.x) + ", " + Math.Round(cursorPosition.y) + "));");
                         lastX = cursorPosition.x;
                         lastY = cursorPosition.y;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.RightBracket))
-                {
+                if (Input.GetKeyDown(KeyCode.RightBracket)) {
                     run = !run;
-                    if (lastX != cursorPosition.x || lastY != cursorPosition.y)
-                    {
+                    if (lastX != cursorPosition.x || lastY != cursorPosition.y) {
                         Console.WriteLine("initPath.Add(new(){ point = new(" + Math.Round(cursorPosition.x) + ", " + Math.Round(cursorPosition.y) + "), bloonScale = 1, moabScale = 1 });");
                         lastX = cursorPosition.x;
                         lastY = cursorPosition.y;
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.KeypadDivide))
-                {
+                if (Input.GetKeyDown(KeyCode.KeypadDivide)) {
                     run = !run;
                     if (lastX != cursorPosition.x || lastY != cursorPosition.y) Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 }
@@ -76,12 +68,14 @@ namespace Maps
         }
 
         [HarmonyPatch(typeof(Game), nameof(Game.Awake))]
-        public class Game_Awake {
+        public class GameAwake {
             [HarmonyPostfix]
             public static void Postfix(ref Game __instance) {
                 var ms = ScriptableObjectSingleton<GameData>._instance.mapSet.Maps.items;
 
-                for (var i = 0; i < ms.Length; i++) ms[i].isDebug = ms[i].isBrowserOnly = false;
+                for (var i = 0; i < ms.Length; i++) {
+                    ms[i].isDebug = ms[i].isBrowserOnly = false;
+                }
 
                 var impls = new MapImpl[] { BigFoot.VALUE, Daffodils.VALUE, Shipwreck.VALUE };
 
@@ -90,24 +84,19 @@ namespace Maps
         }
 
         [HarmonyPatch(typeof(ResourceLoader), "LoadSpriteFromSpriteReferenceAsync")]
-        public record ResourceLoader_Patch
-        {
+        public record ResourceLoader_Patch {
             [HarmonyPostfix]
-            public static void Postfix(SpriteReference reference, Image image)
-            {
+            public static void Postfix(SpriteReference reference, Image image) {
                 if (reference != null)
                 {
                     var bitmap = Properties.Resources.ResourceManager.GetObject(reference.guidRef) as byte[];
-                    if (bitmap != null)
-                    {
+                    if (bitmap != null) {
                         var texture = new Texture2D(0, 0);
                         ImageConversion.LoadImage(texture, bitmap);
                         image.canvasRenderer.SetTexture(texture);
                         image.sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height),
                             new(), 10.2f);
-                    }
-                    else
-                    {
+                    }else {
                         var b = Properties.Resources.ResourceManager.GetObject(reference.guidRef);
                         if (b != null)
                         {

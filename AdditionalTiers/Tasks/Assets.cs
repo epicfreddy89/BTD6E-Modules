@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using Assets.Scripts.Models;
 using Assets.Scripts.Unity.Display;
 using Assets.Scripts.Utils;
-using Harmony;
+using HarmonyLib;
 using Il2CppSystem.IO;
 using Il2CppSystem.Reflection;
 using MelonLoader;
@@ -154,7 +154,7 @@ namespace AdditionalTiers.Tasks {
             }
 
             public static void Build() {
-                for (var i = 0; i < AdditionalTiers.towers.Count; i++) {
+                for (var i = 0; i < AdditionalTiers.towers.Length; i++) {
                     var assets = AdditionalTiers.towers[i].assetsToRead;
                     if (assets != null)
                         using (var enumerator = assets.GetEnumerator()) while (enumerator.MoveNext()) allAssetsKnown.Add(enumerator.Current);
