@@ -56,8 +56,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
         public static TowerModel whitesnake;
         public static TowerModel whitesnakePheonix;
         public static TowerModel whitesnakeDarkPheonix;
-        public static GameObject canvasObj;
-        public static GameObject buttonObj;
         private static int _time = -1;
         public Whitesnake() {
             identifier = "Whitesnake";
@@ -252,7 +250,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 whitesnake.behaviors = whitesnake.behaviors.Add(new TowerCreateTowerModel("TCTM_", whitesnakeDarkPheonix, true));
             };
             recurring += tts => { };
-            onLeave += () => { _time = -1; Object.Destroy(canvasObj); Object.Destroy(buttonObj); canvasObj = buttonObj = null; };
+            onLeave += () => { _time = -1; };
             assetsToRead.Add(new ("Whitesnake", "d8a45c17dcf700a499c031dff73684a1", RendererType.SKINNEDMESHRENDERER));
             assetsToRead.Add(new ("WhitesnakeProj", "bdbeaa256e6c63b45829535831843376", RendererType.SPRITERENDERER));
             assetsToRead.Add(new ("WhitesnakePheonix", "1e5aa5cc44941da43a90880b50d5d112", RendererType.SKINNEDMESHRENDERER));
@@ -274,18 +272,6 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                 return true;
             }
-        }
-
-        [HarmonyPatch(typeof(TowerSelectionMenu), nameof(TowerSelectionMenu.Show))]
-        public class TsmShowHook {
-            [HarmonyPostfix]
-            public static void Fix(TowerSelectionMenu __instance) { if (__instance.selectedTower.position.x > 0) canvasObj?.SetActive(false); }
-        }
-
-        [HarmonyPatch(typeof(TowerSelectionMenu), nameof(TowerSelectionMenu.DeselectTower))]
-        public class TsmCloseHook {
-            [HarmonyPostfix]
-            public static void Fix(TowerSelectionMenu __instance) { MelonCoroutines.Start(Timer.Countdown(0.07f, 0.01f, 0.01f, () => { canvasObj?.SetActive(true);}, f => { })); }
         }
     }
 }
