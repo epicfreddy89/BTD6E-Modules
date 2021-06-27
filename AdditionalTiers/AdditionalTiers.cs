@@ -39,8 +39,8 @@ namespace AdditionalTiers {
             new UnderWorld(),
             new SkyHigh(),
             new Survivor(),
-            new SuperFly()/*,
-            new Whitesnake()*/
+            new SuperFly(),
+            new Whitesnake()
         };
 
         public override void OnApplicationStart() {            
