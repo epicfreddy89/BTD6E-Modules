@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.GenericBehaviors;
 using Assets.Scripts.Models.Towers;
@@ -12,34 +12,9 @@ using Assets.Scripts.Models.Towers.Behaviors.Emissions;
 using Assets.Scripts.Models.Towers.Mods;
 using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.Factory;
-using Assets.Scripts.Simulation.Objects;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Simulation.Towers.Behaviors.Abilities;
-using Assets.Scripts.Simulation.Towers.Filters;
-using Assets.Scripts.Simulation.Towers.Projectiles;
-using Assets.Scripts.Unity;
-using Assets.Scripts.Unity.Bridge;
-using Assets.Scripts.Unity.Network;
-using Assets.Scripts.Unity.Towers.Emissions;
-using Assets.Scripts.Unity.UI_New.InGame;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using UnhollowerBaseLib;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using Math = System.Math;
-using Quaternion = UnityEngine.Quaternion;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
-using Vector3 = UnityEngine.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class BigJuggus : TowerTask {
@@ -57,7 +32,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 tts.tower.namedMonkeyName = identifier;
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(bigJuggus);
-                tts.TAdd(scale1:.25f);
+                tts.TAdd(scale1: .25f);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
@@ -106,7 +81,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                                 if (b.GetIl2CppType() == Il2CppType.Of<DamageModel>()) {
                                     var p = b.Cast<DamageModel>();
-                                    p.damage *= 3;;
+                                    p.damage *= 3; ;
                                     am.weapons[j].projectile.behaviors[k] = p;
                                 }
                             }
@@ -144,7 +119,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                 var ability = new AbilityModel("AbilityModel_", "Meteor Strike",
                     "Launches a meteor sized projectile to the bloons", 1, 0, new("BigJuggusIcon"), 80,
-                    new (new []{new ActivateAttackModel("ActivateAttackModel_", 1, false, new(new []{attack}), true, false, false, false, true)}),
+                    new(new[] { new ActivateAttackModel("ActivateAttackModel_", 1, false, new(new[] { attack }), true, false, false, false, true) }),
                     false, false, "BigJuggus", 0, 0, 2, false, false);
                 var mfc = new MonkeyFanClubModel("MonkeyFanClubModel_", 15, 5, 50, 160, speed, BloonProperties.None,
                     "SmallerJuggusProj", "SmallerJuggus", "", "SmallerJuggus", "9fdef1ee822fdae49a3ed3ba322d17d9",
@@ -153,16 +128,16 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                         false, false), 60, 6, 250, null, 0, 0, 0, "BigJuggus");
                 var ability2 = new AbilityModel("AbilityModel_2", "Juggus Conversion",
                     "Turns nearby monkeys into Smaller Juggus", 1, 0, new("SmallerJuggusIcon"), 45,
-                    new(new[] {mfc}), false, false, "BigJuggus", 0, 0, 5, false, false);
+                    new(new[] { mfc }), false, false, "BigJuggus", 0, 0, 5, false, false);
 
                 bigJuggus.behaviors = beh.Add(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true).Cast<Model>(), ability.Cast<Model>(), ability2.Cast<Model>());
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };
-            assetsToRead.Add(new ("BigJuggus", "b194c58ed09f1aa468e935b453c6843c", RendererType.SKINNEDMESHRENDERER));
-            assetsToRead.Add(new ("BigJuggusProj", "c4b8e7aa3e07d764fb9c3c773ceec2ab", RendererType.MESHRENDERER));
-            assetsToRead.Add(new ("SmallerJuggus", "b194c58ed09f1aa468e935b453c6843c", RendererType.SKINNEDMESHRENDERER));
-            assetsToRead.Add(new ("SmallerJuggusProj", "c4b8e7aa3e07d764fb9c3c773ceec2ab", RendererType.MESHRENDERER));
+            assetsToRead.Add(new("BigJuggus", "b194c58ed09f1aa468e935b453c6843c", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("BigJuggusProj", "c4b8e7aa3e07d764fb9c3c773ceec2ab", RendererType.MESHRENDERER));
+            assetsToRead.Add(new("SmallerJuggus", "b194c58ed09f1aa468e935b453c6843c", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("SmallerJuggusProj", "c4b8e7aa3e07d764fb9c3c773ceec2ab", RendererType.MESHRENDERER));
         }
     }
 }

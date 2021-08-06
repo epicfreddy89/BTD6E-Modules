@@ -6,11 +6,11 @@ using MelonLoader;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("God Tier")]
+[assembly: AssemblyTitle("Godly Towers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("1330 Studios LLC")]
-[assembly: AssemblyProduct("God Tier")]
+[assembly: AssemblyProduct("Godly Towers")]
 [assembly: AssemblyCopyright("Copyright © 1330 Studios LLC 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

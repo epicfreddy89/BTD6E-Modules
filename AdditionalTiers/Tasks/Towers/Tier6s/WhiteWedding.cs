@@ -1,28 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Assets.Scripts.Models;
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models.GenericBehaviors;
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class WhiteAlbum : TowerTask {
@@ -51,7 +39,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 whiteWedding.range = 150;
                 whiteWedding.cost = 0;
                 whiteWedding.name = "White Wedding";
-                whiteWedding.baseId = "WhiteWedding";
+                whiteWedding.baseId = "SuperMonkey";
                 whiteWedding.display = "WhiteWedding";
                 whiteWedding.dontDisplayUpgrades = true;
                 whiteWedding.portrait = new("WhiteWeddingIcon");
@@ -90,13 +78,13 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     beh[i] = behavior;
                 }
 
-                whiteWedding.behaviors = beh.Add(new OrbitModel("OrbitModel_", proj));
+                whiteWedding.behaviors = beh.Add(new OrbitModel("OrbitModel_", proj, 3, 1));
             };
-            recurring += tts => {};
+            recurring += tts => { };
             onLeave += () => { time = -1; };
-            assetsToRead.Add(new ("WhiteWedding", "e6c683076381222438dfc733a602c157", RendererType.SKINNEDMESHRENDERER));
-            assetsToRead.Add(new ("WhiteWeddingProjectile", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
-            assetsToRead.Add(new ("WhiteWeddingOrbitProjectile", "e23d594d3bf5af44c8b1e2445fe10a9e", RendererType.SPRITERENDERER));
+            assetsToRead.Add(new("WhiteWedding", "e6c683076381222438dfc733a602c157", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("WhiteWeddingProjectile", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
+            assetsToRead.Add(new("WhiteWeddingOrbitProjectile", "e23d594d3bf5af44c8b1e2445fe10a9e", RendererType.SPRITERENDERER));
         }
     }
 }

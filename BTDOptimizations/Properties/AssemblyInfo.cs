@@ -19,5 +19,5 @@ using System.Runtime.InteropServices;
 
 [assembly: MelonPlatformDomain(MelonPlatformDomainAttribute.CompatibleDomains.IL2CPP)]
 [assembly: MelonPlatform(MelonPlatformAttribute.CompatiblePlatforms.WINDOWS_X64)]
-[assembly: @MelonPriority(int.MaxValue)]
+[assembly: MelonPriority(int.MaxValue)]
 [assembly: MelonColor(ConsoleColor.DarkYellow)]

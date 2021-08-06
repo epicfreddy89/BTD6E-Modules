@@ -10,9 +10,12 @@
         UNDERWORLD = 100000,
         WHITEWEDDING = 1000000,
         YELLOWSUBMARINE = 100000,
-        WHITESNAKE = 100000
+        WHITESNAKE = 100000,
+        SCARYMONSTERS = 100000,
+        THEGOLDEXPERIENCE = 1000000,
+        TUSK = 1000000
     }
-// I dont wanna put this elsewhere.
+
     public class AddedTierName {
         public static readonly string BIGJUGGUS = "DartMonkey-520";
         public static readonly string BLACKHOLESUN = "DartMonkey-250";
@@ -25,5 +28,8 @@
         public static readonly string WHITEWEDDING = "SuperMonkey-205";
         public static readonly string YELLOWSUBMARINE = "MonkeySub-052";
         public static readonly string WHITESNAKE = "WizardMonkey-050";
+        public static readonly string SCARYMONSTERS = "BoomerangMonkey-502";
+        public static readonly string THEGOLDEXPERIENCE = "DartMonkey-Paragon";
+        public static readonly string TUSK = "BoomerangMonkey-Paragon";
     }
 }

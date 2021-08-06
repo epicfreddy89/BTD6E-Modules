@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.GenericBehaviors;
 using Assets.Scripts.Models.Towers;
@@ -9,37 +9,22 @@ using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using UnhollowerBaseLib;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class BlackHoleSun : TowerTask {
         public static TowerModel BHS;
         private static int time = -1;
 
-        public BlackHoleSun()
-        {
+        public BlackHoleSun() {
             identifier = "Black Hole Sun";
             getTower = BHS;
             requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.BLACKHOLESUN) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
-                if (time < 50)
-                {
+                if (time < 50) {
                     time++;
                     return;
                 }
@@ -51,14 +36,14 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
-            gameLoad += gm =>
-            {
+            gameLoad += gm => {
                 BHS = gm.towers.First(a => a.name.Contains("DartMonkey-250")).Clone()
                     .Cast<TowerModel>();
 
                 BHS.range = 150;
                 BHS.cost = 0;
                 BHS.name = "Black Hole Sun";
+                BHS.baseId = "DartMonkey";
                 BHS.display = "BlackHoleSun";
                 BHS.dontDisplayUpgrades = true;
                 BHS.portrait = new("BlackHoleSunIcon");

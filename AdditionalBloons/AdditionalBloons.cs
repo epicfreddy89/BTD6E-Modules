@@ -12,7 +12,7 @@ using UnhollowerRuntimeLib;
 using UnhollowerRuntimeLib.XrefScans;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(AdditionalBloons.AdditionalBloons), "Additional Bloon Addon", "1.2", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(AdditionalBloons.AdditionalBloons), "Additional Bloon Addon", "1.3", "1330 Studios LLC")]
 
 namespace AdditionalBloons {
     public class AdditionalBloons : MelonMod {

@@ -28,6 +28,7 @@ namespace AdditionalTiers.Utils.Assets {
         SKINNEDMESHRENDERER,
         MESHRENDERER,
         SPRITERENDERER,
+        PARTICLESYSTEMRENDERER,
         
         UNSET
     }

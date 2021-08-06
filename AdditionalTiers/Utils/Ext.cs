@@ -46,6 +46,9 @@ namespace AdditionalTiers.Utils {
             return false;
         }
 
+        public static T CloneCast<T>(this Model obj) where T : Model => obj.Clone().Cast<T>();
+        public static T CloneCast<T>(this T obj) where T : Model => obj.Clone().Cast<T>();
+
         private static T[] ConcatArray<T>(T[] a, T[] b) {
             var m = a.Length;
             var n = b.Length;

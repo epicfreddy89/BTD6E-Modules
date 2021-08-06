@@ -1,34 +1,19 @@
-﻿
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.Audio;
 using Assets.Scripts.Models.Effects;
 using Assets.Scripts.Models.GenericBehaviors;
 using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
 using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
 using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using UnhollowerBaseLib;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class UnderWorld : TowerTask {
@@ -57,7 +42,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 underWorld.range = 130;
                 underWorld.cost = 0;
                 underWorld.name = "Under World";
-                underWorld.baseId = "UnderWorld";
+                underWorld.baseId = "WizardMonkey";
                 underWorld.display = "Underworld";
                 underWorld.dontDisplayUpgrades = true;
                 underWorld.portrait = new("UnderworldIcon");
@@ -122,10 +107,10 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                 underWorld.behaviors = beh.Add(UnholyGatesModel);
             };
-            recurring += tts => {};
+            recurring += tts => { };
             onLeave += () => { time = -1; };
-            assetsToRead.Add(new ("Underworld", "8ccff862eab169c4884bac8bbd878529", RendererType.SKINNEDMESHRENDERER));
-            assetsToRead.Add(new ("UnderworldInverted", "8ccff862eab169c4884bac8bbd878529", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("Underworld", "8ccff862eab169c4884bac8bbd878529", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("UnderworldInverted", "8ccff862eab169c4884bac8bbd878529", RendererType.SKINNEDMESHRENDERER));
         }
     }
 }

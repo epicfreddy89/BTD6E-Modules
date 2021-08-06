@@ -1,25 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AdditionalBloons.Tasks;
+﻿using AdditionalBloons.Tasks;
 using AdditionalBloons.Utils;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.Bloons;
 using Assets.Scripts.Models.Bloons.Behaviors;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Simulation.Bloons;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
-using Assets.Scripts.Unity.UI_New.InGame;
 using Assets.Scripts.Unity.UI_New.InGame.BloonMenu;
-using HarmonyLib;
-using MelonLoader;
-using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using Bloon = Assets.Scripts.Unity.Bloons.Bloon;
 
 namespace AdditionalBloons {
     public class BloonCreator {
@@ -44,6 +32,20 @@ namespace AdditionalBloons {
 
             #endregion
 
+            #region Bloonarius
+
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("bloonarius1")));
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("bloonarius5")));
+
+            #endregion
+
+            #region Bloonarius Elite
+
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("bloonariuselite1")));
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("bloonariuselite5")));
+
+            #endregion
+
             #region Coconut
 
             for (int i = 1; i < 6; i++) assets.Add(new($"Coconut{i}", bloonBase.display, RendererType.SPRITERENDERER));
@@ -57,7 +59,7 @@ namespace AdditionalBloons {
             coconutBloon.speedFrames = 1.04166675f;
             coconutBloon.Speed = 62.5f;
             coconutBloon.leakDamage = coconutBloon.maxHealth = 20;
-            coconutBloon.tags = new Il2CppStringArray(new string[] {"Coconut", "NA"});
+            coconutBloon.tags = new Il2CppStringArray(new string[] { "Coconut", "NA" });
             coconutBloon.damageDisplayStates = new(new DamageStateModel[] {
                 new DamageStateModel("DamageStateModel_4", "Coconut5", 0.2f),
                 new DamageStateModel("DamageStateModel_3", "Coconut4", 0.4f),
@@ -73,7 +75,7 @@ namespace AdditionalBloons {
 
                 if (behavior.GetIl2CppType() == Il2CppType.Of<SpawnChildrenModel>())
                     behavior.Cast<SpawnChildrenModel>().children =
-                        new string[] {"White", "White", "White", "White", "White"};
+                        new string[] { "White", "White", "White", "White", "White" };
                 if (behavior.GetIl2CppType() == Il2CppType.Of<DamageStateModel>()) {
                     switch (behavior.Cast<DamageStateModel>().healthPercent) {
                         case 0.2f:
@@ -110,7 +112,7 @@ namespace AdditionalBloons {
 
         internal static bool SpawnBloon(ref SpawnBloonButton __instance) {
             for (int i = 0; i < bloons.Count; i++)
-                if (__instance.model.icon.guidRef.Equals(bloons[i].icon.guidRef)) {
+                if (__instance.model.display.Equals(bloons[i].display)) {
                     int amount = int.Parse(__instance.count.text);
                     int delay = int.Parse(__instance.rate.text);
 

@@ -21,6 +21,8 @@ namespace AdditionalTiers.Utils {
         private class Update {
             [HarmonyPostfix]
             public static void Postfix(ref InGame __instance) {
+                
+
                 if (__instance == null || __instance.bridge == null || __instance.bridge.GetAllTowers() == null) return;
 
                 var allTowers = __instance.bridge.GetAllTowers();

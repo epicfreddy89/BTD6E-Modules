@@ -1,34 +1,15 @@
-﻿
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Assets.Scripts.Models;
-using Assets.Scripts.Models.Audio;
-using Assets.Scripts.Models.Effects;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
+﻿using AdditionalTiers.Utils;
 using AdditionalTiers.Utils.Assets;
 using AdditionalTiers.Utils.Towers;
-using UnhollowerBaseLib;
+using Assets.Scripts.Models.GenericBehaviors;
+using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Models.Towers.Behaviors.Attack;
+using Assets.Scripts.Models.Towers.Behaviors.Emissions;
+using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
+using Assets.Scripts.Models.Towers.Weapons.Behaviors;
+using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class SkyHigh : TowerTask {
@@ -56,7 +37,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                 skyHigh.cost = 0;
                 skyHigh.name = "Sky High";
-                skyHigh.baseId = "SkyHigh";
+                skyHigh.baseId = "DartMonkey";
                 skyHigh.display = "SkyHigh";
                 skyHigh.dontDisplayUpgrades = true;
                 skyHigh.portrait = new("SkyHighIcon");
@@ -125,10 +106,10 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                 skyHigh.behaviors = beh;
             };
-            recurring += tts => {};
+            recurring += tts => { };
             onLeave += () => { time = -1; };
-            assetsToRead.Add(new ("SkyHigh", "f7a1b5c14ded01146b80bd7121f3fcd7", RendererType.SKINNEDMESHRENDERER));
-            assetsToRead.Add(new ("SkyHighProj", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
+            assetsToRead.Add(new("SkyHigh", "f7a1b5c14ded01146b80bd7121f3fcd7", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("SkyHighProj", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
         }
     }
 }

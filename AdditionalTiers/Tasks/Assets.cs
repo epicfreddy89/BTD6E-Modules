@@ -1,52 +1,129 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using Assets.Scripts.Models;
+﻿using AdditionalTiers.Resources;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Components;
 using Assets.Scripts.Unity.Display;
 using Assets.Scripts.Utils;
 using HarmonyLib;
-using Il2CppSystem.IO;
-using Il2CppSystem.Reflection;
-using MelonLoader;
-using AdditionalTiers.Resources;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Components;
-using TMPro;
-using UnhollowerBaseLib;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using UnhollowerBaseLib.Attributes;
 using UnhollowerRuntimeLib;
 using UnityEngine;
-using BindingFlags = System.Reflection.BindingFlags;
 using Color = UnityEngine.Color;
-using Convert = System.Convert;
-using DateTime = System.DateTime;
 using Image = UnityEngine.UI.Image;
-using IntPtr = System.IntPtr;
-using Marshal = Il2CppSystem.Runtime.InteropServices.Marshal;
 using Object = UnityEngine.Object;
 using Type = Il2CppSystem.Type;
 
 namespace AdditionalTiers.Tasks {
     public class Assets {
-        [HideFromIl2Cpp] public static Dictionary<string, Type> Types { get; set; } = new() {
+        [HideFromIl2Cpp]
+        public static Dictionary<string, Type> Types { get; set; } = new() {
             { "WhitesnakeProj", Il2CppType.Of<AnimatedEnergyTexture>() },
             { "WhitesnakePheonixProj", Il2CppType.Of<AnimatedFlameTexture>() },
             { "WhitesnakeDarkPheonixProj", Il2CppType.Of<AnimatedDarkFlameTexture>() }
         };
-        [HideFromIl2Cpp] public static Dictionary<string, Action<UnityDisplayNode>> Actions { get; set; } = new() {};
+        [HideFromIl2Cpp]
+        public static Dictionary<string, Action<UnityDisplayNode>> Actions { get; set; } = new() {
+            {
+                "GlaiveDominusSilver",
+                udn => {
+                    var light = udn.gameObject.AddComponent<Light>();
+                    light.type = LightType.Directional;
+                    light.renderMode = LightRenderMode.ForceVertex;
+
+                    var assets = Particles;
+                    var _obj = assets[0].Cast<GameObject>();
+                    var obj = Object.Instantiate(_obj, udn.transform);
+                    obj.SetActive(true);
+                    var ps = obj.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.emissionRate = 15;
+                    ps.transform.localScale = new(10, 10, 10);
+
+                    // Can you all stop copying every little thing I program? At the very least, don't cite my work for an example but call it cancerous??
+                }
+            },
+            {
+                "APMGold2",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++) {
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.02f);
+                    }
+                }
+            },
+            {
+                "GlaiveDominusSilverOrbit",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(1, 0.25f, 0);
+                    udn.gameObject.AddComponent<FastRotation>();
+                }
+            },
+            {
+                "GlaiveDominusSilverOrbit2",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(1, 1, 1);
+                    for (int i = 0; i < 2; i++)
+                        udn.gameObject.AddComponent<FastRotation>();
+                }
+            },
+            {
+                "GlaiveDominusSilverOrbit3",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(0.3f, 1, 0.3f);
+                    for (int i = 0; i < 5; i++)
+                        udn.gameObject.AddComponent<FastRotation>();
+                }
+            },
+            {
+                "GlaiveDominusSilverAbility",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(1f, 0, 0);
+                }
+            }
+        };
+        [HideFromIl2Cpp]
+        public static Dictionary<string, Func<string, Sprite>> SpriteCreation { get; set; } = new() {
+            { "ScaryMonstersProj", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
+            { "GlaiveDominusSilverOrbit2", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) }
+        };
+
+
+        [HideFromIl2Cpp]
+        public static Dictionary<string, Func<Object, bool>> SpecialShaderIndicies { get; set; } = new() {
+            { "GlaiveDominusSilver", obj => obj.name.StartsWith("Unlit/Metallic") }
+        };
 
         private static AssetBundle _shader = null;
 
         public static AssetBundle ShaderBundle {
             get {
                 if (_shader == null)
-                    _shader = AssetBundle.LoadFromMemory(Images.Shader);
+                    _shader = AssetBundle.LoadFromMemory(Images.shader);
                 return _shader;
+            }
+        }
+
+        private static AssetBundle _particle = null;
+
+        public static AssetBundle ParticleBundle {
+            get {
+                if (_particle == null)
+                    _particle = AssetBundle.LoadFromMemory(Images.particle);
+                return _particle;
+            }
+        }
+
+        private static Object[] _particles = null;
+        public static Object[] Particles {
+            get {
+                if (_particles == null)
+                    _particles = ParticleBundle.LoadAllAssets();
+                return _particles;
             }
         }
 
@@ -83,6 +160,9 @@ namespace AdditionalTiers.Tasks {
                                             case RendererType.SKINNEDMESHRENDERER:
                                                 rendererType = Il2CppType.Of<SkinnedMeshRenderer>();
                                                 break;
+                                            case RendererType.PARTICLESYSTEMRENDERER:
+                                                rendererType = Il2CppType.Of<ParticleSystemRenderer>();
+                                                break;
                                         }
 
                                         if (rendererType == null)
@@ -90,22 +170,28 @@ namespace AdditionalTiers.Tasks {
 
                                         for (var i = 0; i < instance.genericRenderers.Length; i++) {
                                             if (instance.genericRenderers[i].GetIl2CppType() == rendererType) {
-                                                if (curAsset.RendererType != RendererType.SPRITERENDERER) {
+                                                if (curAsset.RendererType != RendererType.SPRITERENDERER && curAsset.RendererType != RendererType.PARTICLESYSTEMRENDERER) {
                                                     var renderer = instance.genericRenderers[i].Cast<Renderer>();
-                                                    renderer.material.shader = assets[0].Cast<Shader>();
+                                                    if (!SpecialShaderIndicies.ContainsKey(objectId))
+                                                        renderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
+                                                    else
+                                                        renderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
                                                     renderer.material.SetColor("_OutlineColor", Color.black);
                                                     renderer.material.mainTexture = CacheBuilder.Get(objectId);
-                                                } else {
+                                                } else if (curAsset.RendererType == RendererType.SPRITERENDERER) {
                                                     var spriteRenderer = instance.genericRenderers[i].Cast<SpriteRenderer>();
-                                                    spriteRenderer.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
+                                                    if (SpriteCreation.ContainsKey(objectId))
+                                                        spriteRenderer.sprite = SpriteCreation[objectId](objectId);
+                                                    else
+                                                        spriteRenderer.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
                                                     if (Types.ContainsKey(objectId)) {
                                                         spriteRenderer.gameObject.AddComponent(Types[objectId]);
                                                     }
                                                 }
                                             }
                                         }
-                                        
-                                        
+
+
                                         if (Actions.ContainsKey(objectId))
                                             Actions[objectId](instance);
 
@@ -167,23 +253,17 @@ namespace AdditionalTiers.Tasks {
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
         public class ResourceLoader_Patch {
             [HarmonyPostfix]
-            public static void Postfix(SpriteReference reference, Image image)
-            {
-                if (reference != null)
-                {
+            public static void Postfix(SpriteReference reference, Image image) {
+                if (reference != null) {
                     var bitmap = Images.ResourceManager.GetObject(reference.guidRef) as byte[];
-                    if (bitmap != null)
-                    {
+                    if (bitmap != null) {
                         var texture = new Texture2D(0, 0);
                         ImageConversion.LoadImage(texture, bitmap);
                         image.canvasRenderer.SetTexture(texture);
                         image.sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height), new(), 10.2f);
-                    }
-                    else
-                    {
+                    } else {
                         var b = Images.ResourceManager.GetObject(reference.guidRef);
-                        if (b != null)
-                        {
+                        if (b != null) {
                             var bm = (byte[])new ImageConverter().ConvertTo(b, typeof(byte[]));
                             var texture = new Texture2D(0, 0);
                             ImageConversion.LoadImage(texture, bm);

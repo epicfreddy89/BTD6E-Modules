@@ -232,8 +232,50 @@
   <data name="FlameButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>FlameButton.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ScaryMonsters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ScaryMonsters.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ScaryMonstersProj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ScaryMonstersProj.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ScaryMonstersIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ScaryMonstersIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APMGold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ApexPlasmaMasterGold.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APMGold2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ApexPlasmaMasterGold.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APMJuggernautGold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>APMJuggernautGold.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APMUltraJuggernautGold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>APMUltraJuggernautGold.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APMGoldIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>APMGoldIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GlaiveDominusSilver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GlaiveDominusSilver.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GlaiveDominusSilverOrbit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GlaiveDominusSilverOrbit.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GlaiveDominusSilverOrbit2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GlaiveDominusSilverOrbit2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GlaiveDominusSilverOrbit3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GlaiveDominusSilverOrbit3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GlaiveDominusSilverIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GlaiveDominusSilverIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="particle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>particle.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="energy0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Energy\energy0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

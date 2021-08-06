@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
+﻿using AdditionalTiers.Utils.Assets;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Unity.Bridge;
+using System;
+using System.Collections.Generic;
 
 namespace AdditionalTiers.Tasks {
     public class TowerTask {

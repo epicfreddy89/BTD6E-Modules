@@ -1,0 +1,79 @@
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
+using Assets.Scripts.Models.GenericBehaviors;
+using Assets.Scripts.Models.Towers;
+using Assets.Scripts.Models.Towers.Behaviors;
+using Assets.Scripts.Models.Towers.Behaviors.Attack;
+using Assets.Scripts.Models.Towers.Projectiles;
+using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
+using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
+using System.Linq;
+using UnhollowerRuntimeLib;
+
+namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public class ScaryMonsters : TowerTask {
+        public static TowerModel scaryMonsters;
+        private static int time = -1;
+        public ScaryMonsters() {
+            identifier = "Scary Monsters";
+            getTower = scaryMonsters;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("BoomerangMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.SCARYMONSTERS) * Globals.SixthTierPopCountMulti;
+            onComplete += tts => {
+                if (time < 50) {
+                    time++;
+                    return;
+                }
+                tts.tower.namedMonkeyName = identifier;
+                tts.tower.worth = 0;
+                tts.tower.UpdateRootModel(scaryMonsters);
+                tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
+                AbilityMenu.instance.TowerChanged(tts);
+                AbilityMenu.instance.RebuildAbilities();
+            };
+            gameLoad += gm => {
+                scaryMonsters = gm.towers.First(a => a.name.Contains("BoomerangMonkey-502")).Clone().Cast<TowerModel>();
+
+                scaryMonsters.range = 100;
+                scaryMonsters.cost = 0;
+                scaryMonsters.name = "Scary Monsters";
+                scaryMonsters.baseId = "BoomerangMonkey";
+                scaryMonsters.display = "ScaryMonsters";
+                scaryMonsters.dontDisplayUpgrades = true;
+                scaryMonsters.portrait = new("ScaryMonstersIcon");
+                scaryMonsters.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "ScaryMonsters";
+                var beh = scaryMonsters.behaviors;
+                ProjectileModel orbitProj = null;
+
+                for (var i = 0; i < beh.Length; i++)
+                    if (beh[i].Is<AttackModel>(out var am)) {
+                        var wm = am.weapons[0];
+
+                        wm.projectile.scale *= 1.01f;
+                        wm.projectile.ignorePierceExhaustion = true;
+                        wm.projectile.ignoreBlockers = true;
+                        wm.projectile.display = "ScaryMonstersProj";
+
+                        wm.projectile.behaviors = wm.projectile.behaviors.Add(new DisplayModel("DM_", "2171756de70c7744cb59ec3302393d2a", 0, new(), 0.7f, true, 0));
+
+                        orbitProj = wm.projectile.Clone().Cast<ProjectileModel>();
+
+                        for (var k = 0; k < wm.projectile.behaviors.Length; k++)
+                            if (wm.projectile.behaviors[k].Is<DamageModel>(out var dm))
+                                dm.damage *= 1000;
+
+                        am.weapons[0] = wm;
+
+                        am.range = 100;
+                        break;
+                    }
+
+                scaryMonsters.behaviors = beh.Add(new OverrideCamoDetectionModel("OCDM_", true)).Remove(a => a.Is<OrbitModel>(out _));
+            };
+            recurring += tts => { };
+            onLeave += () => { time = -1; };
+            assetsToRead.Add(new("ScaryMonsters", "c611c5e568a4bde4bbe28f565aa440e8", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("ScaryMonstersProj", "ae8cebf807b15984daf0219b66f42897", RendererType.SPRITERENDERER));
+        }
+    }
+}

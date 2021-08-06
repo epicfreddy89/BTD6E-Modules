@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.GenericBehaviors;
 using Assets.Scripts.Models.Towers;
@@ -11,35 +11,21 @@ using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Behaviors.Emissions;
 using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using UnhollowerBaseLib;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class PointOfNoReturn : TowerTask {
         public static TowerModel PONR;
         private static int time = -1;
 
-        public PointOfNoReturn()
-        {
+        public PointOfNoReturn() {
             identifier = "Point of no Return";
             getTower = PONR;
             requirements += tts => tts.tower.towerModel.baseId.Equals("BombShooter") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.POINTOFNORETURN) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
-                if (time < 50)
-                {
+                if (time < 50) {
                     time++;
                     return;
                 }
@@ -51,13 +37,13 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
-            gameLoad += gm =>
-            {
+            gameLoad += gm => {
                 PONR = gm.towers.First(a => a.name.Contains("BombShooter-250")).Clone().Cast<TowerModel>();
 
                 PONR.range = 150;
                 PONR.cost = 0;
                 PONR.name = "Point of no Return";
+                PONR.baseId = "BombShooter";
                 PONR.display = "PONR";
                 PONR.dontDisplayUpgrades = true;
                 PONR.portrait = new("PONRIcon");
@@ -130,7 +116,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                     if (behavior.GetIl2CppType() == Il2CppType.Of<AbilityModel>()) {
                         var ab = behavior.Cast<AbilityModel>();
-                        ab.icon = new ("PONRIcon");
+                        ab.icon = new("PONRIcon");
                         for (var j = 0; j < ab.behaviors.Length; j++)
                             if (ab.behaviors[j].GetIl2CppType() == Il2CppType.Of<ActivateAttackModel>()) {
                                 var aam = ab.behaviors[j].Cast<ActivateAttackModel>();
@@ -146,8 +132,8 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };
-            assetsToRead.Add(new ("PONR", "31a16eecf9211a64b8dcdfad2ff7974e", RendererType.SKINNEDMESHRENDERER));
-            assetsToRead.Add(new ("PONRProj", "e5edd901992846e409326a506d272633", RendererType.MESHRENDERER));
+            assetsToRead.Add(new("PONR", "31a16eecf9211a64b8dcdfad2ff7974e", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("PONRProj", "e5edd901992846e409326a506d272633", RendererType.MESHRENDERER));
         }
     }
 }

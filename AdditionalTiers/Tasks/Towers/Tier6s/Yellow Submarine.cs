@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Assets.Scripts.Models;
+﻿using AdditionalTiers.Utils;
+using AdditionalTiers.Utils.Assets;
+using AdditionalTiers.Utils.Towers;
 using Assets.Scripts.Models.GenericBehaviors;
 using Assets.Scripts.Models.Towers;
 using Assets.Scripts.Models.Towers.Behaviors;
@@ -11,20 +10,9 @@ using Assets.Scripts.Models.Towers.Behaviors.Attack;
 using Assets.Scripts.Models.Towers.Behaviors.Emissions;
 using Assets.Scripts.Models.Towers.Projectiles;
 using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using Il2CppSystem;
-using MelonLoader;
-using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
+using System.Linq;
 using UnhollowerRuntimeLib;
-using UnityEngine;
-using v = Assets.Scripts.Simulation.SMath.Vector3;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public class Yellow_Submarine : TowerTask {
@@ -35,8 +23,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             getTower = yellowSubmarine;
             requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.YELLOWSUBMARINE) * Globals.SixthTierPopCountMulti;
             onComplete += tts => {
-                if (time < 50)
-                {
+                if (time < 50) {
                     time++;
                     return;
                 }
@@ -54,7 +41,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 yellowSubmarine.range = 150;
                 yellowSubmarine.cost = 0;
                 yellowSubmarine.name = "Yellow Submarine";
-                yellowSubmarine.baseId = "YellowSubmarine";
+                yellowSubmarine.baseId = "MonkeySub";
                 yellowSubmarine.display = "YellowSubmarine";
                 yellowSubmarine.dontDisplayUpgrades = true;
                 yellowSubmarine.portrait = new("YellowSubmarineIcon");
@@ -79,8 +66,8 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                         am.range = 2000;
                         for (int j = 0; j < am.weapons.Length; j++) {
-                            am.weapons[j].rate /=5;
-                            am.weapons[j].rateFrames /=5;
+                            am.weapons[j].rate /= 5;
+                            am.weapons[j].rateFrames /= 5;
 
                             am.weapons[j].projectile.behaviors = am.weapons[j].projectile.behaviors.Add(
                                 new CreateProjectileOnContactModel("CreateProjectileOnContactModel_",
@@ -118,10 +105,10 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                 var aam = ab[j].Cast<ActivateAttackModel>();
 
                                 for (int k = 0; k < aam.attacks.Length; k++)
-                                for (int l = 0; l < aam.attacks[k].weapons.Length; l++) {
-                                    aam.attacks[k].weapons[l].projectile.pierce *= 2000;
-                                    aam.attacks[k].weapons[l].projectile.radius = 2000;
-                                }
+                                    for (int l = 0; l < aam.attacks[k].weapons.Length; l++) {
+                                        aam.attacks[k].weapons[l].projectile.pierce *= 2000;
+                                        aam.attacks[k].weapons[l].projectile.radius = 2000;
+                                    }
 
                                 ab[j] = aam;
                             }
@@ -134,7 +121,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };
-            assetsToRead.Add(new ("YellowSubmarine", "62ff4c3f34f9c3c4c9fce1ac3d122ee0", RendererType.SKINNEDMESHRENDERER));
+            assetsToRead.Add(new("YellowSubmarine", "62ff4c3f34f9c3c4c9fce1ac3d122ee0", RendererType.SKINNEDMESHRENDERER));
         }
     }
 }

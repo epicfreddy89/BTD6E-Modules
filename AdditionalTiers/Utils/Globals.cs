@@ -1,14 +1,10 @@
-﻿using System;
-using MelonLoader;
+﻿using MelonLoader;
 
 namespace AdditionalTiers.Utils {
     internal static class Globals {
-        public static Single SixthTierPopCountMulti = 1;
-        public static Single SixthTierDamageMulti = 1;
+        public static float SixthTierPopCountMulti = 1;
+        public static float SixthTierDamageMulti = 1;
 
-        internal static void Load() {
-            SixthTierPopCountMulti = MelonPreferences.GetEntryValue<float>("Additional Tier Addon Config", "Tier 6 required pop count multiplier");
-            SixthTierDamageMulti = MelonPreferences.GetEntryValue<float>("Additional Tier Addon Config", "Tier 6 damage multiplier");
-        }
+        internal static void Load() => SixthTierPopCountMulti = MelonPreferences.GetEntryValue<float>("Additional Tier Addon Config", "Tier 6 required pop count multiplier"); // I'll add more another time
     }
 }
