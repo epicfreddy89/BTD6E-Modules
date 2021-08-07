@@ -14,7 +14,7 @@ namespace GodlyTowers.Towers {
             var paragon = origParagon.Clone().Cast<TowerModel>();
             paragon.baseId = "ParagonDartMonkey";
             paragon.name = "ParagonDartMonkey";
-            paragon.towerSet = "Paragon";
+            paragon.towerSet = "Primary";
             paragon.emoteSpriteLarge = new("Paragon");
             paragon.tier = 0;
             paragon.tiers = new int[] { 0, 0, 0 };
@@ -39,7 +39,7 @@ namespace GodlyTowers.Towers {
             var paragon = origParagon.Clone().Cast<TowerModel>();
             paragon.baseId = "ParagonBoomerangMonkey";
             paragon.name = "ParagonBoomerangMonkey";
-            paragon.towerSet = "Paragon";
+            paragon.towerSet = "Primary";
             paragon.emoteSpriteLarge = new("Paragon");
             paragon.tier = 0;
             paragon.tiers = new int[] { 0, 0, 0 };
