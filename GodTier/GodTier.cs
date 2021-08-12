@@ -18,7 +18,7 @@ using Color = UnityEngine.Color;
 using Image = UnityEngine.UI.Image;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.3", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.4", "1330 Studios LLC")]
 
 namespace GodTier {
     public class GodTier : MelonMod {

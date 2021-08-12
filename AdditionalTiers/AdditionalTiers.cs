@@ -2,7 +2,10 @@
 using AdditionalTiers.Utils;
 using AdditionalTiers.Utils.Assets;
 using AdditionalTiers.Utils.Towers;
+using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Simulation.Towers;
+using Assets.Scripts.Unity;
+using Assets.Scripts.Utils;
 using HarmonyLib;
 using MelonLoader;
 using System;
@@ -13,7 +16,7 @@ using System.Runtime.InteropServices;
 using static HarmonyLib.AccessTools;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.3", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.4", "1330 Studios LLC")]
 
 namespace AdditionalTiers {
     public class AdditionalTiers : MelonMod {

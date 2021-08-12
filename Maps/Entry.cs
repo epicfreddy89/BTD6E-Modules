@@ -26,7 +26,7 @@ using Image = UnityEngine.UI.Image;
 using Task = Il2CppSystem.Threading.Tasks.Task;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(Maps.Entry), "Maps", "1.3", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(Maps.Entry), "Maps", "1.4", "1330 Studios LLC")]
 namespace Maps {
     class Entry : MelonMod {
         public static AssetBundle SceneBundle = null;
