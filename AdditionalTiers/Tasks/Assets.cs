@@ -89,7 +89,8 @@ namespace AdditionalTiers.Tasks {
         [HideFromIl2Cpp]
         public static Dictionary<string, Func<string, Sprite>> SpriteCreation { get; set; } = new() {
             { "ScaryMonstersProj", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
-            { "GlaiveDominusSilverOrbit2", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) }
+            { "GlaiveDominusSilverOrbit2", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
+            { "BTD4SunGod", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 3.1f) }
         };
 
 
