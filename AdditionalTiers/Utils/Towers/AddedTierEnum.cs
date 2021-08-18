@@ -14,7 +14,7 @@
         SCARYMONSTERS = 100000,
         THEGOLDEXPERIENCE = 1000000,
         TUSK = 1000000,
-        BTD4SUNGOD = 1
+        BTD4SUNGOD = 100000
     }
 
     public class AddedTierName {

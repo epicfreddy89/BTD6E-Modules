@@ -193,6 +193,46 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] BTD4SunGodPorV {
+            get {
+                object obj = ResourceManager.GetObject("BTD4SunGodPorV", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BTD4SunGodProj {
+            get {
+                object obj = ResourceManager.GetObject("BTD4SunGodProj", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BTD4SunGodProjV {
+            get {
+                object obj = ResourceManager.GetObject("BTD4SunGodProjV", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BTD4SunGodV {
+            get {
+                object obj = ResourceManager.GetObject("BTD4SunGodV", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] DarkFlame0 {
             get {
                 object obj = ResourceManager.GetObject("DarkFlame0", resourceCulture);

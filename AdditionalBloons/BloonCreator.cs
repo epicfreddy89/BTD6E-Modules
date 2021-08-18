@@ -66,7 +66,7 @@ namespace AdditionalBloons {
                 new DamageStateModel("DamageStateModel_2", "Coconut3", 0.6f),
                 new DamageStateModel("DamageStateModel_1", "Coconut2", 0.8f)
             });
-            var coconutBloonChildren = new global::Il2CppSystem.Collections.Generic.List<BloonModel>();
+            var coconutBloonChildren = new Il2CppSystem.Collections.Generic.List<BloonModel>();
             for (int i = 0; i < 5; i++) coconutBloonChildren.Add(ModelStorage.whiteBloon);
             coconutBloon.childBloonModels = coconutBloonChildren;
             coconutBloon.UpdateChildBloonModels();

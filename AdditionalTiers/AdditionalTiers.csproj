@@ -482,13 +482,13 @@
     <Compile Include="Utils\Components\AnimatedEnergyTexture.cs" />
     <Compile Include="Utils\Components\AnimatedFlameTexture.cs" />
     <Compile Include="Utils\Components\FastRotation.cs" />
+    <Compile Include="Utils\Components\SetHeight1.cs" />
     <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Globals.cs" />
     <Compile Include="Utils\Math\Bounds.cs" />
     <Compile Include="Utils\Math\NumericExtensions.cs" />
     <Compile Include="Utils\RefAction.cs" />
     <Compile Include="Utils\Scene\CameraUtil.cs" />
-    <Compile Include="Utils\TaskRunner.cs" />
     <Compile Include="Utils\Timer.cs" />
     <Compile Include="Utils\Towers\AddedTierEnum.cs" />
     <Compile Include="Utils\Towers\HighlightManager.cs" />

@@ -483,36 +483,46 @@ namespace GodTier.Towers {
             public static void Postfix(ref Weapon __instance) => RunAnimations(__instance);
 
             private static async Task RunAnimations(Weapon __instance) {
-                if (__instance.weaponModel.name.EndsWith("Swipe")) {
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().StopPlayback();
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().Play("metarig|metarigSwipe");
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", true);
-                    var wait = 2300f;
-                    await Task.Run(() => {
-                        while (wait > 0) {
-                            wait -= TimeManager.timeScaleWithoutNetwork + 1;
-                            Task.Delay(1);
-                        }
+                if (__instance == null) return;
+                if (__instance.weaponModel == null) return;
+                if (__instance.weaponModel.name == null) return;
+                if (__instance.attack == null) return;
+                if (__instance.attack.tower == null) return;
+                if (__instance.attack.tower.Node == null) return;
+                if (__instance.attack.tower.Node.graphic == null) return;
 
-                        return;
-                    });
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", false);
-                }
-                if (__instance.weaponModel.name.EndsWith("Breath")) {
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().StopPlayback();
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().Play("metarig|metarigFireball");
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", true);
-                    var wait = 2300f;
-                    await Task.Run(() => {
-                        while (wait > 0) {
-                            wait -= TimeManager.timeScaleWithoutNetwork + 1;
-                            Task.Delay(1);
-                        }
+                try {
+                    if (__instance.weaponModel.name.EndsWith("Swipe")) {
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().StopPlayback();
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().Play("metarig|metarigSwipe");
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", true);
+                        var wait = 2300f;
+                        await Task.Run(() => {
+                            while (wait > 0) {
+                                wait -= TimeManager.timeScaleWithoutNetwork + 1;
+                                Task.Delay(1);
+                            }
 
-                        return;
-                    });
-                    __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", false);
-                }
+                            return;
+                        });
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", false);
+                    }
+                    if (__instance.weaponModel.name.EndsWith("Breath")) {
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().StopPlayback();
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().Play("metarig|metarigFireball");
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", true);
+                        var wait = 2300f;
+                        await Task.Run(() => {
+                            while (wait > 0) {
+                                wait -= TimeManager.timeScaleWithoutNetwork + 1;
+                                Task.Delay(1);
+                            }
+
+                            return;
+                        });
+                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", false);
+                    }
+                } catch (Exception) { }
             }
         }
     }

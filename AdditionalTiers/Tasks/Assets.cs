@@ -84,13 +84,28 @@ namespace AdditionalTiers.Tasks {
                     var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
                     ps.startColor = new Color(1f, 0, 0);
                 }
+            },
+            {
+                "BTD4SunGod",
+                udn => {
+                    udn.transform.GetComponentInChildren<ParticleSystem>().gameObject.active = false;
+                    udn.gameObject.AddComponent<SetHeight1>();
+                }
+            },
+            {
+                "BTD4SunGodV",
+                udn => {
+                    udn.transform.GetComponentInChildren<ParticleSystem>().gameObject.active = false;
+                    udn.gameObject.AddComponent<SetHeight1>();
+                }
             }
         };
         [HideFromIl2Cpp]
         public static Dictionary<string, Func<string, Sprite>> SpriteCreation { get; set; } = new() {
             { "ScaryMonstersProj", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
             { "GlaiveDominusSilverOrbit2", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
-            { "BTD4SunGod", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 3.1f) }
+            { "BTD4SunGod", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 43.2f, pivoty: 0.7f) },
+            { "BTD4SunGodV", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 43.2f, pivoty: 0.7f) }
         };
 
 
@@ -142,7 +157,7 @@ namespace AdditionalTiers.Tasks {
                         if (objectId.Equals(curAsset.CustomAssetName)) {
                             UnityDisplayNode udn = null;
                             __instance.FindAndSetupPrototypeAsync(curAsset.BTDAssetName,
-                                new System.Action<UnityDisplayNode>(
+                                new Action<UnityDisplayNode>(
                                     btdUdn => {
                                         var instance = Object.Instantiate(btdUdn, __instance.PrototypeRoot);
                                         instance.name = objectId + "(Clone)";
@@ -150,7 +165,7 @@ namespace AdditionalTiers.Tasks {
                                             instance.isSprite = true;
                                         instance.RecalculateGenericRenderers();
 
-                                        Il2CppSystem.Type rendererType = null;
+                                        Type rendererType = null;
                                         switch (curAsset.RendererType) {
                                             case RendererType.MESHRENDERER:
                                                 rendererType = Il2CppType.Of<MeshRenderer>();
@@ -207,7 +222,7 @@ namespace AdditionalTiers.Tasks {
                 if (objectId.Equals("UpgradedText")) {
                     UnityDisplayNode udn = null;
                     __instance.FindAndSetupPrototypeAsync("3dcdbc19136c60846ab944ada06695c0",
-                        new System.Action<UnityDisplayNode>(oudn => {
+                        new Action<UnityDisplayNode>(oudn => {
                             var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
                             nudn.name = objectId + "(Clone)";
                             nudn.isSprite = true;
@@ -223,7 +238,7 @@ namespace AdditionalTiers.Tasks {
                 if (objectId.Equals("CashText")) {
                     UnityDisplayNode udn = null;
                     __instance.FindAndSetupPrototypeAsync("3dcdbc19136c60846ab944ada06695c0",
-                        new System.Action<UnityDisplayNode>(oudn => {
+                        new Action<UnityDisplayNode>(oudn => {
                             var nudn = Object.Instantiate(oudn, __instance.PrototypeRoot);
                             nudn.name = objectId + "(Clone)";
                             nudn.isSprite = true;

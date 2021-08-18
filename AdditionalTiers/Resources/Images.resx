@@ -277,6 +277,18 @@
   <data name="BTD4SunGod" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>BTD4SunGod.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BTD4SunGodPorV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BTD4SunGodPorV.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BTD4SunGodV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BTD4SunGodV.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BTD4SunGodProjV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BTD4SunGodProjV.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BTD4SunGodProj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BTD4SunGodProj.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
