@@ -124,4 +124,16 @@
   <data name="TowerContainerMovie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TowerContainerMovie.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SMPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SMPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SMPortrait1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SMPortrait1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SMPortrait2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SMPortrait2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SMPortrait3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SMPortrait3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

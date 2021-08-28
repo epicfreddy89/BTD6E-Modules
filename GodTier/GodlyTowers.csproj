@@ -11,7 +11,7 @@
     <AssemblyName>Godly Towers</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <LangVersion>9</LangVersion>
+    <LangVersion>10</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -435,6 +437,8 @@
     </Compile>
     <Compile Include="Towers\Godzilla.cs" />
     <Compile Include="Towers\Paragons.cs" />
+    <Compile Include="Towers\SpiderMan.cs" />
+    <Compile Include="Util\SetScale.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Models\Models.resx">
@@ -449,7 +453,18 @@
   <ItemGroup>
     <None Include="Resources\model.bundle" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\SMPortrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMPortrait1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMPortrait2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SMPortrait3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "Z:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\Mods\$(TargetFileName)" /y &gt;NUL</PostBuildEvent>

@@ -1,32 +1,4 @@
-﻿using Assets.Scripts.Models;
-using Assets.Scripts.Models.Bloons.Behaviors;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Map;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Upgrades;
-using Assets.Scripts.Models.TowerSets;
-using Assets.Scripts.Simulation.Towers.Weapons;
-using Assets.Scripts.Unity.Display;
-using Assets.Scripts.Utils;
-using GodlyTowers.Towers;
-using GodTier.Utils;
-using HarmonyLib;
-using NinjaKiwi.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using UnhollowerRuntimeLib;
-using UnityEngine;
-using UnityEngine.UI;
-using Object = UnityEngine.Object;
-
-namespace GodTier.Towers {
+﻿namespace GodTier.Towers {
     public class Godzilla {
         public static string name = "Godzilla: The King of all Monsters";
 

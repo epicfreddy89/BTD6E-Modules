@@ -1,21 +1,39 @@
-﻿using Assets.Scripts.Models;
-using Assets.Scripts.Models.Profile;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Upgrades;
-using Assets.Scripts.Models.TowerSets;
-using Assets.Scripts.Simulation.Towers;
-using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
-using Assets.Scripts.Unity.UI_New.Upgrade;
-using GodlyTowers.Models;
-using GodlyTowers.Towers;
-using GodTier.Towers;
-using GodTier.Utils;
-using HarmonyLib;
-using MelonLoader;
-using System.Collections.Generic;
-using UnityEngine;
-using Color = UnityEngine.Color;
-using Image = UnityEngine.UI.Image;
+﻿global using Assets.Scripts.Models;
+global using Assets.Scripts.Models.Profile;
+global using Assets.Scripts.Models.Towers;
+global using Assets.Scripts.Models.Towers.Upgrades;
+global using Assets.Scripts.Models.TowerSets;
+global using Assets.Scripts.Simulation.Towers;
+global using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
+global using Assets.Scripts.Unity.UI_New.Upgrade;
+global using GodlyTowers.Models;
+global using GodlyTowers.Towers;
+global using GodTier.Towers;
+global using GodTier.Utils;
+global using HarmonyLib;
+global using MelonLoader;
+global using System.Collections.Generic;
+global using UnityEngine;
+global using Color = UnityEngine.Color;
+global using Image = UnityEngine.UI.Image;
+global using Assets.Scripts.Simulation.Towers.Weapons;
+global using Assets.Scripts.Unity.Display;
+global using Assets.Scripts.Utils;
+global using GodlyTowers.Util;
+global using NinjaKiwi.Common;
+global using System;
+global using System.Threading.Tasks;
+global using UnhollowerRuntimeLib;
+global using Object = UnityEngine.Object;
+global using Assets.Scripts.Models.Bloons.Behaviors;
+global using Assets.Scripts.Models.GenericBehaviors;
+global using Assets.Scripts.Models.Map;
+global using Assets.Scripts.Models.Towers.Behaviors;
+global using Assets.Scripts.Models.Towers.Behaviors.Abilities;
+global using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
+global using Assets.Scripts.Models.Towers.Behaviors.Attack;
+global using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
+global using System.Linq;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.4", "1330 Studios LLC")]
@@ -23,7 +41,10 @@ using Image = UnityEngine.UI.Image;
 namespace GodTier {
     public class GodTier : MelonMod {
 
-        public override void OnApplicationStart() => Godzilla.Assets = AssetBundle.LoadFromMemory(Models.model);
+        public override void OnApplicationStart() {
+            Godzilla.Assets = AssetBundle.LoadFromMemory(Models.model);
+            Spider_Man.Assets = AssetBundle.LoadFromMemory(Models.spiderman);
+        }
 
         [HarmonyPatch(typeof(UpgradeScreen), "UpdateUi")]
         public class AddShopDetails {
@@ -107,6 +128,7 @@ namespace GodTier {
                 paragons.Add(Paragons.GetDartMonkey(__result));
                 paragons.Add(Paragons.GetBoomerangMonkey(__result));
                 towers.Add(Godzilla.GetTower(__result));
+                towers.Add(Spider_Man.GetTower(__result));
 
                 foreach (var paragon in paragons) {
                     __result.towers = __result.towers.Add(paragon.Item1);

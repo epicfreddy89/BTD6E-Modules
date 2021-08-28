@@ -1,13 +1,6 @@
-﻿using Assets.Scripts.Models;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.TowerSets;
-using GodTier.Towers;
-using NinjaKiwi.Common;
-using System.Linq;
-
-namespace GodlyTowers.Towers {
+﻿namespace GodlyTowers.Towers {
     public class Paragons {
-        private static int index = 32;
+        private static int index = 33;
 
         public static (TowerModel, TowerDetailsModel, string, TowerModel) GetDartMonkey(GameModel model) {
             var origParagon = model.towers.First(t => t.name.Equals("DartMonkey-Paragon"));
