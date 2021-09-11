@@ -1,10 +1,4 @@
-﻿using System;
-using Assets.Scripts.Utils;
-using MelonLoader;
-using UnhollowerRuntimeLib;
-using UnityEngine;
-
-namespace AdditionalTiers.Utils.Components {
+﻿namespace AdditionalTiers.Utils.Components {
     [RegisterTypeInIl2Cpp]
     public class AnimatedEnergyTexture : MonoBehaviour {
         public AnimatedEnergyTexture(IntPtr obj0) : base(obj0) { ClassInjector.DerivedConstructorBody(this); }

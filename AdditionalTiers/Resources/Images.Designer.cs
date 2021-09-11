@@ -1133,6 +1133,76 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] MrRoboto {
+            get {
+                object obj = ResourceManager.GetObject("MrRoboto", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MrRobotoAbilityIcon {
+            get {
+                object obj = ResourceManager.GetObject("MrRobotoAbilityIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MrRobotoArms1 {
+            get {
+                object obj = ResourceManager.GetObject("MrRobotoArms1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MrRobotoArms2 {
+            get {
+                object obj = ResourceManager.GetObject("MrRobotoArms2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MrRobotoIcon {
+            get {
+                object obj = ResourceManager.GetObject("MrRobotoIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MrRobotoPlasma {
+            get {
+                object obj = ResourceManager.GetObject("MrRobotoPlasma", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MrRobotoRocket {
+            get {
+                object obj = ResourceManager.GetObject("MrRobotoRocket", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] NinjaSexParty {
             get {
                 object obj = ResourceManager.GetObject("NinjaSexParty", resourceCulture);

@@ -1,31 +1,18 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Simulation.Towers;
-using Assets.Scripts.Simulation.Towers.Weapons;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using HarmonyLib;
-using MelonLoader;
-using System.Linq;
-using UnhollowerRuntimeLib;
+﻿
 using Timer = AdditionalTiers.Utils.Timer;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class Whitesnake : TowerTask {
+    public sealed class Whitesnake : TowerTask {
         public static TowerModel whitesnake;
         public static TowerModel whitesnakePheonix;
         public static TowerModel whitesnakeDarkPheonix;
         private static int _time = -1;
         public Whitesnake() {
             identifier = "Whitesnake";
-            getTower = whitesnake;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.WHITESNAKE) * Globals.SixthTierPopCountMulti;
+            getTower = () => whitesnake;
+            baseTower = AddedTierName.WHITESNAKE;
+            tower = AddedTierEnum.WHITESNAKE;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[1] == 5;
             onComplete += tts => {
                 if (_time < 50) {
                     _time++;

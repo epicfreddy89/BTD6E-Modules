@@ -1,28 +1,14 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class BlackHoleSun : TowerTask {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public sealed class BlackHoleSun : TowerTask {
         public static TowerModel BHS;
         private static int time = -1;
 
         public BlackHoleSun() {
             identifier = "Black Hole Sun";
-            getTower = BHS;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.BLACKHOLESUN) * Globals.SixthTierPopCountMulti;
+            getTower = () => BHS;
+            baseTower = AddedTierName.BLACKHOLESUN;
+            tower = AddedTierEnum.BLACKHOLESUN;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[1] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

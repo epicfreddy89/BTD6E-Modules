@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿
 
 namespace AdditionalTiers.Utils {
     public class Timer {
@@ -18,7 +16,7 @@ namespace AdditionalTiers.Utils {
             while (counter > 0) {
                 during(counter);
                 yield return new WaitForSeconds(gap);
-                counter-=decrement;
+                counter -= decrement;
             }
             after();
         }

@@ -1,24 +1,14 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using System.Linq;
-using UnhollowerRuntimeLib;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class NinjaSexParty : TowerTask {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public sealed class NinjaSexParty : TowerTask {
         public static TowerModel NSP;
         private static int time = -1;
 
         public NinjaSexParty() {
             identifier = "NSP";
-            getTower = NSP;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("NinjaMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.NINJASEXPARTY) * Globals.SixthTierPopCountMulti;
+            getTower = () => NSP;
+            baseTower = AddedTierName.NINJASEXPARTY;
+            tower = AddedTierEnum.NINJASEXPARTY;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("NinjaMonkey") && tts.tower.towerModel.tiers[0] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

@@ -1,20 +1,4 @@
-﻿using AdditionalTiers.Resources;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Components;
-using Assets.Scripts.Unity.Display;
-using Assets.Scripts.Utils;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using UnhollowerBaseLib.Attributes;
-using UnhollowerRuntimeLib;
-using UnityEngine;
-using Color = UnityEngine.Color;
-using Image = UnityEngine.UI.Image;
-using Object = UnityEngine.Object;
-using Type = Il2CppSystem.Type;
+﻿
 
 namespace AdditionalTiers.Tasks {
     public class Assets {
@@ -34,7 +18,7 @@ namespace AdditionalTiers.Tasks {
                     light.renderMode = LightRenderMode.ForceVertex;
 
                     var assets = Particles;
-                    var _obj = assets[0].Cast<GameObject>();
+                    var _obj = assets[1].Cast<GameObject>();
                     var obj = Object.Instantiate(_obj, udn.transform);
                     obj.SetActive(true);
                     var ps = obj.transform.GetComponentInChildren<ParticleSystem>();
@@ -50,6 +34,28 @@ namespace AdditionalTiers.Tasks {
                     for (int i = 0; i < udn.genericRenderers.Length; i++) {
                         udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.02f);
                     }
+                }
+            },
+            {
+                "MrRoboto",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++) {
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.02f);
+                    }
+                    var assets = Particles;
+                    var _obj = assets[0].Cast<GameObject>();
+                    var obj = Object.Instantiate(_obj, udn.transform);
+                    obj.SetActive(true);
+                    var ps = obj.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.transform.localScale = new(10, 10, 10);
+                }
+            },
+            {
+                "MrRobotoAbility",
+                udn => {
+                    var pss = udn.transform.GetComponentsInChildren<ParticleSystem>();
+                    foreach (var ps in pss)
+                        ps.startColor = new Color(1f, 0.8f, 0);
                 }
             },
             {

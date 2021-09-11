@@ -1,22 +1,13 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class Survivor : TowerTask {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public sealed class Survivor : TowerTask {
         public static TowerModel survivor;
         private static int time = -1;
         public Survivor() {
             identifier = "Survivor";
-            getTower = survivor;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("SniperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > ((int)AddedTierEnum.SURVIVOR) * Globals.SixthTierPopCountMulti;
+            getTower = () => survivor;
+            baseTower = AddedTierName.SURVIVOR;
+            tower = AddedTierEnum.SURVIVOR;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("SniperMonkey") && tts.tower.towerModel.tiers[2] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

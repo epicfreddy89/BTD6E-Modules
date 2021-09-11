@@ -1,11 +1,35 @@
 ### Versions List
 
+- [v1.4](#v14)
 - [v1.3](#v13)
 - [v1.2 and Before](#v12-and-before)
 
 ---
 
 ### v1.4
+
+#### Overall
+1. Code Cleanup
+2. Image Optimizations
+3. Rebuilding of Asset Bundles
+
+#### Additional Tiers
+1. BTD4 Sun God (320 Super Monkey) (Alternate)
+2. Vengeful Version of BTD4 Sun God
+3. Add Status for progress to an Added Tier
+4. Start on ProjectileModel Utilities
+5. Start on DamageModel Utilities
+6. Start on OrbitModel Utilities
+7. Created AssetStack class
+8. Changed how tower information is recieved from TowerTask
+9. Seperated the Pop Requirements from the other requirements
+10. Created a global usings C# file to house all imports
+11. Mr. Roboto (x6x Super Monkey)
+
+#### Godly Towers
+1. Change Paragon's towerSets to Primary
+2. Added Spider-Man tower
+3. Fixed bug with Monkey Teams
 
 ---
 
@@ -16,8 +40,8 @@
 2. Image Optimizations
 
 #### Additional Tiers
-1. The Gold Experience (7xx Dart Monkey [Paragon])
-2. Tusk (7xx Boomerang Monkey [Paragon])
+1. The Gold Experience (7xx Dart Monkey (Paragon))
+2. Tusk (7xx Boomerang Monkey (Paragon))
 
 #### Additional Bloons
 1. Bloonarius Boss Bloon Tier 1&5

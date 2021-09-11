@@ -47,7 +47,7 @@ namespace GodlyTowers.Towers {
             spiderman.mods = new ApplyModModel[0];
             spiderman.upgrades = new UpgradePathModel[] { new("Iron Spider", name + "-100") };
 
-            var gluegunner = gameModel.towers.First(a=>a.name.Equals("GlueGunner-203")).Clone().Cast<TowerModel>();
+            var gluegunner = gameModel.towers.First(a => a.name.Equals("GlueGunner-203")).Clone().Cast<TowerModel>();
             var glueproj = gluegunner.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<AttackModel>()).Cast<AttackModel>().weapons[0].projectile;
 
             glueproj.filters = new FilterModel[0];
@@ -56,7 +56,7 @@ namespace GodlyTowers.Towers {
                 var b = spiderman.behaviors[i];
                 if (b.GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
                     var att = b.Cast<AttackModel>();
-                    att.behaviors.First(a=>a.GetIl2CppType() == Il2CppType.Of<AttackFilterModel>()).Cast<AttackFilterModel>().filters = new FilterModel[0];
+                    att.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<AttackFilterModel>()).Cast<AttackFilterModel>().filters = new FilterModel[0];
                     att.weapons[0].name = "web";
                     att.weapons[0].animationOffset = 0.3f;
                     att.weapons[0].rate *= 2;
@@ -392,9 +392,9 @@ namespace GodlyTowers.Towers {
                     } catch { }
                 if (reference != null && reference.guidRef.Equals("SMPortrait3"))
                     try {
-                            var text = LoadTextureFromBytes(Properties.Resources.SMPortrait3).Cast<Texture2D>();
-                            image.canvasRenderer.SetTexture(text);
-                            image.sprite = LoadSprite(text);
+                        var text = LoadTextureFromBytes(Properties.Resources.SMPortrait3).Cast<Texture2D>();
+                        image.canvasRenderer.SetTexture(text);
+                        image.sprite = LoadSprite(text);
                     } catch { }
             }
 

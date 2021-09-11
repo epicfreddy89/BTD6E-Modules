@@ -1,39 +1,50 @@
-﻿global using Assets.Scripts.Models;
-global using Assets.Scripts.Models.Profile;
-global using Assets.Scripts.Models.Towers;
-global using Assets.Scripts.Models.Towers.Upgrades;
-global using Assets.Scripts.Models.TowerSets;
-global using Assets.Scripts.Simulation.Towers;
-global using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
-global using Assets.Scripts.Unity.UI_New.Upgrade;
-global using GodlyTowers.Models;
-global using GodlyTowers.Towers;
-global using GodTier.Towers;
-global using GodTier.Utils;
-global using HarmonyLib;
-global using MelonLoader;
+﻿global using System;
 global using System.Collections.Generic;
-global using UnityEngine;
-global using Color = UnityEngine.Color;
-global using Image = UnityEngine.UI.Image;
-global using Assets.Scripts.Simulation.Towers.Weapons;
-global using Assets.Scripts.Unity.Display;
-global using Assets.Scripts.Utils;
-global using GodlyTowers.Util;
-global using NinjaKiwi.Common;
-global using System;
+global using System.Linq;
 global using System.Threading.Tasks;
-global using UnhollowerRuntimeLib;
-global using Object = UnityEngine.Object;
+
+global using Assets.Scripts.Models;
 global using Assets.Scripts.Models.Bloons.Behaviors;
 global using Assets.Scripts.Models.GenericBehaviors;
 global using Assets.Scripts.Models.Map;
+global using Assets.Scripts.Models.Profile;
+global using Assets.Scripts.Models.Towers;
 global using Assets.Scripts.Models.Towers.Behaviors;
 global using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 global using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 global using Assets.Scripts.Models.Towers.Behaviors.Attack;
 global using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-global using System.Linq;
+global using Assets.Scripts.Models.Towers.Upgrades;
+global using Assets.Scripts.Models.TowerSets;
+global using Assets.Scripts.Simulation.Towers;
+global using Assets.Scripts.Simulation.Towers.Weapons;
+global using Assets.Scripts.Unity.Display;
+global using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
+global using Assets.Scripts.Unity.UI_New.Upgrade;
+global using Assets.Scripts.Utils;
+
+global using GodlyTowers.Models;
+global using GodlyTowers.Towers;
+global using GodlyTowers.Util;
+
+global using GodTier.Towers;
+global using GodTier.Utils;
+
+global using HarmonyLib;
+
+global using MelonLoader;
+
+global using NinjaKiwi.Common;
+
+global using UnhollowerRuntimeLib;
+
+global using UnityEngine;
+
+global using Color = UnityEngine.Color;
+global using Object = UnityEngine.Object;
+global using Image = UnityEngine.UI.Image;
+
+using Assets.Scripts.Unity.UI_New.Main.MapSelect;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.4", "1330 Studios LLC")]
@@ -62,6 +73,16 @@ namespace GodTier {
                     }
 
                 return true;
+            }
+        }
+
+        [HarmonyPatch(typeof(MonkeyTeamsIcon), nameof(MonkeyTeamsIcon.Init))]
+        public class MTIcon {
+            [HarmonyPrefix]
+            public static bool Prefix(ref MonkeyTeamsIcon __instance) {
+                __instance.enabled = false;
+                __instance.gameObject.SetActive(false);
+                return false;
             }
         }
 

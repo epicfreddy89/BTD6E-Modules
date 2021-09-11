@@ -1,9 +1,4 @@
-﻿using MelonLoader;
-using System;
-using UnhollowerRuntimeLib;
-using UnityEngine;
-
-namespace AdditionalTiers.Utils.Components {
+﻿namespace AdditionalTiers.Utils.Components {
     [RegisterTypeInIl2Cpp]
     public class FastRotation : MonoBehaviour {
         public FastRotation(IntPtr obj0) : base(obj0) {

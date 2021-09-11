@@ -1,29 +1,15 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Mods;
-using Assets.Scripts.Models.Towers.Projectiles;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
+﻿
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class BigJuggus : TowerTask {
+    public sealed class BigJuggus : TowerTask {
         public static TowerModel bigJuggus;
         private static int time = -1;
         public BigJuggus() {
             identifier = "Big Juggus";
-            getTower = bigJuggus;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.BIGJUGGUS) * Globals.SixthTierPopCountMulti;
+            getTower = () => bigJuggus;
+            baseTower = AddedTierName.BIGJUGGUS;
+            tower = AddedTierEnum.BIGJUGGUS;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[0] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

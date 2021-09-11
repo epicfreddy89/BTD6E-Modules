@@ -1,26 +1,19 @@
-﻿using System;
-using Il2CppSystem.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Data.MapSets;
+﻿using Assets.Scripts.Data.MapSets;
 using Assets.Scripts.Models.Map;
 using Assets.Scripts.Models.Map.Gizmos;
 using Assets.Scripts.Models.Map.Triggers;
-using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.Map;
 using Assets.Scripts.Unity.UI_New;
-using Assets.Scripts.Unity.UI_New.InGame;
-using Assets.Scripts.Utils;
-using BTD6_Expansion.Utilities;
+
 using HarmonyLib;
+
+using Il2CppSystem.Collections.Generic;
+
 using Maps.Util;
-using MelonLoader;
-using SixthTiers.Utils;
-using UnhollowerBaseLib;
-using UnityEngine;
+
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 using Vector2 = Assets.Scripts.Simulation.SMath.Vector2;
 
 namespace Maps.Maps {
@@ -39,7 +32,7 @@ namespace Maps.Maps {
             mapDetails = map;
         }
         public MapDetails GetCreated() {
-            if (map==null)
+            if (map == null)
                 Create(out map);
             return map;
         }
@@ -69,7 +62,7 @@ namespace Maps.Maps {
                         new PathModel[] {
                             new("Path1", Path1, true, false, new(-1000, -1000, -1000), new(-1000, -1000, -1000), null, null),
                         }, new RemoveableModel[0], new MapGizmoModel[0], 0
-                        , new("", new("", new string[] {"Path1"}), new("", new string[] {"Path1"}))
+                        , new("", new("", new string[] { "Path1" }), new("", new string[] { "Path1" }))
                         , new MapEventModel[0], 1);
                     loadedCallback.Invoke(mapModel);
 
@@ -116,47 +109,47 @@ namespace Maps.Maps {
 
                     #region initPath
 
-                    initPath.Add(new() {point = new(150, -93), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(56, -92), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(30, -81), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(20, -68), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(11, -51), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(6, -27), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(6, -20), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(6, 51), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-8, 75), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-21, 80), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-38, 77), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-48, 70), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-58, 57), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-62, 46), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-62, -50), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-67, -71), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-76, -85), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-92, -92), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-106, -92), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-118, -86), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-127, -76), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-135, -61), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-136, -46), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-131, -32), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-123, -22), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-114, -14), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-103, -14), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-91, -12), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(24, -12), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(43, -10), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(57, -1), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(66, 9), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(71, 24), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(72, 37), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(74, 50), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(78, 60), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(86, 71), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(96, 76), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(107, 81), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(121, 81), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(150, 82), bloonScale = 1, moabScale = 1});
+                    initPath.Add(new() { point = new(150, -93), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(56, -92), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(30, -81), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(20, -68), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(11, -51), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(6, -27), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(6, -20), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(6, 51), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-8, 75), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-21, 80), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-38, 77), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-48, 70), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-58, 57), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-62, 46), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-62, -50), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-67, -71), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-76, -85), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-92, -92), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-106, -92), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-118, -86), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-127, -76), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-135, -61), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-136, -46), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-131, -32), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-123, -22), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-114, -14), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-103, -14), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-91, -12), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(24, -12), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(43, -10), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(57, -1), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(66, 9), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(71, 24), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(72, 37), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(74, 50), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(78, 60), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(86, 71), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(96, 76), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(107, 81), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(121, 81), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(150, 82), bloonScale = 1, moabScale = 1 });
 
                     #endregion
 

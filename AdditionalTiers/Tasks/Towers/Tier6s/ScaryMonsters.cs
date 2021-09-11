@@ -1,24 +1,13 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Projectiles;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class ScaryMonsters : TowerTask {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public sealed class ScaryMonsters : TowerTask {
         public static TowerModel scaryMonsters;
         private static int time = -1;
         public ScaryMonsters() {
             identifier = "Scary Monsters";
-            getTower = scaryMonsters;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("BoomerangMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.SCARYMONSTERS) * Globals.SixthTierPopCountMulti;
+            getTower = () => scaryMonsters;
+            baseTower = AddedTierName.SCARYMONSTERS;
+            tower = AddedTierEnum.SCARYMONSTERS;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("BoomerangMonkey") && tts.tower.towerModel.tiers[0] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

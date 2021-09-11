@@ -1,29 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Assets.Scripts.Data;
-using Assets.Scripts.Data.MapSets;
-using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Unity;
-using Assets.Scripts.Unity.Menu;
-using Assets.Scripts.Unity.Player;
-using Assets.Scripts.Unity.UI_New;
 using Assets.Scripts.Unity.UI_New.InGame;
-using Assets.Scripts.Unity.UI_New.Main.MapSelect;
 using Assets.Scripts.Utils;
-using BTD6_Expansion.Utilities;
+
 using HarmonyLib;
+
 using Maps.Maps;
 using Maps.Util;
+
 using MelonLoader;
+
 using NinjaKiwi.Common;
+
 using SixthTiers.Utils;
+
 using UnityEngine;
+
 using Image = UnityEngine.UI.Image;
-using Task = Il2CppSystem.Threading.Tasks.Task;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(Maps.Entry), "Maps", "1.4", "1330 Studios LLC")]
@@ -87,8 +84,7 @@ namespace Maps {
         public record ResourceLoader_Patch {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, Image image) {
-                if (reference != null)
-                {
+                if (reference != null) {
                     var bitmap = Properties.Resources.ResourceManager.GetObject(reference.guidRef) as byte[];
                     if (bitmap != null) {
                         var texture = new Texture2D(0, 0);
@@ -96,10 +92,9 @@ namespace Maps {
                         image.canvasRenderer.SetTexture(texture);
                         image.sprite = Sprite.Create(texture, new(0, 0, texture.width, texture.height),
                             new(), 10.2f);
-                    }else {
+                    } else {
                         var b = Properties.Resources.ResourceManager.GetObject(reference.guidRef);
-                        if (b != null)
-                        {
+                        if (b != null) {
                             var bm = (byte[])new ImageConverter().ConvertTo(b, typeof(byte[]));
                             var texture = new Texture2D(0, 0);
                             ImageConversion.LoadImage(texture, bm);

@@ -1,7 +1,9 @@
-﻿using System;
+﻿
 using Newtonsoft.Json;
 
 namespace AdditionalTiers.Utils.Assets {
+    [StructLayout(LayoutKind.Sequential)]
+    [Serializable]
     [JsonObject(MemberSerialization.OptIn)]
     public record AssetInfo {
         [JsonProperty]
@@ -23,13 +25,13 @@ namespace AdditionalTiers.Utils.Assets {
             _renderertype = type;
         }
     }
-// I dont wanna put this elsewhere.
+    // I dont wanna put this elsewhere.
     public enum RendererType {
         SKINNEDMESHRENDERER,
         MESHRENDERER,
         SPRITERENDERER,
         PARTICLESYSTEMRENDERER,
-        
+
         UNSET
     }
 }

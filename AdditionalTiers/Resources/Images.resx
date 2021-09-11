@@ -289,6 +289,27 @@
   <data name="BTD4SunGodProj" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>BTD4SunGodProj.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="MrRoboto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRoboto.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MrRobotoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRobotoIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MrRobotoAbilityIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRobotoAbilityIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MrRobotoRocket" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRobotoRocket.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MrRobotoPlasma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRobotoPlasma.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MrRobotoArms2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRobotoArms.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MrRobotoArms1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>MrRobotoArms.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

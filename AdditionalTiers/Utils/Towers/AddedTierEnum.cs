@@ -14,10 +14,11 @@
         SCARYMONSTERS = 100000,
         THEGOLDEXPERIENCE = 1000000,
         TUSK = 1000000,
-        BTD4SUNGOD = 100000
+        BTD4SUNGOD = 100000,
+        MRROBOTO = 1000000
     }
 
-    public class AddedTierName {
+    public sealed class AddedTierName {
         public static readonly string BIGJUGGUS = "DartMonkey-520";
         public static readonly string BLACKHOLESUN = "DartMonkey-250";
         public static readonly string NINJASEXPARTY = "NinjaMonkey-520";
@@ -33,5 +34,6 @@
         public static readonly string THEGOLDEXPERIENCE = "DartMonkey-Paragon";
         public static readonly string TUSK = "BoomerangMonkey-Paragon";
         public static readonly string BTD4SUNGOD = "SuperMonkey-320";
+        public static readonly string MRROBOTO = "SuperMonkey-250";
     }
 }

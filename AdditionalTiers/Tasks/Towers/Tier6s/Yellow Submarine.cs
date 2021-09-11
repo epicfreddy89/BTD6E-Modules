@@ -1,27 +1,13 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class Yellow_Submarine : TowerTask {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
+    public sealed class Yellow_Submarine : TowerTask {
         public static TowerModel yellowSubmarine;
         private static int time = -1;
         public Yellow_Submarine() {
             identifier = "Yellow Submarine";
-            getTower = yellowSubmarine;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5 && tts.damageDealt > ((int)AddedTierEnum.YELLOWSUBMARINE) * Globals.SixthTierPopCountMulti;
+            getTower = () => yellowSubmarine;
+            baseTower = AddedTierName.YELLOWSUBMARINE;
+            tower = AddedTierEnum.YELLOWSUBMARINE;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeySub") && tts.tower.towerModel.tiers[1] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

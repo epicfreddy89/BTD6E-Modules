@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Resources;
-using AdditionalTiers.Resources;
-using UnityEngine;
 
 namespace AdditionalTiers.Utils.Assets {
     public class CacheBuilder {

@@ -1,26 +1,15 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Upgrades;
-using System.Linq;
-using UnhollowerRuntimeLib;
-
-namespace AdditionalTiers.Tasks.Towers.AltT4s {
-    public class SunGod : TowerTask {
+﻿namespace AdditionalTiers.Tasks.Towers.AltT4s {
+    public sealed class SunGod : TowerTask {
         public static TowerModel btd4SunGod;
         public static TowerModel btd4SunGodV;
         private static string SMNMN = "Super Monkey";
         private static int time = -1;
         public SunGod() {
             identifier = "BTD4 Sun God";
-            getTower = btd4SunGod;
-            requirements += tts => !tts.tower.namedMonkeyName.Equals("BTD4 Vengeful Sun God") && tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[0] == 3 && tts.tower.towerModel.tiers[1] == 2 && tts.damageDealt > ((int)AddedTierEnum.BTD4SUNGOD) * Globals.SixthTierPopCountMulti;
+            baseTower = AddedTierName.BTD4SUNGOD;
+            tower = AddedTierEnum.BTD4SUNGOD;
+            getTower = () => btd4SunGod;
+            requirements += tts => !tts.tower.namedMonkeyName.Equals("BTD4 Vengeful Sun God") && tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[0] == 3 && tts.tower.towerModel.tiers[1] == 2;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

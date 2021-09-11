@@ -1,30 +1,24 @@
-﻿using System;
-using Il2CppSystem.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Data.MapSets;
+﻿using Assets.Scripts.Data.MapSets;
 using Assets.Scripts.Models.Map;
 using Assets.Scripts.Models.Map.Gizmos;
 using Assets.Scripts.Models.Map.Triggers;
-using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.Map;
 using Assets.Scripts.Unity.UI_New;
-using Assets.Scripts.Unity.UI_New.InGame;
-using Assets.Scripts.Utils;
-using BTD6_Expansion.Utilities;
+
 using HarmonyLib;
+
+using Il2CppSystem.Collections.Generic;
+
 using Maps.Util;
-using MelonLoader;
+
 using SixthTiers.Utils;
-using UnhollowerBaseLib;
-using UnityEngine;
+
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 using Vector2 = Assets.Scripts.Simulation.SMath.Vector2;
 
-namespace Maps.Maps
-{
+namespace Maps.Maps {
     public class Shipwreck : Instanced<Shipwreck>, MapImpl {
         private static MapDetails map;
         public void Create(out MapDetails mapDetails) {
@@ -40,7 +34,7 @@ namespace Maps.Maps
             mapDetails = map;
         }
         public MapDetails GetCreated() {
-            if (map==null)
+            if (map == null)
                 Create(out map);
             return map;
         }
@@ -48,13 +42,10 @@ namespace Maps.Maps
         public void Destroy() => map = null;
 
         [HarmonyPatch(typeof(MapLoader), nameof(MapLoader.Load))]
-        public class MapLoad_Patch
-        {
+        public class MapLoad_Patch {
             [HarmonyPrefix]
-            public static bool Prefix(MapLoader __instance, string map, Il2CppSystem.Action<MapModel> loadedCallback)
-            {
-                if (map.Equals(Name))
-                {
+            public static bool Prefix(MapLoader __instance, string map, Il2CppSystem.Action<MapModel> loadedCallback) {
+                if (map.Equals(Name)) {
                     __instance.currentMapName = map;
 
                     PointInfo[] Path2 = Path1.Reversed();
@@ -87,8 +78,7 @@ namespace Maps.Maps
                     , new MapEventModel[0], 1);
                     loadedCallback.Invoke(mapModel);
 
-                    SceneManager.LoadScene(map, new LoadSceneParameters
-                    {
+                    SceneManager.LoadScene(map, new LoadSceneParameters {
                         loadSceneMode = LoadSceneMode.Additive,
                         localPhysicsMode = LocalPhysicsMode.None
                     });
@@ -99,13 +89,10 @@ namespace Maps.Maps
             }
 
             [HarmonyPatch(typeof(UI), nameof(UI.DestroyAndUnloadMapScene))]
-            public class MapClear_Patch
-            {
+            public class MapClear_Patch {
                 [HarmonyPrefix]
-                public static bool Prefix(UI __instance)
-                {
-                    if (__instance.mapLoader.currentMapName.Equals(Name))
-                    {
+                public static bool Prefix(UI __instance) {
+                    if (__instance.mapLoader.currentMapName.Equals(Name)) {
                         SceneManager.UnloadScene(Name);
                         return false;
                     }
@@ -132,12 +119,9 @@ namespace Maps.Maps
         private static Polygon _areaUp4 = null;
         private static Polygon _areaStraight1 = null;
 
-        public static PointInfo[] Path1
-        {
-            get
-            {
-                if (_path1 == null)
-                {
+        public static PointInfo[] Path1 {
+            get {
+                if (_path1 == null) {
                     var initPath = new List<PointInfo>();
 
                     #region initPath
@@ -210,12 +194,9 @@ namespace Maps.Maps
 
         #region AreaWhole
 
-        public static Polygon AreaWhole
-        {
-            get
-            {
-                if (_areaWhole == null)
-                {
+        public static Polygon AreaWhole {
+            get {
+                if (_areaWhole == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-330, -330));
                     initArea.Add(new(-330, 330));
@@ -232,12 +213,9 @@ namespace Maps.Maps
 
         #region AreaLeftShip
 
-        public static Polygon AreaLeftShip
-        {
-            get
-            {
-                if (_areaLeftShip == null)
-                {
+        public static Polygon AreaLeftShip {
+            get {
+                if (_areaLeftShip == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-54, 36));
                     initArea.Add(new(-71, 34));
@@ -278,12 +256,9 @@ namespace Maps.Maps
 
         #region AreaRightShip
 
-        public static Polygon AreaRightShip
-        {
-            get
-            {
-                if (_areaRightShip == null)
-                {
+        public static Polygon AreaRightShip {
+            get {
+                if (_areaRightShip == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(35, -52));
                     initArea.Add(new(36, -44));
@@ -331,12 +306,9 @@ namespace Maps.Maps
 
         #region AreaCrate
 
-        public static Polygon AreaCrate
-        {
-            get
-            {
-                if (_areaCrate == null)
-                {
+        public static Polygon AreaCrate {
+            get {
+                if (_areaCrate == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-82, 85));
                     initArea.Add(new(-70, 99));
@@ -354,12 +326,9 @@ namespace Maps.Maps
 
         #region AreaBarrel
 
-        public static Polygon AreaBarrel
-        {
-            get
-            {
-                if (_areaBarrel == null)
-                {
+        public static Polygon AreaBarrel {
+            get {
+                if (_areaBarrel == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-22, 73));
                     initArea.Add(new(-24, 84));
@@ -383,12 +352,9 @@ namespace Maps.Maps
 
         #region AreaSRock
 
-        public static Polygon AreaSRock
-        {
-            get
-            {
-                if (_areaSRock == null)
-                {
+        public static Polygon AreaSRock {
+            get {
+                if (_areaSRock == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(33, 87));
                     initArea.Add(new(34, 92));
@@ -407,12 +373,9 @@ namespace Maps.Maps
 
         #region AreaLRock
 
-        public static Polygon AreaLRock
-        {
-            get
-            {
-                if (_areaLRock == null)
-                {
+        public static Polygon AreaLRock {
+            get {
+                if (_areaLRock == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(53, 81));
                     initArea.Add(new(54, 89));
@@ -435,12 +398,9 @@ namespace Maps.Maps
 
         #region AreaMRock
 
-        public static Polygon AreaMRock
-        {
-            get
-            {
-                if (_areaMRock == null)
-                {
+        public static Polygon AreaMRock {
+            get {
+                if (_areaMRock == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(87, 69));
                     initArea.Add(new(96, 79));
@@ -458,12 +418,9 @@ namespace Maps.Maps
 
         #region AreaTRock1
 
-        public static Polygon AreaTRock1
-        {
-            get
-            {
-                if (_areaTRock1 == null)
-                {
+        public static Polygon AreaTRock1 {
+            get {
+                if (_areaTRock1 == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-95, -90));
                     initArea.Add(new(-104, -93));
@@ -484,12 +441,9 @@ namespace Maps.Maps
 
         #region AreaTRock2
 
-        public static Polygon AreaTRock2
-        {
-            get
-            {
-                if (_areaTRock2 == null)
-                {
+        public static Polygon AreaTRock2 {
+            get {
+                if (_areaTRock2 == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-76, -99));
                     initArea.Add(new(-72, -91));
@@ -512,12 +466,9 @@ namespace Maps.Maps
 
         #region AreaWatchTowerTop
 
-        public static Polygon AreaWatchTowerTop
-        {
-            get
-            {
-                if (_areaWatchTowerTop == null)
-                {
+        public static Polygon AreaWatchTowerTop {
+            get {
+                if (_areaWatchTowerTop == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(2, -85));
                     initArea.Add(new(-4, -87));
@@ -544,12 +495,9 @@ namespace Maps.Maps
 
         #region AreaUp1
 
-        public static Polygon AreaUp1
-        {
-            get
-            {
-                if (_areaUp1 == null)
-                {
+        public static Polygon AreaUp1 {
+            get {
+                if (_areaUp1 == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(32, 97));
                     initArea.Add(new(28, 81));
@@ -575,12 +523,9 @@ namespace Maps.Maps
 
         #region AreaUp2
 
-        public static Polygon AreaUp2
-        {
-            get
-            {
-                if (_areaUp2 == null)
-                {
+        public static Polygon AreaUp2 {
+            get {
+                if (_areaUp2 == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(-95, -85));
                     initArea.Add(new(-108, -87));
@@ -612,12 +557,9 @@ namespace Maps.Maps
 
         #region AreaUp3
 
-        public static Polygon AreaUp3
-        {
-            get
-            {
-                if (_areaUp3 == null)
-                {
+        public static Polygon AreaUp3 {
+            get {
+                if (_areaUp3 == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(6, -68));
                     initArea.Add(new(-2, -73));
@@ -643,12 +585,9 @@ namespace Maps.Maps
 
         #region AreaUp1
 
-        public static Polygon AreaUp4
-        {
-            get
-            {
-                if (_areaUp4 == null)
-                {
+        public static Polygon AreaUp4 {
+            get {
+                if (_areaUp4 == null) {
                     var initArea = new List<Vector2>();
                     initArea.Add(new(95, -77));
                     initArea.Add(new(86, -77));
@@ -675,12 +614,9 @@ namespace Maps.Maps
 
         #region AreaStraight1
 
-        public static Polygon AreaStraight1
-        {
-            get
-            {
-                if (_areaStraight1 == null)
-                {
+        public static Polygon AreaStraight1 {
+            get {
+                if (_areaStraight1 == null) {
                     var initArea = new List<Vector2>();
 
                     #region initArea

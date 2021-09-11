@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-namespace AdditionalTiers.Utils.Assets {
+﻿namespace AdditionalTiers.Utils.Assets {
     public class SpriteBuilder {
-        private static readonly Dictionary<Texture2D, Sprite> cache = new ();
+        private static readonly Dictionary<Texture2D, Sprite> cache = new();
         private static int _id;
 
         public static int ID { get { _id += 1; return _id; } }

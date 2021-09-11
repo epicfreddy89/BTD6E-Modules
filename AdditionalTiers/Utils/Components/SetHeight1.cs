@@ -1,14 +1,4 @@
-﻿using Assets.Scripts.Utils;
-using MelonLoader;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnhollowerRuntimeLib;
-using UnityEngine;
-
-namespace AdditionalTiers.Utils.Components {
+﻿namespace AdditionalTiers.Utils.Components {
     [RegisterTypeInIl2Cpp]
     public class SetHeight1 : MonoBehaviour {
         public SetHeight1(IntPtr obj0) : base(obj0) { ClassInjector.DerivedConstructorBody(this); }

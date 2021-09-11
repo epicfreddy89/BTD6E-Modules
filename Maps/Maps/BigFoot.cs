@@ -1,26 +1,19 @@
-﻿using System;
-using Il2CppSystem.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Data.MapSets;
+﻿using Assets.Scripts.Data.MapSets;
 using Assets.Scripts.Models.Map;
 using Assets.Scripts.Models.Map.Gizmos;
 using Assets.Scripts.Models.Map.Triggers;
-using Assets.Scripts.Models.Profile;
 using Assets.Scripts.Simulation.SMath;
-using Assets.Scripts.Unity;
 using Assets.Scripts.Unity.Map;
 using Assets.Scripts.Unity.UI_New;
-using Assets.Scripts.Unity.UI_New.InGame;
-using Assets.Scripts.Utils;
-using BTD6_Expansion.Utilities;
+
 using HarmonyLib;
+
+using Il2CppSystem.Collections.Generic;
+
 using Maps.Util;
-using MelonLoader;
-using SixthTiers.Utils;
-using UnhollowerBaseLib;
-using UnityEngine;
+
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 using Vector2 = Assets.Scripts.Simulation.SMath.Vector2;
 
 namespace Maps.Maps {
@@ -39,7 +32,7 @@ namespace Maps.Maps {
             mapDetails = map;
         }
         public MapDetails GetCreated() {
-            if (map==null)
+            if (map == null)
                 Create(out map);
             return map;
         }
@@ -69,7 +62,7 @@ namespace Maps.Maps {
                             new("Path1", Path1, true, false, new(-1000, -1000, -1000), new(-1000, -1000, -1000), null,
                                 null),
                         }, new RemoveableModel[0], new MapGizmoModel[0], 0
-                        , new("", new("", new string[] {"Path1"}), new("", new string[] {"Path1"}))
+                        , new("", new("", new string[] { "Path1" }), new("", new string[] { "Path1" }))
                         , new MapEventModel[0], 1);
                     loadedCallback.Invoke(mapModel);
 
@@ -115,38 +108,38 @@ namespace Maps.Maps {
 
                     #region initPath
 
-                    initPath.Add(new() {point = new(-150, 88), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-128, 65), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-120, 73), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-111, 81), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-102, 89), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-91, 92), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-79, 94), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-64, 92), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-50, 85), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-38, 79), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-26, 76), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(-12, 72), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(1, 71), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(10, 68), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(22, 69), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(32, 70), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(44, 67), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(52, 62), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(61, 63), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(75, 62), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(84, 62), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(90, 60), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(98, 43), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(103, 32), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(108, 25), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(110, 12), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(112, 4), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(115, -7), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(117, -18), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(122, -31), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(124, -42), bloonScale = 1, moabScale = 1});
-                    initPath.Add(new() {point = new(150, -57), bloonScale = 1, moabScale = 1});
+                    initPath.Add(new() { point = new(-150, 88), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-128, 65), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-120, 73), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-111, 81), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-102, 89), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-91, 92), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-79, 94), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-64, 92), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-50, 85), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-38, 79), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-26, 76), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(-12, 72), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(1, 71), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(10, 68), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(22, 69), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(32, 70), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(44, 67), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(52, 62), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(61, 63), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(75, 62), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(84, 62), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(90, 60), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(98, 43), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(103, 32), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(108, 25), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(110, 12), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(112, 4), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(115, -7), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(117, -18), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(122, -31), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(124, -42), bloonScale = 1, moabScale = 1 });
+                    initPath.Add(new() { point = new(150, -57), bloonScale = 1, moabScale = 1 });
 
                     #endregion
 
@@ -420,85 +413,85 @@ namespace Maps.Maps {
             get {
                 if (_areaTrack == null) {
                     var initArea = new List<Vector2>();
-initArea.Add(new(-150, 65));
-initArea.Add(new(-136, 51));
-initArea.Add(new(-136, 41));
-initArea.Add(new(-134, 31));
-initArea.Add(new(-132, 21));
-initArea.Add(new(-126, 8));
-initArea.Add(new(-118, -3));
-initArea.Add(new(-110, -10));
-initArea.Add(new(-98, -15));
-initArea.Add(new(-87, -17));
-initArea.Add(new(-77, -16));
-initArea.Add(new(-62, -14));
-initArea.Add(new(-54, -13));
-initArea.Add(new(-48, -15));
-initArea.Add(new(-36, -28));
-initArea.Add(new(-30, -39));
-initArea.Add(new(-24, -47));
-initArea.Add(new(-18, -55));
-initArea.Add(new(-12, -61));
-initArea.Add(new(-7, -63));
-initArea.Add(new(1, -69));
-initArea.Add(new(10, -73));
-initArea.Add(new(19, -76));
-initArea.Add(new(23, -76));
-initArea.Add(new(34, -81));
-initArea.Add(new(41, -86));
-initArea.Add(new(48, -88));
-initArea.Add(new(57, -92));
-initArea.Add(new(65, -96));
-initArea.Add(new(75, -101));
-initArea.Add(new(84, -104));
-initArea.Add(new(103, -104));
-initArea.Add(new(110, -102));
-initArea.Add(new(117, -99));
-initArea.Add(new(124, -94));
-initArea.Add(new(131, -88));
-initArea.Add(new(131, -79));
-initArea.Add(new(132, -69));
-initArea.Add(new(132, -62));
-initArea.Add(new(150, -71));
-initArea.Add(new(150, -41));
-initArea.Add(new(128, -31));
-initArea.Add(new(125, -22));
-initArea.Add(new(124, -11));
-initArea.Add(new(122, 5));
-initArea.Add(new(120, 11));
-initArea.Add(new(114, 14));
-initArea.Add(new(113, 25));
-initArea.Add(new(112, 33));
-initArea.Add(new(106, 39));
-initArea.Add(new(104, 42));
-initArea.Add(new(101, 49));
-initArea.Add(new(99, 57));
-initArea.Add(new(96, 63));
-initArea.Add(new(93, 69));
-initArea.Add(new(86, 71));
-initArea.Add(new(74, 72));
-initArea.Add(new(67, 72));
-initArea.Add(new(58, 71));
-initArea.Add(new(54, 72));
-initArea.Add(new(46, 76));
-initArea.Add(new(36, 80));
-initArea.Add(new(23, 79));
-initArea.Add(new(12, 76));
-initArea.Add(new(3, 76));
-initArea.Add(new(-4, 77));
-initArea.Add(new(-12, 80));
-initArea.Add(new(-25, 85));
-initArea.Add(new(-34, 89));
-initArea.Add(new(-45, 93));
-initArea.Add(new(-51, 97));
-initArea.Add(new(-75, 102));
-initArea.Add(new(-95, 101));
-initArea.Add(new(-109, 97));
-initArea.Add(new(-115, 90));
-initArea.Add(new(-121, 82));
-initArea.Add(new(-125, 76));
-initArea.Add(new(-150, 93));
-initArea.Add(new(-150, 65));
+                    initArea.Add(new(-150, 65));
+                    initArea.Add(new(-136, 51));
+                    initArea.Add(new(-136, 41));
+                    initArea.Add(new(-134, 31));
+                    initArea.Add(new(-132, 21));
+                    initArea.Add(new(-126, 8));
+                    initArea.Add(new(-118, -3));
+                    initArea.Add(new(-110, -10));
+                    initArea.Add(new(-98, -15));
+                    initArea.Add(new(-87, -17));
+                    initArea.Add(new(-77, -16));
+                    initArea.Add(new(-62, -14));
+                    initArea.Add(new(-54, -13));
+                    initArea.Add(new(-48, -15));
+                    initArea.Add(new(-36, -28));
+                    initArea.Add(new(-30, -39));
+                    initArea.Add(new(-24, -47));
+                    initArea.Add(new(-18, -55));
+                    initArea.Add(new(-12, -61));
+                    initArea.Add(new(-7, -63));
+                    initArea.Add(new(1, -69));
+                    initArea.Add(new(10, -73));
+                    initArea.Add(new(19, -76));
+                    initArea.Add(new(23, -76));
+                    initArea.Add(new(34, -81));
+                    initArea.Add(new(41, -86));
+                    initArea.Add(new(48, -88));
+                    initArea.Add(new(57, -92));
+                    initArea.Add(new(65, -96));
+                    initArea.Add(new(75, -101));
+                    initArea.Add(new(84, -104));
+                    initArea.Add(new(103, -104));
+                    initArea.Add(new(110, -102));
+                    initArea.Add(new(117, -99));
+                    initArea.Add(new(124, -94));
+                    initArea.Add(new(131, -88));
+                    initArea.Add(new(131, -79));
+                    initArea.Add(new(132, -69));
+                    initArea.Add(new(132, -62));
+                    initArea.Add(new(150, -71));
+                    initArea.Add(new(150, -41));
+                    initArea.Add(new(128, -31));
+                    initArea.Add(new(125, -22));
+                    initArea.Add(new(124, -11));
+                    initArea.Add(new(122, 5));
+                    initArea.Add(new(120, 11));
+                    initArea.Add(new(114, 14));
+                    initArea.Add(new(113, 25));
+                    initArea.Add(new(112, 33));
+                    initArea.Add(new(106, 39));
+                    initArea.Add(new(104, 42));
+                    initArea.Add(new(101, 49));
+                    initArea.Add(new(99, 57));
+                    initArea.Add(new(96, 63));
+                    initArea.Add(new(93, 69));
+                    initArea.Add(new(86, 71));
+                    initArea.Add(new(74, 72));
+                    initArea.Add(new(67, 72));
+                    initArea.Add(new(58, 71));
+                    initArea.Add(new(54, 72));
+                    initArea.Add(new(46, 76));
+                    initArea.Add(new(36, 80));
+                    initArea.Add(new(23, 79));
+                    initArea.Add(new(12, 76));
+                    initArea.Add(new(3, 76));
+                    initArea.Add(new(-4, 77));
+                    initArea.Add(new(-12, 80));
+                    initArea.Add(new(-25, 85));
+                    initArea.Add(new(-34, 89));
+                    initArea.Add(new(-45, 93));
+                    initArea.Add(new(-51, 97));
+                    initArea.Add(new(-75, 102));
+                    initArea.Add(new(-95, 101));
+                    initArea.Add(new(-109, 97));
+                    initArea.Add(new(-115, 90));
+                    initArea.Add(new(-121, 82));
+                    initArea.Add(new(-125, 76));
+                    initArea.Add(new(-150, 93));
+                    initArea.Add(new(-150, 65));
                     _areaTrack = new(initArea);
                 }
 

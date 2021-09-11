@@ -1,7 +1,4 @@
-﻿using Assets.Scripts.Simulation.Towers;
-using UnityEngine;
-
-namespace AdditionalTiers.Utils.Towers {
+﻿namespace AdditionalTiers.Utils.Towers {
     internal class HighlightManager {
         public static void Highlight(ref Tower __instance) {
             if (__instance?.Node?.graphic?.genericRenderers == null)

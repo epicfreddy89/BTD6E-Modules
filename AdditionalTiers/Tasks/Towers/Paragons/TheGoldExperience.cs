@@ -1,24 +1,15 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
+﻿
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class GoldenApexPlasmaMaster : TowerTask {
+    public sealed class GoldenApexPlasmaMaster : TowerTask {
         public static TowerModel gapm;
         private static int time = -1;
         public GoldenApexPlasmaMaster() {
             identifier = "The Gold Experience";
-            getTower = gapm;
-            requirements += tts => ((tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.isParagon) || tts.tower.towerModel.baseId.Equals("ParagonDartMonkey")) && tts.damageDealt > ((int)AddedTierEnum.THEGOLDEXPERIENCE) * Globals.SixthTierPopCountMulti;
+            getTower = () => gapm;
+            baseTower = AddedTierName.THEGOLDEXPERIENCE;
+            tower = AddedTierEnum.THEGOLDEXPERIENCE;
+            requirements += tts => ((tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.isParagon) || tts.tower.towerModel.baseId.Equals("ParagonDartMonkey"));
             onComplete += tts => {
                 if (time < 50) {
                     time++;

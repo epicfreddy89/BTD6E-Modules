@@ -1,25 +1,15 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Projectiles;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
+﻿using Assets.Scripts.Models.Towers.Weapons.Behaviors;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class WhiteAlbum : TowerTask {
+    public sealed class WhiteAlbum : TowerTask {
         public static TowerModel whiteWedding;
         private static int time = -1;
         public WhiteAlbum() {
             identifier = "White Wedding";
-            getTower = whiteWedding;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > ((int)AddedTierEnum.WHITEWEDDING) * Globals.SixthTierPopCountMulti;
+            getTower = () => whiteWedding;
+            baseTower = AddedTierName.WHITEWEDDING;
+            tower = AddedTierEnum.WHITEWEDDING;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[2] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
@@ -33,8 +23,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 AbilityMenu.instance.RebuildAbilities();
             };
             gameLoad += gm => {
-                whiteWedding = gm.towers.First(a => a.name.Contains("SuperMonkey-205")).Clone()
-                    .Cast<TowerModel>();
+                whiteWedding = gm.towers.First(a => a.name.Contains(AddedTierName.WHITEWEDDING)).CloneCast();
 
                 whiteWedding.range = 150;
                 whiteWedding.cost = 0;
@@ -43,8 +32,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                 whiteWedding.display = "WhiteWedding";
                 whiteWedding.dontDisplayUpgrades = true;
                 whiteWedding.portrait = new("WhiteWeddingIcon");
-                whiteWedding.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>())
-                    .Cast<DisplayModel>().display = "WhiteWedding";
+                whiteWedding.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>()).Cast<DisplayModel>().display = "WhiteWedding";
                 var beh = whiteWedding.behaviors;
                 ProjectileModel proj = null;
                 for (var i = 0; i < beh.Length; i++) {
@@ -60,15 +48,14 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                             am.weapons[j].projectile.scale *= 1.25f;
                             am.weapons[j].rate = 0;
                             am.weapons[j].rateFrames = 0;
+
                             proj = am.weapons[j].projectile.Clone().Cast<ProjectileModel>();
                             proj.display = "WhiteWeddingOrbitProjectile";
                             proj.pierce *= 10;
-                            proj.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DamageModel>())
-                                .Cast<DamageModel>().damage *= 5;
-                            proj.behaviors = proj.behaviors.Remove(a =>
-                                a.GetIl2CppType() == Il2CppType.Of<TravelStraitModel>());
-                            am.weapons[j].behaviors = am.weapons[j].behaviors
-                                .Remove(a => a.GetIl2CppType() == Il2CppType.Of<EjectEffectModel>());
+                            proj.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DamageModel>()).Cast<DamageModel>().damage *= 5;
+                            proj.behaviors = proj.behaviors.Remove(a => a.GetIl2CppType() == Il2CppType.Of<TravelStraitModel>());
+
+                            am.weapons[j].behaviors = am.weapons[j].behaviors.Remove(a => a.GetIl2CppType() == Il2CppType.Of<EjectEffectModel>());
                         }
 
                         am.range = 150;
@@ -78,7 +65,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     beh[i] = behavior;
                 }
 
-                whiteWedding.behaviors = beh.Add(new OrbitModel("OrbitModel_", proj, 3, 1));
+                whiteWedding.behaviors = beh.Add(new OrbitModel("OrbitModel_", proj, 3, 25));
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };

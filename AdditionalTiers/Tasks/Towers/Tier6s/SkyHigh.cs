@@ -1,24 +1,15 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerRuntimeLib;
+﻿using Assets.Scripts.Models.Towers.Weapons.Behaviors;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class SkyHigh : TowerTask {
+    public sealed class SkyHigh : TowerTask {
         public static TowerModel skyHigh;
         private static int time = -1;
         public SkyHigh() {
             identifier = "Sky High";
-            getTower = skyHigh;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[2] == 5 && tts.damageDealt > ((int)AddedTierEnum.SKYHIGH) * Globals.SixthTierPopCountMulti;
+            getTower = () => skyHigh;
+            baseTower = AddedTierName.SKYHIGH;
+            tower = AddedTierEnum.SKYHIGH;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("DartMonkey") && tts.tower.towerModel.tiers[2] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

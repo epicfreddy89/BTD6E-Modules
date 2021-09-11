@@ -1,10 +1,4 @@
-﻿using System;
-using Assets.Scripts.Models.Bloons;
-using Assets.Scripts.Simulation.Bloons;
-using Assets.Scripts.Unity.Bridge;
-using Newtonsoft.Json;
-using UnhollowerBaseLib;
-using UnhollowerRuntimeLib;
+﻿using Assets.Scripts.Models.Bloons;
 
 namespace AdditionalBloons.Utils {
     public class BloonTask {
@@ -15,7 +9,7 @@ namespace AdditionalBloons.Utils {
         public BloonTask(BloonModel model, int amount, int updatesBetween) {
             this.model = model;
             this.amount = amount;
-            this.updatesBetween = updatesBetween*10;
+            this.updatesBetween = updatesBetween * 10;
         }
     }
 }

@@ -1,28 +1,17 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models;
+﻿
 using Assets.Scripts.Models.Audio;
 using Assets.Scripts.Models.Effects;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
-using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using Assets.Scripts.Utils;
-using System.Linq;
-using UnhollowerRuntimeLib;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class UnderWorld : TowerTask {
+    public sealed class UnderWorld : TowerTask {
         public static TowerModel underWorld;
         private static int time = -1;
         public UnderWorld() {
             identifier = "Under World";
-            getTower = underWorld;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.UNDERWORLD) * Globals.SixthTierPopCountMulti;
+            getTower = () => underWorld;
+            baseTower = AddedTierName.UNDERWORLD;
+            tower = AddedTierEnum.UNDERWORLD;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("WizardMonkey") && tts.tower.towerModel.tiers[0] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

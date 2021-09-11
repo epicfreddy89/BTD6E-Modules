@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using AdditionalBloons.Utils;
+
 using Assets.Scripts.Models.Bloons;
 using Assets.Scripts.Simulation.Bloons;
 using Assets.Scripts.Simulation.Track;
-using Assets.Scripts.Unity.Bridge;
 using Assets.Scripts.Unity.UI_New.InGame;
-using MelonLoader;
-using Newtonsoft.Json;
 
 namespace AdditionalBloons.Tasks {
     internal class BloonTaskRunner {
@@ -78,7 +77,7 @@ namespace AdditionalBloons.Tasks {
                     healthPercent /= 2;
                 if (__instance.spawnRound > 100)
                     healthPercent /= 5;
-                
+
                 __instance.Move(healthPercent);
                 totalAmount = 1;
             }
@@ -97,7 +96,7 @@ namespace AdditionalBloons.Tasks {
                     i = rand.Next(20);
                 else
                     i = rand.Next(10);
-                
+
 
                 if (i == 4) {
                     var coconut = BloonCreator.bloons.Find(a => a.icon.guidRef.Equals("CoconutIcon")).Clone().Cast<BloonModel>();

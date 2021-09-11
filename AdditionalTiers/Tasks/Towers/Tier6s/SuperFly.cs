@@ -1,24 +1,16 @@
-﻿using AdditionalTiers.Utils;
-using AdditionalTiers.Utils.Assets;
-using AdditionalTiers.Utils.Towers;
-using Assets.Scripts.Models.GenericBehaviors;
-using Assets.Scripts.Models.Towers;
-using Assets.Scripts.Models.Towers.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Attack;
+﻿
 using Assets.Scripts.Models.Towers.TowerFilters;
-using Assets.Scripts.Unity.UI_New.InGame.AbilitiesMenu;
-using System.Linq;
-using UnhollowerBaseLib;
-using UnhollowerRuntimeLib;
 
 namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public class SuperFly : TowerTask {
+    public sealed class SuperFly : TowerTask {
         public static TowerModel superFly;
         private static int time = -1;
         public SuperFly() {
             identifier = "Super Fly";
-            getTower = superFly;
-            requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeyVillage") && tts.tower.towerModel.tiers[0] == 5 && tts.damageDealt > ((int)AddedTierEnum.SUPERFLY) * Globals.SixthTierPopCountMulti;
+            getTower = () => superFly;
+            baseTower = AddedTierName.SUPERFLY;
+            tower = AddedTierEnum.SUPERFLY;
+            requirements += tts => tts.tower.towerModel.baseId.Equals("MonkeyVillage") && tts.tower.towerModel.tiers[0] == 5;
             onComplete += tts => {
                 if (time < 50) {
                     time++;

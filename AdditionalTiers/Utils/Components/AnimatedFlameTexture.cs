@@ -1,10 +1,4 @@
-﻿using System;
-using Assets.Scripts.Utils;
-using MelonLoader;
-using UnhollowerRuntimeLib;
-using UnityEngine;
-
-namespace AdditionalTiers.Utils.Components {
+﻿namespace AdditionalTiers.Utils.Components {
     [RegisterTypeInIl2Cpp]
     public class AnimatedFlameTexture : MonoBehaviour {
         public AnimatedFlameTexture(IntPtr obj0) : base(obj0) {
