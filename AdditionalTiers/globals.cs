@@ -29,6 +29,7 @@ global using Assets.Scripts.Models.Towers.Projectiles;
 global using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 global using Assets.Scripts.Models.Towers.Upgrades;
 global using Assets.Scripts.Simulation.Towers;
+global using Assets.Scripts.Simulation.Towers.Projectiles;
 global using Assets.Scripts.Simulation.Towers.Weapons;
 global using Assets.Scripts.Unity.Bridge;
 global using Assets.Scripts.Unity.Display;
@@ -48,9 +49,12 @@ global using UnhollowerRuntimeLib;
 
 global using UnityEngine;
 
+global using static AdditionalTiers.Utils.Coroutines;
 global using static HarmonyLib.AccessTools;
 
+global using AAssets = AdditionalTiers.Tasks.Assets;
 global using ADisplay = AdditionalTiers.Utils.Display;
+global using AVector3 = Assets.Scripts.Simulation.SMath.Vector3;
 global using Type = Il2CppSystem.Type;
 global using Color = UnityEngine.Color;
 global using Object = UnityEngine.Object;

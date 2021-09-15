@@ -1,23 +1,23 @@
 ﻿namespace AdditionalTiers.Utils.Assets {
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class AssetStack : IDisposable {
-        AssetInfo[] assetInfos = new AssetInfo[0];
+    public sealed class AssetStack {
+        private sealed class Asset {
+            public Asset Next;
+            public AssetInfo Data;
 
+            public Asset(AssetInfo data) => (Next, Data) = (null, data);
+        }
+
+        private Asset head;
+        
         public IEnumerator<AssetInfo> GetEnumerator() {
-            for (int i = 0; i < assetInfos.Length; i++)
-                yield return assetInfos[i];
+            while (head != null) {
+                var ret = head.Data;
+                head = head.Next;
+                yield return ret;
+            }
         }
 
-        public void Dispose() => assetInfos = null; // Cry
-
-        public void Add(AssetInfo asset) {
-            var aInfo = new AssetInfo[assetInfos.Length + 1];
-            for (int i = 0; i < aInfo.Length; i++)
-                if (i < assetInfos.Length)
-                    aInfo[i] = assetInfos[i];
-                else
-                    aInfo[i] = asset;
-            assetInfos = aInfo;
-        }
+        public void Add(AssetInfo asset) => head = new(asset) { Next = head };
     }
 }

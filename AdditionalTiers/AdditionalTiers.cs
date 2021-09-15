@@ -25,7 +25,12 @@ namespace AdditionalTiers {
 
             MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
-            Tasks.Assets.DisplayFactory.Build();
+            AAssets.DisplayFactory.Build();
+
+            MelonCoroutines.Start(Timer.Countdown(10, () => { 
+                HarmonyInstance.Unpatch(Method(typeof(Weapon), nameof(Weapon.Emit)), HarmonyPatchType.All, "*");
+                HarmonyInstance.Patch(Method(typeof(Weapon), nameof(Weapon.Emit)), prefix: new HarmonyMethod(Method(typeof(WeaponPatch), nameof(WeaponPatch.Prefix_Emit))));
+            }, i => {}));
         }
 
         public override void OnApplicationQuit() {
@@ -36,6 +41,8 @@ namespace AdditionalTiers {
 
 
         public override void OnUpdate() {
+            UpdateCoroutines();
+
             if (InGame.instance == null || InGame.instance.bridge == null || InGame.instance.bridge.GetAllTowers() == null) return;
 
             var allTowers = InGame.instance.bridge.GetAllTowers();

@@ -1,6 +1,4 @@
-﻿
-
-namespace AdditionalTiers.Utils {
+﻿namespace AdditionalTiers.Utils {
     public class Timer {
         public static IEnumerator Countdown(int seconds, Action after, Action<int> during) {
             var counter = seconds;
@@ -19,6 +17,14 @@ namespace AdditionalTiers.Utils {
                 counter -= decrement;
             }
             after();
+        }
+        public static IEnumerator Run<T>(Action<T>[] actions, T @object) {
+            var index = 0;
+            while (index < actions.Length) {
+                actions[index](@object);
+                yield return new WaitForEndOfFrame();
+                index++;
+            }
         }
     }
 }

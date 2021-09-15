@@ -102,6 +102,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
@@ -483,11 +484,13 @@
     <Compile Include="Utils\Assets\SpriteBuilder.cs" />
     <Compile Include="Utils\Attack\DamageModelUtil.cs" />
     <Compile Include="Utils\Attack\OrbitModelUtil.cs" />
+    <Compile Include="Utils\Attack\WeaponUtil.cs" />
     <Compile Include="Utils\Components\AnimatedDarkFlameTexture.cs" />
     <Compile Include="Utils\Components\AnimatedEnergyTexture.cs" />
     <Compile Include="Utils\Components\AnimatedFlameTexture.cs" />
     <Compile Include="Utils\Components\FastRotation.cs" />
     <Compile Include="Utils\Components\SetHeight1.cs" />
+    <Compile Include="Utils\Coroutines.cs" />
     <Compile Include="Utils\Display.cs" />
     <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Globals.cs" />
@@ -503,6 +506,7 @@
     <Compile Include="Utils\Attack\ProjectileModelExt.cs" />
     <Compile Include="Utils\Towers\TaskRunner.cs" />
     <Compile Include="Utils\Towers\TowerModelExt.cs" />
+    <Compile Include="Utils\URandom.cs" />
     <Compile Include="Utils\Win32.cs" />
   </ItemGroup>
   <ItemGroup>
