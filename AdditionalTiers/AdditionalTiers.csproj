@@ -484,7 +484,6 @@
     <Compile Include="Utils\Assets\SpriteBuilder.cs" />
     <Compile Include="Utils\Attack\DamageModelUtil.cs" />
     <Compile Include="Utils\Attack\OrbitModelUtil.cs" />
-    <Compile Include="Utils\Attack\WeaponUtil.cs" />
     <Compile Include="Utils\Components\AnimatedDarkFlameTexture.cs" />
     <Compile Include="Utils\Components\AnimatedEnergyTexture.cs" />
     <Compile Include="Utils\Components\AnimatedFlameTexture.cs" />

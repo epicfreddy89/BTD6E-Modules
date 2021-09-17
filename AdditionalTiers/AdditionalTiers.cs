@@ -27,10 +27,9 @@ namespace AdditionalTiers {
             CacheBuilder.Build();
             AAssets.DisplayFactory.Build();
 
-            MelonCoroutines.Start(Timer.Countdown(10, () => { 
-                HarmonyInstance.Unpatch(Method(typeof(Weapon), nameof(Weapon.Emit)), HarmonyPatchType.All, "*");
-                HarmonyInstance.Patch(Method(typeof(Weapon), nameof(Weapon.Emit)), prefix: new HarmonyMethod(Method(typeof(WeaponPatch), nameof(WeaponPatch.Prefix_Emit))));
-            }, i => {}));
+            /*MelonCoroutines.Start(Timer.Countdown(15, () => {
+                Console.WriteLine(HarmonyInstance.GetPatchedMethods().Select(m => m.Name));
+            }, i => {}));*/
         }
 
         public override void OnApplicationQuit() {

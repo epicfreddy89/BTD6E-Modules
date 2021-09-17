@@ -26,5 +26,13 @@
                 index++;
             }
         }
+        public static IEnumerator Run(Action[] actions) {
+            var index = 0;
+            while (index < actions.Length) {
+                actions[index]();
+                yield return new WaitForEndOfFrame();
+                index++;
+            }
+        }
     }
 }

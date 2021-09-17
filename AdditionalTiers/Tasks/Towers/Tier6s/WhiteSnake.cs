@@ -211,20 +211,5 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
             assetsToRead.Add(new("WhitesnakePheonixProj", "bdbeaa256e6c63b45829535831843376", RendererType.SPRITERENDERER));
             assetsToRead.Add(new("WhitesnakeDarkPheonixProj", "dac321e299fa10c468d66187d3e0e34c", RendererType.SPRITERENDERER));
         }
-
-        [HarmonyPatch(typeof(Weapon), nameof(Weapon.Emit))]
-        public class WeaponHook {
-            private static bool _allowOthersToSpawn = true;
-            [HarmonyPrefix]
-            public static bool Fix(Weapon __instance, Tower owner, ref int elapsed) {
-                if (__instance.weaponModel.name.EndsWith("WSW1")) {
-                    if (!_allowOthersToSpawn)
-                        return false;
-                    MelonCoroutines.Start(Timer.Countdown(11, () => { _allowOthersToSpawn = true; }, left => { _allowOthersToSpawn = false; if (left == 9) __instance.Sim.CreateTextEffect(new(owner.Position.ToUnity()), "UpgradedText", 10, "Recharging...", false); }));
-                }
-
-                return true;
-            }
-        }
     }
 }

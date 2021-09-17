@@ -77,6 +77,8 @@ public sealed class MrRoboto : TowerTask {
                         if (am.weapons[0].projectile.behaviors[j].Is<DamageModel>(out var damage))
                             damage.damage *= 20;
 
+                    am.weapons[0].behaviors = am.weapons[0].behaviors.Remove(m=>m.Is<CritMultiplierModel>(out _));
+
                     am.range += 45;
                 }
                 if (behavior.Is<AbilityModel>(out var abm)) {
