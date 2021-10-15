@@ -15,7 +15,8 @@
         THEGOLDEXPERIENCE = 1000000,
         TUSK = 1000000,
         BTD4SUNGOD = 100000,
-        MRROBOTO = 1000000
+        MRROBOTO = 1000000,
+        VITAMINC = 1
     }
 
     public sealed class AddedTierName {
@@ -35,5 +36,6 @@
         public static readonly string TUSK = "BoomerangMonkey-Paragon";
         public static readonly string BTD4SUNGOD = "SuperMonkey-320";
         public static readonly string MRROBOTO = "SuperMonkey-250";
+        public static readonly string VITAMINC = "SuperMonkey-520";
     }
 }

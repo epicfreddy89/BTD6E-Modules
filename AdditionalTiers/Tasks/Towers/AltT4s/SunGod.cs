@@ -2,21 +2,19 @@
     public sealed class SunGod : TowerTask {
         public static TowerModel btd4SunGod;
         public static TowerModel btd4SunGodV;
-        private static string SMNMN = "Super Monkey";
         private static int time = -1;
         public SunGod() {
             identifier = "BTD4 Sun God";
             baseTower = AddedTierName.BTD4SUNGOD;
             tower = AddedTierEnum.BTD4SUNGOD;
             getTower = () => btd4SunGod;
-            requirements += tts => !tts.tower.namedMonkeyName.Equals("BTD4 Vengeful Sun God") && tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[0] == 3 && tts.tower.towerModel.tiers[1] == 2;
+            requirements += tts => !TransformationManager.VALUE.Contains(tts.tower) && !TransformationManager.VALUE.Get(tts.tower).Name.Equals("BTD4 Vengeful Sun God") && tts.tower.towerModel.baseId.Equals("SuperMonkey") && tts.tower.towerModel.tiers[0] == 3 && tts.tower.towerModel.tiers[1] == 2;
             onComplete += tts => {
                 if (time < 50) {
                     time++;
                     return;
                 }
-                SMNMN = tts.tower.namedMonkeyName;
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.UpdateRootModel(btd4SunGod);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "???", false);
             };
@@ -109,10 +107,10 @@
             };
             recurring += tts => {
                 if (!tts.tower.towerModel.name.Contains("-3")) {
-                    tts.tower.namedMonkeyName = SMNMN;
+                    TransformationManager.VALUE.Remove(tts.tower);
                     return;
                 }
-                if (!tts.tower.namedMonkeyName.Equals("BTD4 Vengeful Sun God") && tts.damageDealt > ((int)AddedTierEnum.BTD4SUNGOD) * Globals.SixthTierPopCountMulti * 5) {
+                if (TransformationManager.VALUE.Contains(tts.tower) && !TransformationManager.VALUE.Get(tts.tower).Name.Equals("BTD4 Vengeful Sun God") && tts.damageDealt > ((int)AddedTierEnum.BTD4SUNGOD) * Globals.SixthTierPopCountMulti * 5) {
                     var sim = tts.sim;
                     var towers = sim.ttss.ToArray();
                     var condition1 = towers.Any(t => t.tower.towerModel.name.StartsWith("SuperMonkey") && t.tower.towerModel.tiers[1] == 3);
@@ -131,13 +129,13 @@
 
                         sim.SetCash(moolah, inputId);
 
-                        tts.tower.namedMonkeyName = "BTD4 Vengeful Sun God";
+                        TransformationManager.VALUE.Replace(tts.tower, new ("BTD4 Vengeful Sun God", tts.tower.Id));
                         tts.tower.UpdateRootModel(btd4SunGodV);
                         tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "???", false);
                     }
                 }
             };
-            onLeave += () => { time = -1; SMNMN = "Super Monkey"; };
+            onLeave += () => { time = -1; };
             assetsToRead.Add(new("BTD4SunGod", "e23d594d3bf5af44c8b1e2445fe10a9e", RendererType.SPRITERENDERER));
             assetsToRead.Add(new("BTD4SunGodV", "e23d594d3bf5af44c8b1e2445fe10a9e", RendererType.SPRITERENDERER));
             assetsToRead.Add(new("BTD4SunGodProj", "9dccc16d26c1c8a45b129e2a8cbd17ba", RendererType.SPRITERENDERER));

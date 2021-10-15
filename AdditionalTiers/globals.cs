@@ -43,17 +43,20 @@ global using MelonLoader;
 
 global using UnhollowerBaseLib;
 global using UnhollowerBaseLib.Attributes;
+global using UnhollowerBaseLib.Runtime;
 
 global using UnhollowerRuntimeLib;
 
 global using UnityEngine;
 
+global using static AdditionalTiers.Tasks.Assets;
 global using static AdditionalTiers.Utils.Coroutines;
 global using static HarmonyLib.AccessTools;
 
-global using AAssets = AdditionalTiers.Tasks.Assets;
 global using ADisplay = AdditionalTiers.Utils.Display;
 global using Type = Il2CppSystem.Type;
+global using SType = System.Type;
+global using Il2CppException = UnhollowerBaseLib.Il2CppException;
 global using Color = UnityEngine.Color;
 global using Object = UnityEngine.Object;
 global using Image = UnityEngine.UI.Image;

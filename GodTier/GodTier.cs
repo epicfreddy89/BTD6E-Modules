@@ -13,12 +13,16 @@ global using Assets.Scripts.Models.Towers.Behaviors;
 global using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 global using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 global using Assets.Scripts.Models.Towers.Behaviors.Attack;
+global using Assets.Scripts.Models.Towers.Behaviors.Emissions;
+global using Assets.Scripts.Models.Towers.Mods;
 global using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 global using Assets.Scripts.Models.Towers.Upgrades;
+global using Assets.Scripts.Models.Towers.Weapons;
 global using Assets.Scripts.Models.TowerSets;
 global using Assets.Scripts.Simulation.Towers;
 global using Assets.Scripts.Simulation.Towers.Weapons;
 global using Assets.Scripts.Unity.Display;
+global using Assets.Scripts.Unity.Player;
 global using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
 global using Assets.Scripts.Unity.UI_New.Upgrade;
 global using Assets.Scripts.Utils;
@@ -44,10 +48,11 @@ global using Color = UnityEngine.Color;
 global using Object = UnityEngine.Object;
 global using Image = UnityEngine.UI.Image;
 
-using Assets.Scripts.Unity.UI_New.Main.MapSelect;
+global using Assets.Scripts.Unity.UI_New.InGame.TowerSelectionMenu;
+global using Assets.Scripts.Unity.UI_New.Main.MapSelect;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.4", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.5", "1330 Studios LLC")]
 
 namespace GodTier {
     public class GodTier : MelonMod {
@@ -55,6 +60,14 @@ namespace GodTier {
         public override void OnApplicationStart() {
             Godzilla.Assets = AssetBundle.LoadFromMemory(Models.model);
             Spider_Man.Assets = AssetBundle.LoadFromMemory(Models.spiderman);
+            Carnage.Assets = AssetBundle.LoadFromMemory(Models.carnage);
+            Venom.Assets = AssetBundle.LoadFromMemory(Models.venom);
+        }
+
+        [HarmonyPatch(typeof(Btd6Player), "CheckForNewParagonPipEvent")]
+        public class Btd6PlayerIsBad {
+            [HarmonyPrefix]
+            public static bool Prefix(string checkSpecificTowerId, string checkSpecificTowerSet, ref bool __result) => __result = false;
         }
 
         [HarmonyPatch(typeof(UpgradeScreen), "UpdateUi")]
@@ -104,21 +117,26 @@ namespace GodTier {
 
                 return;
             }
+        }
 
-            private static Texture2D LoadTextureFromBytes(byte[] FileData) {
-                Texture2D Tex2D = new(2, 2);
-                if (ImageConversion.LoadImage(Tex2D, FileData)) return Tex2D;
+        public static Texture2D LoadTextureFromBytes(byte[] FileData) {
+            Texture2D Tex2D = new(2, 2);
+            if (ImageConversion.LoadImage(Tex2D, FileData)) return Tex2D;
 
-                return null;
-            }
+            return null;
+        }
 
-            private static Sprite LoadSprite(Texture2D text) {
-                return Sprite.Create(text, new(0, 0, text.width, text.height), new());
-            }
+        public static Sprite LoadSprite(Texture2D text) {
+            return Sprite.Create(text, new(0, 0, text.width, text.height), new());
         }
 
         internal static List<(TowerModel, TowerDetailsModel, string, TowerModel)> paragons = new();
         internal static List<(TowerModel, TowerDetailsModel, TowerModel[], UpgradeModel[])> towers = new();
+        internal static Dictionary<string, UpgradeBG> CustomUpgrades = new();
+
+        public enum UpgradeBG {
+            AntiVenom
+        }
 
         [HarmonyPatch(typeof(ProfileModel), "Validate")]
         public class ProfileModel_Patch {
@@ -148,8 +166,11 @@ namespace GodTier {
             public static void Postfix(ref GameModel __result) {
                 paragons.Add(Paragons.GetDartMonkey(__result));
                 paragons.Add(Paragons.GetBoomerangMonkey(__result));
+                paragons.Add(Paragons.GetNinjaMonkey(__result));
                 towers.Add(Godzilla.GetTower(__result));
                 towers.Add(Spider_Man.GetTower(__result));
+                towers.Add(Carnage.GetTower(__result));
+                towers.Add(Venom.GetTower(__result));
 
                 foreach (var paragon in paragons) {
                     __result.towers = __result.towers.Add(paragon.Item1);
@@ -160,6 +181,43 @@ namespace GodTier {
                     __result.towers = __result.towers.Add(tower.Item3);
                     __result.towerSet = __result.towerSet.Add(tower.Item2);
                     __result.upgrades = __result.upgrades.Add(tower.Item4);
+                    foreach (var upgrade in tower.Item4) {
+                        __result.upgradesByName.Add(upgrade.name, upgrade);
+                    }
+                }
+            }
+
+            [HarmonyPatch(typeof(UpgradeButton), nameof(UpgradeButton.SetUpgradeModel))]
+            internal class TowerManager_UpgradeTower {
+                [HarmonyPostfix]
+                internal static void fix(ref UpgradeButton __instance) {
+                    if (__instance == null) return;
+                    if (__instance.upgradeStatus != UpgradeButton.UpgradeStatus.Purchasable) {
+                        __instance.purchaseArrowGlow.active = false;
+                        __instance.backgroundActive = new("Ui[GreenArrowBtn]");
+                        __instance.background.overrideSprite = null;
+                    }
+                    if (__instance.upgrade == null) return;
+                    if (__instance.upgrade.name == null) return;
+                    __instance.purchaseArrowGlow.active = CustomUpgrades.ContainsKey(__instance.upgrade.name);
+                    if (CustomUpgrades.ContainsKey(__instance.upgrade.name)) {
+                        string resourceName = "";
+                        Sprite resourceSprite = null; 
+                        switch (CustomUpgrades[__instance.upgrade.name]) {
+                            case UpgradeBG.AntiVenom: {
+                                    resourceName = "AntiVenomUBG";
+                                    resourceSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.AVenomUBG));
+                                    break;
+                                }
+                        }
+                        __instance.backgroundActive = new(resourceName);
+                        __instance.background.overrideSprite = resourceSprite;
+                    } else {
+                        __instance.backgroundActive = new("Ui[GreenArrowBtn]");
+                        __instance.background.overrideSprite = null;
+                    }
+
+                    return;
                 }
             }
 
@@ -173,7 +231,8 @@ namespace GodTier {
                         return;
 
                     foreach (var graphicGenericRenderer in __instance.Node.graphic.genericRenderers)
-                        graphicGenericRenderer.material.SetColor("_OutlineColor", Color.white);
+                        foreach (var item in graphicGenericRenderer.materials)
+                            item.SetColor("_OutlineColor", Color.white);
                 }
             }
 
@@ -185,7 +244,8 @@ namespace GodTier {
                         return;
 
                     foreach (var graphicGenericRenderer in __instance.Node.graphic.genericRenderers)
-                        graphicGenericRenderer.material.SetColor("_OutlineColor", Color.black);
+                        foreach (var item in graphicGenericRenderer.materials)
+                            item.SetColor("_OutlineColor", Color.black);
                 }
             }
         }

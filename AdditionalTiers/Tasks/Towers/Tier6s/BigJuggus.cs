@@ -15,7 +15,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(bigJuggus);
                 tts.TAdd(scale1: .25f);
@@ -50,7 +50,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                             am.weapons[j].projectile.display = "BigJuggusProj";
                             am.weapons[j].projectile.pierce *= 5;
                             am.weapons[j].projectile.scale *= 1.125f;
-                            am.weapons[j].emission = new ArcEmissionModel("ArcEmissionModel_", 3, 0, 150, null, false, false).Cast<EmissionModel>();
+                            am.weapons[j].emission = new ArcEmissionModel("ArcEmissionModel_", 3, 0, 150, null, false).Cast<EmissionModel>();
                             am.weapons[j].rate /= 2;
                             am.weapons[j].rateFrames /= 2;
                             speed = am.weapons[j].rate;

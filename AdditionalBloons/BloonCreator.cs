@@ -50,6 +50,20 @@ namespace AdditionalBloons {
 
             #endregion
 
+            #region Lych
+
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("lych1")));
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("lych5")));
+
+            #endregion
+
+            #region Lych Elite
+
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("lychelite1")));
+            bloons.Add(__result.bloons.First(a => a.id.ToLower().Equals("lychelite5")));
+
+            #endregion
+
             #region Coconut
 
             for (int i = 1; i < 6; i++) assets.Add(new($"Coconut{i}", bloonBase.display, RendererType.SPRITERENDERER));

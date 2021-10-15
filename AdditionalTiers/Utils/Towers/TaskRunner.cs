@@ -6,7 +6,7 @@
         private sealed class Reset {
             [HarmonyPostfix]
             private static void RunLeave() {
-                var allAdditionalTiers = AdditionalTiers.towers;
+                var allAdditionalTiers = AdditionalTiers.Towers;
                 for (var towerIndex = allAdditionalTiers.Length - 1; towerIndex >= 0; towerIndex--)
                     allAdditionalTiers[towerIndex].onLeave();
             }

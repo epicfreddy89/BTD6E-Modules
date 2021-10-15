@@ -136,4 +136,16 @@
   <data name="SMPortrait3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SMPortrait3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="CarnagePortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CarnagePortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MaxCarnagePortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MaxCarnagePortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Knull" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Knull.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AVenomUBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AVenomUBG.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

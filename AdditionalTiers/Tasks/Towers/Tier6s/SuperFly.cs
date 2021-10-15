@@ -16,7 +16,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(superFly);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);

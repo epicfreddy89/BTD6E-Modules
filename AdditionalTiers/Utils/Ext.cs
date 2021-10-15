@@ -12,7 +12,7 @@
 
         public static Il2CppReferenceArray<T> Add<T>(this Il2CppReferenceArray<T> reference, IEnumerable<T> enumerable) where T : Model => ConcatArrayEnumerable(reference, enumerable);
 
-        public static Il2CppSystem.Collections.Generic.IEnumerable<TC> SelectI<T, TR, TC>(this IEnumerable<T> enumerable, Func<T, TR> predicate) where TR : Model where TC : Model {
+        public static Il2CppSystem.Collections.Generic.IEnumerable<TC> SelectI<T, TR, TC>(this IEnumerable<T> enumerable, Func<T, TR> predicate) where TR : Il2CppObjectBase where TC : Il2CppObjectBase {
             var bases = new Il2CppSystem.Collections.Generic.List<TC>();
             var enumerator = enumerable.GetEnumerator();
             while (enumerator.MoveNext())
@@ -39,7 +39,7 @@
             return false;
         }
 
-        public static Il2CppReferenceArray<T> ToIl2CppArray<T>(this T[] array) where T : Il2CppObjectBase => new Il2CppReferenceArray<T>(array);
+        public static Il2CppReferenceArray<T> ToIl2CppArray<T>(this T[] array) where T : Il2CppObjectBase => new(array);
         public static Il2CppSystem.Collections.Generic.List<T> ToIl2CppList<T>(this T[] array) where T : Il2CppObjectBase {
             Il2CppSystem.Collections.Generic.List<T> list = new();
             for (var i = 0; i < array.Length; i++)

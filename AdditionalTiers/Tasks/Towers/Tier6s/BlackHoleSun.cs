@@ -14,7 +14,7 @@
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(BHS);
                 tts.tower.display.SetScaleOffset(new(1.25f, 1.25f, 1.25f));

@@ -435,8 +435,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Towers\Venom.cs" />
     <Compile Include="Towers\Godzilla.cs" />
     <Compile Include="Towers\Paragons.cs" />
+    <Compile Include="Towers\Carnage.cs" />
     <Compile Include="Towers\SpiderMan.cs" />
     <Compile Include="Util\SetScale.cs" />
   </ItemGroup>
@@ -447,8 +449,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -465,6 +467,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SMPortrait3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supermonkey_vengeful.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -15,7 +15,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(skyHigh);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
@@ -59,7 +59,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                             cmm.name = "CritMultiplierModel__";
                             we.rate = 0.02f;
-                            we.emission = new ArcEmissionModel("ArcEmissionModel_", 5, 0, 75, null, false, false).Cast<EmissionModel>();
+                            we.emission = new ArcEmissionModel("ArcEmissionModel_", 5, 0, 75, null, false).Cast<EmissionModel>();
                             we.behaviors = we.behaviors.Add(cmm);
 
                             we.projectile.pierce = 500000;

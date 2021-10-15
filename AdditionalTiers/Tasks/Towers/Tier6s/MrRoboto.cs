@@ -14,7 +14,7 @@ public sealed class MrRoboto : TowerTask {
                 time++;
                 return;
             }
-            tts.tower.namedMonkeyName = identifier;
+            TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
             tts.tower.worth = 0;
             tts.tower.UpdateRootModel(MRROBOTO);
             for (int i = 0; i < tts.tower.attackBehaviorsInDependants.Count; i++) {
@@ -70,7 +70,7 @@ public sealed class MrRoboto : TowerTask {
                         am.weapons[0].rateFrames = 0;
                         am.weapons[0].projectile.display = "MrRobotoPlasma";
                         am.weapons[0].projectile.ignorePierceExhaustion = true;
-                        am.weapons[0].emission = new ArcEmissionModel("ArcEmissionModel_", 5, 0, 75, null, false, false);
+                        am.weapons[0].emission = new ArcEmissionModel("ArcEmissionModel_", 5, 0, 75, null, false);
                     }
 
                     for (int j = 0; j < am.weapons[0].projectile.behaviors.Length; j++)

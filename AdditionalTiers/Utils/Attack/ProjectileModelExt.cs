@@ -4,6 +4,7 @@
 
         public static void RebuildBehaviors(this ProjectileModel projectile, params Model[] behaviors) => projectile.RebuildBehaviorsA(a => { return false; }, behaviors);
         public static void RebuildBehaviorsA(this ProjectileModel projectile, Func<Model, bool> removalAction, params Model[] behaviors) => projectile.behaviors = projectile.behaviors.Remove(removalAction).Add(behaviors);
+        public static bool HasBehavior<T>(this ProjectileModel projectile) => projectile.behaviors.Any(m => m.GetIl2CppType().Equals(Il2CppType.Of<T>()));
 
         public static void AddDamageModel(this ProjectileModel projectile, DamageModelCreation dmc, params object[] args) {
             DamageModel dm = dmc switch {
@@ -38,6 +39,12 @@
         public static void AddKnockbackModel(this ProjectileModel projectile) {
             var knockback = new KnockbackModel($"{projectile.name}_KnockbackModel_", 0.7f, 1f, 1.3f, 0.5f, "KnockbackKnockback");
             projectile.behaviors = projectile.behaviors.Add(knockback);
+        }
+
+        public static void SetDisplay(this ProjectileModel projectile, string display) {
+            projectile.display = display;
+            if (projectile.HasBehavior<DisplayModel>())
+                projectile.behaviors.First(m => m.GetIl2CppType().Equals(Il2CppType.Of<DisplayModel>())).Cast<DisplayModel>().display = display;
         }
     }
 }

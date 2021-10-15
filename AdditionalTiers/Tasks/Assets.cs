@@ -1,6 +1,4 @@
-﻿
-
-namespace AdditionalTiers.Tasks {
+﻿namespace AdditionalTiers.Tasks {
     public class Assets {
         [HideFromIl2Cpp]
         public static Dictionary<string, Type> Types { get; set; } = new() {
@@ -24,8 +22,17 @@ namespace AdditionalTiers.Tasks {
                     var ps = obj.transform.GetComponentInChildren<ParticleSystem>();
                     ps.emissionRate = 15;
                     ps.transform.localScale = new(10, 10, 10);
-
-                    // Can you all stop copying every little thing I program? At the very least, don't cite my work for an example but call it cancerous??
+                }
+            },
+            {
+                "VitaminC",
+                udn => {
+                    var assets = ParticleSystems;
+                    var _obj = assets[0].Cast<GameObject>();
+                    var obj = Object.Instantiate(_obj, udn.transform);
+                    obj.SetActive(true);
+                    var ps = obj.transform.GetComponent<ParticleSystem>();
+                    ps.transform.localScale = new(15, 15, 15);
                 }
             },
             {
@@ -92,6 +99,15 @@ namespace AdditionalTiers.Tasks {
                 }
             },
             {
+                "VitaminCTotemParticles",
+                udn => {
+                    var ps = udn.transform.GetComponentsInChildren<ParticleSystem>();
+
+                    for (int i = 0; i < ps.Length; i++)
+                        ps[i].startColor = new Color(0, 1, 0);
+                }
+            },
+            {
                 "BTD4SunGod",
                 udn => {
                     udn.transform.GetComponentInChildren<ParticleSystem>().gameObject.active = false;
@@ -110,6 +126,7 @@ namespace AdditionalTiers.Tasks {
         public static Dictionary<string, Func<string, Sprite>> SpriteCreation { get; set; } = new() {
             { "ScaryMonstersProj", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
             { "GlaiveDominusSilverOrbit2", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 10.8f) },
+            { "VitaminCBlast", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 7.6f) },
             { "BTD4SunGod", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 43.2f, pivoty: 0.7f) },
             { "BTD4SunGodV", objectId => SpriteBuilder.createProjectile(CacheBuilder.Get(objectId), 43.2f, pivoty: 0.7f) }
         };
@@ -140,12 +157,31 @@ namespace AdditionalTiers.Tasks {
             }
         }
 
+        private static AssetBundle _particlesystem = null;
+
+        public static AssetBundle ParticleSystemBundle {
+            get {
+                if (_particlesystem == null)
+                    _particlesystem = AssetBundle.LoadFromMemory(Images.particlesystem);
+                return _particlesystem;
+            }
+        }
+
         private static Object[] _particles = null;
         public static Object[] Particles {
             get {
                 if (_particles == null)
                     _particles = ParticleBundle.LoadAllAssets();
                 return _particles;
+            }
+        }
+
+        private static Object[] _particlesystems = null;
+        public static Object[] ParticleSystems {
+            get {
+                if (_particlesystems == null)
+                    _particlesystems = ParticleSystemBundle.LoadAllAssets();
+                return _particlesystems;
             }
         }
 
@@ -261,13 +297,7 @@ namespace AdditionalTiers.Tasks {
                 return true;
             }
 
-            public static void Build() {
-                for (var i = 0; i < AdditionalTiers.towers.Length; i++) {
-                    var assets = AdditionalTiers.towers[i].assetsToRead;
-                    if (assets != null)
-                        using (var enumerator = assets.GetEnumerator()) while (enumerator.MoveNext()) allAssetsKnown.Add(enumerator.Current);
-                }
-            }
+            public static void Build() => AddCoroutine(new(Timer.BuildAssetList(), null));
 
             public static void Flush() => allAssetsKnown.Clear();
         }

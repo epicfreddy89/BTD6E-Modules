@@ -13,7 +13,7 @@
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(survivor);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);

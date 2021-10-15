@@ -474,9 +474,10 @@
     <Compile Include="Tasks\Towers\Tier6s\SuperFly.cs" />
     <Compile Include="Tasks\Towers\Tier6s\Survivor.cs" />
     <Compile Include="Tasks\Towers\Tier6s\UnderWorld.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\VitaminC.cs" />
     <Compile Include="Tasks\Towers\Tier6s\WhiteSnake.cs" />
     <Compile Include="Tasks\Towers\Tier6s\WhiteWedding.cs" />
-    <Compile Include="Tasks\Towers\Tier6s\Yellow Submarine.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\YellowSubmarine.cs" />
     <Compile Include="Tasks\TowerTask.cs" />
     <Compile Include="Utils\Assets\AssetInfo.cs" />
     <Compile Include="Utils\Assets\AssetList.cs" />
@@ -493,6 +494,7 @@
     <Compile Include="Utils\Display.cs" />
     <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Globals.cs" />
+    <Compile Include="Utils\Instanced.cs" />
     <Compile Include="Utils\Math\Bounds.cs" />
     <Compile Include="Utils\Math\NumericExtensions.cs" />
     <Compile Include="Utils\RefAction.cs" />
@@ -504,6 +506,7 @@
     <Compile Include="Utils\Towers\MonkeyTransform.cs" />
     <Compile Include="Utils\Attack\ProjectileModelExt.cs" />
     <Compile Include="Utils\Towers\TaskRunner.cs" />
+    <Compile Include="Utils\Towers\TransformationManager.cs" />
     <Compile Include="Utils\Towers\TowerModelExt.cs" />
     <Compile Include="Utils\URandom.cs" />
     <Compile Include="Utils\Win32.cs" />

@@ -77,7 +77,7 @@ namespace BTDOptimizer {
                 System.GC.Collect();
                 GarbageCollector.CollectIncremental(0);
                 long dif = mem - Profiler.GetMonoUsedSizeLong();
-                MelonLogger.Msg($"{Math.Abs(dif)}MB collected");
+                MelonLogger.Msg($"{Math.Abs(dif/1024/1024)}MB collected");
                 lastFrameMemory = mem;
             }
         }

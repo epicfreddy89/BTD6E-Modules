@@ -63,6 +63,46 @@ namespace GodlyTowers.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] AVenomUBG {
+            get {
+                object obj = ResourceManager.GetObject("AVenomUBG", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CarnagePortrait {
+            get {
+                object obj = ResourceManager.GetObject("CarnagePortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Knull {
+            get {
+                object obj = ResourceManager.GetObject("Knull", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MaxCarnagePortrait {
+            get {
+                object obj = ResourceManager.GetObject("MaxCarnagePortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SMPortrait {
             get {
                 object obj = ResourceManager.GetObject("SMPortrait", resourceCulture);

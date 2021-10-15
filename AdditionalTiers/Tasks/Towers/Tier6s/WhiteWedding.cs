@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Models.Towers.Weapons.Behaviors;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public sealed class WhiteAlbum : TowerTask {
         public static TowerModel whiteWedding;
         private static int time = -1;
@@ -15,7 +13,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(whiteWedding);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);

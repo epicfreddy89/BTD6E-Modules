@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts.Models.Towers.Behaviors.Attack.Behaviors;
-using Assets.Scripts.Models.Towers.Behaviors.Emissions;
 using Assets.Scripts.Models.Towers.Filters;
-using Assets.Scripts.Models.Towers.Mods;
 
 namespace GodlyTowers.Towers {
     public sealed class Spider_Man {
@@ -113,7 +111,7 @@ namespace GodlyTowers.Towers {
                     var att = b.Cast<AttackModel>();
                     att.weapons[0].name = "web";
                     att.weapons[0].rate /= 1.8f;
-                    att.weapons[0].emission = new ArcEmissionModel("AEM_", 3, 0, 45, null, false, false);
+                    att.weapons[0].emission = new ArcEmissionModel("AEM_", 3, 0, 45, null, false);
                     att.weapons[0].rateFrames = (int)(att.weapons[0].rateFrames / 1.8f);
                     att.range = 100;
                     for (var j = 0; j < att.weapons[0].projectile.behaviors.Length; j++) {
@@ -219,13 +217,13 @@ namespace GodlyTowers.Towers {
                 if (b.GetIl2CppType() == Il2CppType.Of<AttackModel>()) {
                     var att = b.Cast<AttackModel>();
                     att.weapons[0].name = "web";
-                    att.weapons[0].emission = new ArcEmissionModel("AEM_", 36, 0, 360, null, false, false);
+                    att.weapons[0].emission = new ArcEmissionModel("AEM_", 36, 0, 360, null, false);
                     att.weapons[0].projectile.behaviors = att.weapons[0].projectile.behaviors.Add(new CreateLightningEffectModel("CLEM_", 0.3f, new string[] {
                                     "548c26e4e668dac4a850a4c016916016", "ffed377b3e146f649b3e6d5767726a44", "c5e4bf0202becd0459c47b8184b4588f",
                                     "3e113b397a21a3a4687cf2ed0c436ec8", "c6c2049a0c01e8a4d9904db8c9b84ca0", "e9b2a3d6f0fe0e4419a423e4d2ebe6f6",
                                     "c8471dcde4c65fc459f7846c6a932a8c", "a73b565de9c31c14ebcd3317705ab17e", "bd23939e7362b8e40a3a39f595a2a1dc"
                                 }, new float[] { 18, 18, 18, 50, 50, 50, 85, 85, 85 }),
-                                new LightningModel("LM_", 5, new ArcEmissionModel("AEM_", 3, 0, 360, null, false, false), 360, 5));
+                                new LightningModel("LM_", 5, new ArcEmissionModel("AEM_", 3, 0, 360, null, false), 360, 5));
                     att.range = 150;
                     for (var j = 0; j < att.weapons[0].projectile.behaviors.Length; j++) {
                         var pb = att.weapons[0].projectile.behaviors[j];

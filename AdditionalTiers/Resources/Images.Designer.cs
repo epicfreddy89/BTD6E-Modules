@@ -1243,6 +1243,16 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] particlesystem {
+            get {
+                object obj = ResourceManager.GetObject("particlesystem", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] PONR {
             get {
                 object obj = ResourceManager.GetObject("PONR", resourceCulture);
@@ -1446,6 +1456,66 @@ namespace AdditionalTiers.Resources {
         internal static byte[] UnderworldInverted {
             get {
                 object obj = ResourceManager.GetObject("UnderworldInverted", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VitaminC {
+            get {
+                object obj = ResourceManager.GetObject("VitaminC", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VitaminCAvatar {
+            get {
+                object obj = ResourceManager.GetObject("VitaminCAvatar", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VitaminCBlast {
+            get {
+                object obj = ResourceManager.GetObject("VitaminCBlast", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VitaminCIcon {
+            get {
+                object obj = ResourceManager.GetObject("VitaminCIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VitaminCTempleBase {
+            get {
+                object obj = ResourceManager.GetObject("VitaminCTempleBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] VitaminCTotem {
+            get {
+                object obj = ResourceManager.GetObject("VitaminCTotem", resourceCulture);
                 return ((byte[])(obj));
             }
         }

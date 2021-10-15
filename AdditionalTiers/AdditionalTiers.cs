@@ -1,16 +1,14 @@
 ﻿[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.4", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.5", "1330 Studios LLC")]
 
 namespace AdditionalTiers {
     public sealed class AdditionalTiers : MelonMod {
-
-        public static TowerTask[] towers;
+        public new static Assembly Assembly;
+        public static TowerTask[] Towers;
 
         public override void OnApplicationStart() {
-            var ttypes = Assembly.GetTypes().Where(a => typeof(TowerTask).IsAssignableFrom(a) && !typeof(TowerTask).FullName.Equals(a.FullName));
-            List<TowerTask> tts = new();
-            foreach (var type in ttypes) tts.Add((TowerTask)Activator.CreateInstance(type));
-            towers = tts.ToArray();
+            Assembly = ((MelonBase) this).Assembly;
+            AddCoroutine(new ACoroutine(Timer.FindTowerTasks(), null));
 
             if (!MelonPreferences.HasEntry("Additional Tier Addon Config", "Tier 6 required pop count multiplier")) {
                 MelonPreferences.CreateCategory("Additional Tier Addon Config", "Additional Tier Addon Config");
@@ -25,19 +23,28 @@ namespace AdditionalTiers {
 
             MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
-            AAssets.DisplayFactory.Build();
-
-            /*MelonCoroutines.Start(Timer.Countdown(15, () => {
-                Console.WriteLine(HarmonyInstance.GetPatchedMethods().Select(m => m.Name));
-            }, i => {}));*/
+            DisplayFactory.Build();
         }
 
         public override void OnApplicationQuit() {
             MelonLogger.Msg($"Last Win32 Error - {Marshal.GetLastWin32Error()}");
-            Tasks.Assets.DisplayFactory.Flush();
+            DisplayFactory.Flush();
             CacheBuilder.Flush();
         }
 
+        public override void OnGUI() {
+            var guiCol = GUI.color;
+            GUI.color = new Color32(255, 255, 255, 50);
+            var guiStyle = new GUIStyle
+            {
+                normal =
+                {
+                    textColor = Color.white
+                }
+            };
+            GUI.Label(new Rect(0, Screen.height - 20, 100, 90), "Additional Tiers v1.5", guiStyle);
+            GUI.color = guiCol;
+        }
 
         public override void OnUpdate() {
             UpdateCoroutines();
@@ -45,27 +52,23 @@ namespace AdditionalTiers {
             if (InGame.instance == null || InGame.instance.bridge == null || InGame.instance.bridge.GetAllTowers() == null) return;
 
             var allTowers = InGame.instance.bridge.GetAllTowers();
-            var allAdditionalTiers = towers;
+            var allAdditionalTiers = Towers;
             for (var indexOfTowers = 0; indexOfTowers < allTowers.Count; indexOfTowers++) {
                 var towerToSimulation = allTowers.ToArray()[indexOfTowers];
-                if (towerToSimulation != null && !towerToSimulation.destroyed) {
+                if (towerToSimulation != null && !towerToSimulation.destroyed)
                     for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Length; indexOfAdditionalTiers++) {
                         if (!allAdditionalTiers[indexOfAdditionalTiers].requirements(towerToSimulation)) continue;
 
-                        var popsNeeded = (int)((int)allAdditionalTiers[indexOfAdditionalTiers].tower * Globals.SixthTierPopCountMulti);
+                        var popsNeeded = (int) ((int) allAdditionalTiers[indexOfAdditionalTiers].tower * Globals.SixthTierPopCountMulti);
 
                         if (popsNeeded < towerToSimulation.damageDealt) {
-                            if (towerToSimulation.tower.namedMonkeyName != allAdditionalTiers[indexOfAdditionalTiers].identifier) {
+                            if (!TransformationManager.VALUE.Contains(towerToSimulation.tower))
                                 allAdditionalTiers[indexOfAdditionalTiers].onComplete(towerToSimulation);
-                            } else if (towerToSimulation.tower.namedMonkeyName == allAdditionalTiers[indexOfAdditionalTiers].identifier) {
-                                allAdditionalTiers[indexOfAdditionalTiers].recurring(towerToSimulation);
-                            }
-                        } else {
-                            if (towerToSimulation.tower.namedMonkeyName != allAdditionalTiers[indexOfAdditionalTiers].identifier)
-                                ADisplay.towerdata.Add((allAdditionalTiers[indexOfAdditionalTiers].identifier, towerToSimulation.damageDealt, (int)allAdditionalTiers[indexOfAdditionalTiers].tower));
+                            else if (TransformationManager.VALUE.Contains(towerToSimulation.tower)) allAdditionalTiers[indexOfAdditionalTiers].recurring(towerToSimulation);
                         }
+                        else if (!TransformationManager.VALUE.Contains(towerToSimulation.tower))
+                            ADisplay.towerdata.Add((allAdditionalTiers[indexOfAdditionalTiers].identifier, towerToSimulation.damageDealt, (int) allAdditionalTiers[indexOfAdditionalTiers].tower));
                     }
-                }
             }
         }
     }

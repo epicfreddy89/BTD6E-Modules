@@ -15,7 +15,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(gds);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
@@ -50,7 +50,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     }
                     if (beh[i].Is<AttackModel>(out var attackModel)) {
                         attackModel.weapons[0].projectile.display = "358f76f3f21b8f9439f3cccd23c9b5ff";
-                        attackModel.weapons[0].emission = new ArcEmissionModel("arcEmissionModel_", 3, 0, 30, null, false, false);
+                        attackModel.weapons[0].emission = new ArcEmissionModel("arcEmissionModel_", 3, 0, 30, null, false);
                         attackModel.weapons[0].projectile.behaviors = attackModel.weapons[0].projectile.behaviors.Add(mortarMonkeyCrt);
                         attackModel.weapons[0].projectile.ignorePierceExhaustion = true;
                         attackModel.range += 50;

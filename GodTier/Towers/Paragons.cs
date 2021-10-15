@@ -1,6 +1,6 @@
 ﻿namespace GodlyTowers.Towers {
     public class Paragons {
-        private static int index = 33;
+        private static int index = 35;
 
         public static (TowerModel, TowerDetailsModel, string, TowerModel) GetDartMonkey(GameModel model) {
             var origParagon = model.towers.First(t => t.name.Equals("DartMonkey-Paragon"));
@@ -51,5 +51,42 @@
 
             return (paragon, paragonDetails, "BoomerangMonkey", origParagon);
         }
+
+        public static (TowerModel, TowerDetailsModel, string, TowerModel) GetNinjaMonkey(GameModel model) {
+            var origParagon = model.towers.First(t => t.name.Equals("NinjaMonkey-Paragon"));
+            var paragon = origParagon.Clone().Cast<TowerModel>();
+            paragon.baseId = "ParagonNinjaMonkey";
+            paragon.name = "ParagonNinjaMonkey";
+            paragon.towerSet = "Primary";
+            paragon.emoteSpriteLarge = new("Paragon");
+            paragon.tier = 0;
+            paragon.tiers = new int[] { 0, 0, 0 };
+            paragon.cost = 450000;
+            paragon.canAlwaysBeSold = true;
+            paragon.isParagon = false;
+            paragon.dontDisplayUpgrades = true;
+            paragon.icon = paragon.portrait;
+
+            if (!LocalizationManager.Instance.textTable.ContainsKey("ParagonNinjaMonkey"))
+                LocalizationManager.Instance.textTable.Add("ParagonNinjaMonkey", "Ascended Shadow");
+
+            var paragonDetails = model.towerSet[0].Clone().Cast<TowerDetailsModel>();
+            paragonDetails.towerId = "ParagonNinjaMonkey";
+            paragonDetails.towerIndex = ++index;
+
+            return (paragon, paragonDetails, "NinjaMonkey", origParagon);
+        }
+
+        /*public static (TowerModel, TowerDetailsModel, string, TowerModel) GetSuperMonkey(GameModel model) {
+            var origParagon = model.towers.First(t => t.name.Equals("SuperMonkey-520"));
+            FileIOUtil.SaveFile("supermonkey_vengeful", Properties.Resources.supermonkey_vengeful);
+            var paragon = FileIOUtil.LoadObject<TowerModel>("supermonkey_vengeful");
+
+            var paragonDetails = model.towerSet[0].Clone().Cast<TowerDetailsModel>();
+            paragonDetails.towerId = "SuperMonkeyVengeful";
+            paragonDetails.towerIndex = ++index;
+
+            return (paragon, paragonDetails, "SuperMonkey", origParagon);
+        }*/
     }
 }

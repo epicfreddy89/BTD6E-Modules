@@ -310,11 +310,32 @@
   <data name="MrRobotoArms1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>MrRobotoArms.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="VitaminC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>VitaminC.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VitaminCAvatar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>VitaminCAvatar.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VitaminCTempleBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>VitaminCTempleBase.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VitaminCTotem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>VitaminCTotem.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VitaminCBlast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>VitaminCBlast.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VitaminCIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>VitaminCIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="particle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>particle.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="particlesystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>particlesystem.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="energy0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Energy\energy0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

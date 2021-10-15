@@ -63,6 +63,16 @@ namespace GodlyTowers.Models {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] carnage {
+            get {
+                object obj = ResourceManager.GetObject("carnage", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] model {
             get {
                 object obj = ResourceManager.GetObject("model", resourceCulture);
@@ -76,6 +86,16 @@ namespace GodlyTowers.Models {
         internal static byte[] spiderman {
             get {
                 object obj = ResourceManager.GetObject("spiderman", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] venom {
+            get {
+                object obj = ResourceManager.GetObject("venom", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -40,4 +40,31 @@
             }
         }
     }
+
+    [RegisterTypeInIl2Cpp]
+    public class SetScale4 : MonoBehaviour {
+        public SetScale4(IntPtr obj0) : base(obj0) { ClassInjector.DerivedConstructorBody(this); }
+
+        public SetScale4() : base(ClassInjector.DerivedConstructorPointer<SetScale4>()) { }
+        private void Update() {
+            if (gameObject != null) {
+                if (gameObject.transform.localScale.z < 25) {
+                    gameObject.transform.localScale = new(25, 25, 25);
+                }
+            }
+        }
+    }
+    [RegisterTypeInIl2Cpp]
+    public class SetScale5 : MonoBehaviour {
+        public SetScale5(IntPtr obj0) : base(obj0) { ClassInjector.DerivedConstructorBody(this); }
+
+        public SetScale5() : base(ClassInjector.DerivedConstructorPointer<SetScale5>()) { }
+        private void Update() {
+            if (gameObject != null) {
+                if (gameObject.transform.localScale.z < 30) {
+                    gameObject.transform.localScale = new(30, 30, 30);
+                }
+            }
+        }
+    }
 }

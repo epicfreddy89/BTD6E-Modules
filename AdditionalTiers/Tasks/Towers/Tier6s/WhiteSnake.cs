@@ -18,7 +18,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                     _time++;
                     return;
                 }
-                tts.tower.namedMonkeyName = identifier;
+                TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
                 tts.tower.UpdateRootModel(whitesnake);
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
@@ -73,7 +73,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
 
                             we.name = "WSW1";
                             we.rate *= 10;
-                            we.emission = new ArcEmissionModel("AEM_", 1, 0, 0, null, false, false);
+                            we.emission = new ArcEmissionModel("AEM_", 1, 0, 0, null, false);
                             we.projectile.pierce = 500000;
                             we.projectile.radius = 50;
                             we.projectile.display = "WhitesnakeProj";
@@ -86,7 +86,7 @@ namespace AdditionalTiers.Tasks.Towers.Tier6s {
                                     "3e113b397a21a3a4687cf2ed0c436ec8", "c6c2049a0c01e8a4d9904db8c9b84ca0", "e9b2a3d6f0fe0e4419a423e4d2ebe6f6",
                                     "c8471dcde4c65fc459f7846c6a932a8c", "a73b565de9c31c14ebcd3317705ab17e", "bd23939e7362b8e40a3a39f595a2a1dc"
                                 }, new float[] { 18, 18, 18, 50, 50, 50, 85, 85, 85 }),
-                                new LightningModel("LM_", 5, new ArcEmissionModel("AEM_", 3, 0, 360, null, false, false), 360, 5),
+                                new LightningModel("LM_", 5, new ArcEmissionModel("AEM_", 3, 0, 360, null, false), 360, 5),
                                 new DamagePercentOfMaxModel("DPOMM_", 0.25f, new string[] { "Moabs" }, false),
                                 new DistributeToChildrenBloonModifierModel("DTCBMM_", "Moabs"),
                                 new WindModel("WM_", 50, 150, 1, true, new(), 1));
