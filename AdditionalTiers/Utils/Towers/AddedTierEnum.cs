@@ -16,7 +16,7 @@
         TUSK = 1000000,
         BTD4SUNGOD = 100000,
         MRROBOTO = 1000000,
-        VITAMINC = 1
+        VITAMINC = 1000000
     }
 
     public sealed class AddedTierName {

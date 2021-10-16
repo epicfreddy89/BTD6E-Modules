@@ -15,8 +15,8 @@ namespace GodlyTowers.Towers {
             new("AntiVenom", 49999, 0, new("AntiVenomPortrait"), 0, 4, 0, "", "AntiVenom"),
         };
 
-        public static (TowerModel, TowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
-            var VenomDetails = gameModel.towerSet[0].Clone().Cast<TowerDetailsModel>();
+        public static (TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
+            var VenomDetails = gameModel.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
             VenomDetails.towerId = name;
             VenomDetails.towerIndex = 35;
 

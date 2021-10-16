@@ -3,14 +3,14 @@
         public static string name = "Carnage";
 
         public static UpgradeModel[] GetUpgrades() => new UpgradeModel[] {
-            new("Spike Shooter", 980, 0, new("CarnagePortrait"), 0, 1, 0, "", "Spike Shooter"),
-            new("Knulls Empowerment", 1280, 0, new("CarnagePortrait"), 0, 2, 0, "", "Knull's Empowerment"),
-            new("Grendel Power", 4700, 0, new("CarnagePortrait"), 0, 3, 0, "", "Grendel Power"),
-            new("Maximum", 15666, 0, new("MaxCarnagePortrait"), 0, 4, 0, "", "Maximum")
+            new("Spike Shooter", 980, 0, new("CarnagePortrait"), 0, 0, 0, "", "Spike Shooter"),
+            new("Knulls Empowerment", 1280, 0, new("CarnagePortrait"), 0, 1, 0, "", "Knull's Empowerment"),
+            new("Grendel Power", 4700, 0, new("CarnagePortrait"), 0, 2, 0, "", "Grendel Power"),
+            new("Maximum", 15666, 0, new("MaxCarnagePortrait"), 0, 3, 0, "", "Maximum")
         };
 
-        public static (TowerModel, TowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
-            var carnageDetails = gameModel.towerSet[0].Clone().Cast<TowerDetailsModel>();
+        public static (TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
+            var carnageDetails = gameModel.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
             carnageDetails.towerId = name;
             carnageDetails.towerIndex = 34;
 

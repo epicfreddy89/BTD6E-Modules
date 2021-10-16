@@ -50,6 +50,8 @@ global using Image = UnityEngine.UI.Image;
 
 global using Assets.Scripts.Unity.UI_New.InGame.TowerSelectionMenu;
 global using Assets.Scripts.Unity.UI_New.Main.MapSelect;
+global using Assets.Scripts.Unity.UI_New.Main.MonkeySelect;
+using System.IO;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.5", "1330 Studios LLC")]
@@ -130,8 +132,8 @@ namespace GodTier {
             return Sprite.Create(text, new(0, 0, text.width, text.height), new());
         }
 
-        internal static List<(TowerModel, TowerDetailsModel, string, TowerModel)> paragons = new();
-        internal static List<(TowerModel, TowerDetailsModel, TowerModel[], UpgradeModel[])> towers = new();
+        internal static List<(TowerModel, ShopTowerDetailsModel, string, TowerModel)> paragons = new();
+        internal static List<(TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[])> towers = new();
         internal static Dictionary<string, UpgradeBG> CustomUpgrades = new();
 
         public enum UpgradeBG {

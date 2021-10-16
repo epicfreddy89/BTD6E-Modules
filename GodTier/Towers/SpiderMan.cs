@@ -6,13 +6,13 @@ namespace GodlyTowers.Towers {
         public static string name = "SpiderMan";
 
         public static UpgradeModel[] GetUpgrades() => new UpgradeModel[] {
-            new("Iron Spider", 980, 0, new("SMPortrait1"), 0, 1, 0, "", "Iron Spider"),
-            new("Upgraded Stark Suit", 2500, 0, new("SMPortrait2"), 0, 2, 0, "", "Upgraded Stark Suit"),
-            new("Black and Gold Suit", 4575, 0, new("SMPortrait3"), 0, 3, 0, "", "Black and Gold Suit")
+            new("Iron Spider", 980, 0, new("SMPortrait1"), 0, 0, 0, "", "Iron Spider"),
+            new("Upgraded Stark Suit", 2500, 0, new("SMPortrait2"), 0, 1, 0, "", "Upgraded Stark Suit"),
+            new("Black and Gold Suit", 4575, 0, new("SMPortrait3"), 0, 2, 0, "", "Black and Gold Suit")
         };
 
-        public static (TowerModel, TowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
-            var spidermanDetails = gameModel.towerSet[0].Clone().Cast<TowerDetailsModel>();
+        public static (TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
+            var spidermanDetails = gameModel.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
             spidermanDetails.towerId = name;
             spidermanDetails.towerIndex = 33;
 

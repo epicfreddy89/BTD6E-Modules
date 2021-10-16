@@ -5,13 +5,13 @@
         public static UpgradeModel[] GetUpgrades() {
             return new UpgradeModel[]
             {
-                    new("Atomic Blasts", 7840, 0, new("GodzillaPortrait"), 0, 1, 0, "", "Atomic Blasts"),
-                    new("Thermonuclear Instability", 19850, 0, new("GodzillaPortrait2"), 0, 2, 0, "", "Thermonuclear Instability")
+                    new("Atomic Blasts", 7840, 0, new("GodzillaPortrait"), 0, 0, 0, "", "Atomic Blasts"),
+                    new("Thermonuclear Instability", 19850, 0, new("GodzillaPortrait2"), 0, 1, 0, "", "Thermonuclear Instability")
             };
         }
 
-        public static (TowerModel, TowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
-            var godzillaDetails = gameModel.towerSet[0].Clone().Cast<TowerDetailsModel>();
+        public static (TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
+            var godzillaDetails = gameModel.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
             godzillaDetails.towerId = name;
             godzillaDetails.towerIndex = 32;
 
