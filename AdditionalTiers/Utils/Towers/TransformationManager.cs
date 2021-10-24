@@ -1,7 +1,5 @@
-﻿using AdditionalTiers.Util;
-
-namespace AdditionalTiers.Utils.Towers {
-    internal class TransformationManager : Instanced<TransformationManager> {
+﻿namespace AdditionalTiers.Utils.Towers {
+    internal sealed class TransformationManager : Instanced<TransformationManager> {
         private ArrayList TransformationList { get; } = new ArrayList();
 
         internal void Add(Transformation transformation) {
@@ -63,8 +61,8 @@ namespace AdditionalTiers.Utils.Towers {
         internal int TowerID { get; set; }
 
         internal Transformation(string name, int towerid) {
-            this.Name = name;
-            this.TowerID = towerid;
+            Name = name;
+            TowerID = towerid;
         }
     }
 }

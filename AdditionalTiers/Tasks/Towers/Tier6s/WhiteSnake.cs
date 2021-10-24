@@ -1,7 +1,4 @@
-﻿
-using Timer = AdditionalTiers.Utils.Timer;
-
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
+﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
     public sealed class Whitesnake : TowerTask {
         public static TowerModel whitesnake;
         public static TowerModel whitesnakePheonix;

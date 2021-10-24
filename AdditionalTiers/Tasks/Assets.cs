@@ -120,6 +120,35 @@
                     udn.transform.GetComponentInChildren<ParticleSystem>().gameObject.active = false;
                     udn.gameObject.AddComponent<SetHeight1>();
                 }
+            },
+            {
+                "DaftPunkProjectile",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(1, 0.25f, 0.25f);
+                    var tr = udn.transform.GetComponentInChildren<TrailRenderer>();
+                    tr.startColor = new Color(1f, 0.25f, 0.25f);
+                    tr.endColor = new Color(0.4f, 0.1f, 0.1f);
+                }
+            },
+            {
+                "DaftPunkTurboProjectile",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(1, 0.25f, 0.25f);
+                    var tr = udn.transform.GetComponentInChildren<TrailRenderer>();
+                    tr.startColor = new Color(1f, 0.25f, 0.25f);
+                    tr.endColor = new Color(0.4f, 0.1f, 0.1f);
+                }
+            },
+            {
+                "DaftPunkOrbit",
+                udn => {
+                    var ps = udn.transform.GetComponentInChildren<ParticleSystem>();
+                    ps.startColor = new Color(1f, .1f, .1f);
+                    for (int i = 0; i < 5; i++)
+                        udn.gameObject.AddComponent<FastRotation>();
+                }
             }
         };
         [HideFromIl2Cpp]

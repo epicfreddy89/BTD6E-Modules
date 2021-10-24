@@ -328,6 +328,18 @@
   <data name="VitaminCIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>VitaminCIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="DaftPunk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>DaftPunk.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DaftPunkProjectile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>DaftPunkProjectile.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DaftPunkTurboProjectile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>DaftPunkTurboProjectile.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DaftPunkOrbit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>DaftPunkOrbit.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

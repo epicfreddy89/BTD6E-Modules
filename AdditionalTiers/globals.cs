@@ -14,6 +14,7 @@ global using AdditionalTiers.Utils.Assets;
 global using AdditionalTiers.Utils.Attack;
 global using AdditionalTiers.Utils.Components;
 global using AdditionalTiers.Utils.Math;
+global using AdditionalTiers.Utils.Scene;
 global using AdditionalTiers.Utils.Towers;
 
 global using Assets.Scripts.Models;
@@ -43,7 +44,6 @@ global using MelonLoader;
 
 global using UnhollowerBaseLib;
 global using UnhollowerBaseLib.Attributes;
-global using UnhollowerBaseLib.Runtime;
 
 global using UnhollowerRuntimeLib;
 
@@ -54,9 +54,9 @@ global using static AdditionalTiers.Utils.Coroutines;
 global using static HarmonyLib.AccessTools;
 
 global using ADisplay = AdditionalTiers.Utils.Display;
+global using Timer = AdditionalTiers.Utils.Timer;
 global using Type = Il2CppSystem.Type;
 global using SType = System.Type;
-global using Il2CppException = UnhollowerBaseLib.Il2CppException;
 global using Color = UnityEngine.Color;
 global using Object = UnityEngine.Object;
 global using Image = UnityEngine.UI.Image;

@@ -3,12 +3,18 @@
 
 namespace AdditionalTiers {
     public sealed class AdditionalTiers : MelonMod {
-        public new static Assembly Assembly;
         public static TowerTask[] Towers;
 
         public override void OnApplicationStart() {
-            Assembly = ((MelonBase) this).Assembly;
-            AddCoroutine(new ACoroutine(Timer.FindTowerTasks(), null));
+            var asmTypes = Assembly.GetTypes();
+            var ttypes = new Stack<SType>();
+            for (int i = 0; i < asmTypes.Length; i++)
+                if (typeof(TowerTask).IsAssignableFrom(asmTypes[i]) && !typeof(TowerTask).FullName.Equals(asmTypes[i].FullName))
+                    ttypes.Push(asmTypes[i]);
+            List<TowerTask> tts = new();
+            foreach (var type in ttypes)
+                tts.Add((TowerTask)Activator.CreateInstance(type));
+            Towers = tts.ToArray();
 
             if (!MelonPreferences.HasEntry("Additional Tier Addon Config", "Tier 6 required pop count multiplier")) {
                 MelonPreferences.CreateCategory("Additional Tier Addon Config", "Additional Tier Addon Config");

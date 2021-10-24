@@ -16,7 +16,8 @@
         TUSK = 1000000,
         BTD4SUNGOD = 100000,
         MRROBOTO = 1000000,
-        VITAMINC = 1000000
+        VITAMINC = 1000000,
+        DAFTPUNK = 1000000
     }
 
     public sealed class AddedTierName {
@@ -37,5 +38,6 @@
         public static readonly string BTD4SUNGOD = "SuperMonkey-320";
         public static readonly string MRROBOTO = "SuperMonkey-250";
         public static readonly string VITAMINC = "SuperMonkey-520";
+        public static readonly string DAFTPUNK = "Quincy 20";
     }
 }

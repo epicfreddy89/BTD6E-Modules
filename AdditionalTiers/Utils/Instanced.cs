@@ -1,4 +1,4 @@
-﻿namespace AdditionalTiers.Util {
+﻿namespace AdditionalTiers.Utils {
     public class Instanced<T> {
         public static T VALUE { get; }
 
