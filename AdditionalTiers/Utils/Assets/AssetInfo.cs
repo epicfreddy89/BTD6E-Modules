@@ -29,6 +29,7 @@ namespace AdditionalTiers.Utils.Assets {
     public enum RendererType {
         SKINNEDMESHRENDERER,
         MESHRENDERER,
+        SKINNEDANDUNSKINNEDMESHRENDERER,
         SPRITERENDERER,
         PARTICLESYSTEMRENDERER,
 

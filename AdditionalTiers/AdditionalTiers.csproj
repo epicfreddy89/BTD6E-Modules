@@ -26,7 +26,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
@@ -460,7 +461,7 @@
     <Compile Include="Tasks\Towers\Tier6s\BlackHoleSun.cs" />
     <Compile Include="Tasks\Towers\Tier6s\MrRoboto.cs" />
     <Compile Include="Tasks\Towers\Tier6s\NinjaSexParty.cs" />
-    <Compile Include="Tasks\Towers\Tier6s\PointOfNoReturn.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\PointOfKnowReturn.cs" />
     <Compile Include="Tasks\Towers\Tier6s\ScaryMonsters.cs" />
     <Compile Include="Tasks\Towers\Tier6s\SkyHigh.cs" />
     <Compile Include="Tasks\Towers\Tier6s\SuperFly.cs" />
@@ -468,6 +469,8 @@
     <Compile Include="Tasks\Towers\Tier6s\UnderWorld.cs" />
     <Compile Include="Tasks\Towers\Tier6s\VitaminC.cs" />
     <Compile Include="Tasks\Towers\Tier6s\WhiteSnake.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\BlackAndYellow.cs" />
+    <Compile Include="Tasks\Towers\Level21\FlyMeToTheMoon.cs" />
     <Compile Include="Tasks\Towers\Tier6s\WhiteWedding.cs" />
     <Compile Include="Tasks\Towers\Tier6s\YellowSubmarine.cs" />
     <Compile Include="Tasks\TowerTask.cs" />

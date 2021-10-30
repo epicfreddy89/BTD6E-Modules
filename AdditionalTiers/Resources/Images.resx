@@ -340,6 +340,33 @@
   <data name="DaftPunkOrbit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DaftPunkOrbit.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BlackYellowAir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BlackYellowAir.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BlackYellowBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BlackYellowBase.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BlackYellowBullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BlackYellowBullet.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BlackYellowLaser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BlackYellowLaser.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BlackYellowMissile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BlackYellowMissile.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BlackYellowPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>BlackYellowPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FMTTM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FMTTM.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FMTTM2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FMTTM.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FMTTM3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>FMTTM.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

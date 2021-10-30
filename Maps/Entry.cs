@@ -23,7 +23,7 @@ using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(Maps.Entry), "Maps", "1.4", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(Maps.Entry), "Maps", "1.5", "1330 Studios LLC")]
 namespace Maps {
     class Entry : MelonMod {
         public static AssetBundle SceneBundle = null;

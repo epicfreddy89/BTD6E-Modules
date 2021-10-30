@@ -12,8 +12,11 @@ namespace AdditionalTiers {
                 if (typeof(TowerTask).IsAssignableFrom(asmTypes[i]) && !typeof(TowerTask).FullName.Equals(asmTypes[i].FullName))
                     ttypes.Push(asmTypes[i]);
             List<TowerTask> tts = new();
-            foreach (var type in ttypes)
-                tts.Add((TowerTask)Activator.CreateInstance(type));
+            foreach (var type in ttypes) {
+                var tt = (TowerTask)Activator.CreateInstance(type);
+                if (((long)tt.tower) != -1)
+                    tts.Add(tt);
+            }
             Towers = tts.ToArray();
 
             if (!MelonPreferences.HasEntry("Additional Tier Addon Config", "Tier 6 required pop count multiplier")) {

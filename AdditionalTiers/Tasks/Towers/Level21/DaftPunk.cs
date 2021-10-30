@@ -1,5 +1,5 @@
 ﻿
-namespace AdditionalTiers.Tasks.Towers.Tier6s {
+namespace AdditionalTiers.Tasks.Towers.Level21 {
     public sealed class DaftPunk : TowerTask {
         public static TowerModel daftPunk;
         private static int time = -1;

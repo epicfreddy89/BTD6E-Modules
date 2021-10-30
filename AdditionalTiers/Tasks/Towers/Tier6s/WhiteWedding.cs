@@ -1,8 +1,8 @@
 ﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public sealed class WhiteAlbum : TowerTask {
+    public sealed class WhiteWedding : TowerTask {
         public static TowerModel whiteWedding;
         private static int time = -1;
-        public WhiteAlbum() {
+        public WhiteWedding() {
             identifier = "White Wedding";
             getTower = () => whiteWedding;
             baseTower = AddedTierName.WHITEWEDDING;

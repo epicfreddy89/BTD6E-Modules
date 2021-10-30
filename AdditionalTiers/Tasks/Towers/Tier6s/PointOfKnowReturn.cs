@@ -1,11 +1,11 @@
 ﻿namespace AdditionalTiers.Tasks.Towers.Tier6s {
-    public sealed class PointOfNoReturn : TowerTask {
-        public static TowerModel PONR;
+    public sealed class PointOfKnowReturn : TowerTask {
+        public static TowerModel POKR;
         private static int time = -1;
 
-        public PointOfNoReturn() {
-            identifier = "Point of no Return";
-            getTower = () => PONR;
+        public PointOfKnowReturn() {
+            identifier = "Point of Know Return";
+            getTower = () => POKR;
             baseTower = AddedTierName.POINTOFNORETURN;
             tower = AddedTierEnum.POINTOFNORETURN;
             requirements += tts => tts.tower.towerModel.baseId.Equals("BombShooter") && tts.tower.towerModel.tiers[1] == 5;
@@ -16,25 +16,25 @@
                 }
                 TransformationManager.VALUE.Add(new(identifier, tts.tower.Id));
                 tts.tower.worth = 0;
-                tts.tower.UpdateRootModel(PONR);
+                tts.tower.UpdateRootModel(POKR);
                 tts.tower.display.SetScaleOffset(new(1.2f, 1.2f, 1.2f));
                 tts.sim.simulation.CreateTextEffect(new(tts.position), "UpgradedText", 10, "Upgraded!", false);
                 AbilityMenu.instance.TowerChanged(tts);
                 AbilityMenu.instance.RebuildAbilities();
             };
             gameLoad += gm => {
-                PONR = gm.towers.First(a => a.name.Contains("BombShooter-250")).Clone().Cast<TowerModel>();
+                POKR = gm.towers.First(a => a.name.Contains("BombShooter-250")).Clone().Cast<TowerModel>();
 
-                PONR.range = 150;
-                PONR.cost = 0;
-                PONR.name = "Point of no Return";
-                PONR.baseId = "BombShooter";
-                PONR.display = "PONR";
-                PONR.dontDisplayUpgrades = true;
-                PONR.portrait = new("PONRIcon");
-                PONR.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>())
+                POKR.range = 150;
+                POKR.cost = 0;
+                POKR.name = "Point of no Return";
+                POKR.baseId = "BombShooter";
+                POKR.display = "PONR";
+                POKR.dontDisplayUpgrades = true;
+                POKR.portrait = new("PONRIcon");
+                POKR.behaviors.First(a => a.GetIl2CppType() == Il2CppType.Of<DisplayModel>())
                     .Cast<DisplayModel>().display = "PONR";
-                var beh = PONR.behaviors;
+                var beh = POKR.behaviors;
                 ProjectileModel proj = null;
                 ProjectileModel proj2 = null;
 
@@ -113,7 +113,7 @@
                     }
                 }
 
-                PONR.behaviors = beh.Add(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
+                POKR.behaviors = beh.Add(new OverrideCamoDetectionModel("OverrideCamoDetectionModel_", true));
             };
             recurring += tts => { };
             onLeave += () => { time = -1; };

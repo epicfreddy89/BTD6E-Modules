@@ -19,6 +19,8 @@
 
         public static void ModifyDamageModel(this ProjectileModel projectile, DamageChange damageChange) {
             var damage = (from behavior in projectile.behaviors where behavior is not null && Il2CppType.Of<DamageModel>().IsAssignableFrom(behavior.GetIl2CppType()) select behavior.Cast<DamageModel>()).FirstOrDefault();
+            if (damage == null)
+                return;
             if (!damageChange.set) {
                 if (damageChange.multiply) {
                     damage.damage *= damageChange.damage * DamageMultiplier;
@@ -30,6 +32,7 @@
             } else {
                 damage.damage = damageChange.damage * DamageMultiplier;
                 damage.maxDamage = damageChange.maxDamage * DamageMultiplier;
+                damage.immuneBloonProperties = damageChange.immuneBloonProperties;
             }
 
             if (damageChange.cappedDamage > 0)

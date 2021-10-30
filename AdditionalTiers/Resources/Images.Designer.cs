@@ -173,6 +173,66 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] BlackYellowAir {
+            get {
+                object obj = ResourceManager.GetObject("BlackYellowAir", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BlackYellowBase {
+            get {
+                object obj = ResourceManager.GetObject("BlackYellowBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BlackYellowBullet {
+            get {
+                object obj = ResourceManager.GetObject("BlackYellowBullet", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BlackYellowLaser {
+            get {
+                object obj = ResourceManager.GetObject("BlackYellowLaser", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BlackYellowMissile {
+            get {
+                object obj = ResourceManager.GetObject("BlackYellowMissile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BlackYellowPortrait {
+            get {
+                object obj = ResourceManager.GetObject("BlackYellowPortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] BTD4SunGod {
             get {
                 object obj = ResourceManager.GetObject("BTD4SunGod", resourceCulture);
@@ -226,6 +286,46 @@ namespace AdditionalTiers.Resources {
         internal static byte[] BTD4SunGodV {
             get {
                 object obj = ResourceManager.GetObject("BTD4SunGodV", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DaftPunk {
+            get {
+                object obj = ResourceManager.GetObject("DaftPunk", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DaftPunkOrbit {
+            get {
+                object obj = ResourceManager.GetObject("DaftPunkOrbit", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DaftPunkProjectile {
+            get {
+                object obj = ResourceManager.GetObject("DaftPunkProjectile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DaftPunkTurboProjectile {
+            get {
+                object obj = ResourceManager.GetObject("DaftPunkTurboProjectile", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -1076,6 +1176,36 @@ namespace AdditionalTiers.Resources {
         internal static byte[] FlameButton {
             get {
                 object obj = ResourceManager.GetObject("FlameButton", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FMTTM {
+            get {
+                object obj = ResourceManager.GetObject("FMTTM", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FMTTM2 {
+            get {
+                object obj = ResourceManager.GetObject("FMTTM2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FMTTM3 {
+            get {
+                object obj = ResourceManager.GetObject("FMTTM3", resourceCulture);
                 return ((byte[])(obj));
             }
         }
