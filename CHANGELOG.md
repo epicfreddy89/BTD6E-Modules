@@ -1,8 +1,30 @@
 ### Versions List
 
+- [v1.5](#v15)
 - [v1.4](#v14)
 - [v1.3](#v13)
 - [v1.2 and Before](#v12-and-before)
+
+---
+
+### v1.5
+
+#### Overall
+1. Code Cleanup
+
+#### Additional Tiers
+1. Added custom CoRoutine system
+2. Mr Roboto (x5x Super Monkey)
+3. Vitamin C (5xx Super Monkey)
+4. Daft Punk (Level 21 Quincy)
+5. Black & Yellow (5xx Heli Pilot)
+6. Fly Me To The Moon (Level 21 Captain Churchill)
+
+#### Godly Towers
+1. Add Ninja Paragon
+2. Added Carnage
+3. Added Venom
+
 
 ---
 
