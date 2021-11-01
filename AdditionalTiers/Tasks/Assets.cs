@@ -205,8 +205,11 @@ namespace AdditionalTiers.Tasks {
         };
 
         public static Color GetResetColor(DisplayBehavior beh) {
-            if (SpecialColors.ContainsKey(beh.displayModel.display))
-                return SpecialColors[beh.displayModel.display];
+            if (beh != null)
+                if (beh.displayModel != null)
+                    if (beh.displayModel.display != null)
+                        if (SpecialColors.ContainsKey(beh.displayModel.display))
+                            return SpecialColors[beh.displayModel.display];
             return Color.black;
         }
 
