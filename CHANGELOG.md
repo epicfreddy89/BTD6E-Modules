@@ -13,7 +13,7 @@
 1. Code Cleanup
 
 #### Additional Tiers
-1. Added custom CoRoutine system
+1. Added custom Coroutine system
 2. Mr Roboto (x5x Super Monkey)
 3. Vitamin C (5xx Super Monkey)
 4. Daft Punk (Level 21 Quincy)
