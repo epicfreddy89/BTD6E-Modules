@@ -12,6 +12,9 @@
 #### Overall
 1. Code Cleanup
 
+#### Additional Bloons
+1. Lych in Sandbox
+
 #### Additional Tiers
 1. Added custom Coroutine system
 2. Mr Roboto (x5x Super Monkey)
@@ -24,7 +27,6 @@
 1. Add Ninja Paragon
 2. Added Carnage
 3. Added Venom
-
 
 ---
 
