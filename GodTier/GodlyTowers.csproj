@@ -93,18 +93,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Il2CppSystem.Diagnostics.StackTrace, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.Diagnostics.StackTrace.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Globalization.Extensions, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.Globalization.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.IO.Compression, Version=3.7.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.IO.Compression.dll</HintPath>
-    </Reference>
     <Reference Include="Il2CppSystem.Net.Http">
       <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\BloonsTD6\MelonLoader\Managed\Il2CppSystem.Net.Http.dll</HintPath>
     </Reference>
@@ -435,6 +423,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Towers\Grim_Reaper.cs" />
+    <Compile Include="Towers\MiniPekka.cs" />
     <Compile Include="Towers\Venom.cs" />
     <Compile Include="Towers\Godzilla.cs" />
     <Compile Include="Towers\Paragons.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace GodlyTowers.Towers {
     public class Paragons {
-        private static int index = 35;
+        private static int index = 36;
 
         public static (TowerModel, ShopTowerDetailsModel, string, TowerModel) GetDartMonkey(GameModel model) {
             var origParagon = model.towers.First(t => t.name.Equals("DartMonkey-Paragon"));
@@ -61,7 +61,7 @@
             paragon.emoteSpriteLarge = new("Paragon");
             paragon.tier = 0;
             paragon.tiers = new int[] { 0, 0, 0 };
-            paragon.cost = 450000;
+            paragon.cost = 525000;
             paragon.canAlwaysBeSold = true;
             paragon.isParagon = false;
             paragon.dontDisplayUpgrades = true;

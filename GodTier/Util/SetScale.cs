@@ -67,4 +67,25 @@
             }
         }
     }
+    [RegisterTypeInIl2Cpp]
+    public class SetScale6 : MonoBehaviour {
+        public SetScale6(IntPtr obj0) : base(obj0) { ClassInjector.DerivedConstructorBody(this); }
+
+        public SetScale6() : base(ClassInjector.DerivedConstructorPointer<SetScale6>()) { }
+        private void Start() {
+            if (gameObject != null) {
+                if (gameObject.transform.localScale.z < 8.5f) {
+                    gameObject.transform.localScale = new(8.5f, 8.5f, 8.5f);
+                }
+            }
+        }
+
+        private void Update() {
+            if (gameObject != null) {
+                if (gameObject.transform.localScale.z < 8.5f) {
+                    gameObject.transform.localScale = new(8.5f, 8.5f, 8.5f);
+                }
+            }
+        }
+    }
 }

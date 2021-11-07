@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="model" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\model.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="godzilla" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\godzilla.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="spiderman" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bgs.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -129,5 +129,8 @@
   </data>
   <data name="venom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\venom.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="minipekka" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minipekka.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

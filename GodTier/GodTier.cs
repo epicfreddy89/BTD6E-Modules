@@ -5,6 +5,7 @@ global using System.Threading.Tasks;
 
 global using Assets.Scripts.Models;
 global using Assets.Scripts.Models.Bloons.Behaviors;
+global using Assets.Scripts.Models.Effects;
 global using Assets.Scripts.Models.GenericBehaviors;
 global using Assets.Scripts.Models.Map;
 global using Assets.Scripts.Models.Profile;
@@ -14,6 +15,7 @@ global using Assets.Scripts.Models.Towers.Behaviors.Abilities;
 global using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
 global using Assets.Scripts.Models.Towers.Behaviors.Attack;
 global using Assets.Scripts.Models.Towers.Behaviors.Emissions;
+global using Assets.Scripts.Models.Towers.Filters;
 global using Assets.Scripts.Models.Towers.Mods;
 global using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
 global using Assets.Scripts.Models.Towers.Upgrades;
@@ -21,9 +23,13 @@ global using Assets.Scripts.Models.Towers.Weapons;
 global using Assets.Scripts.Models.TowerSets;
 global using Assets.Scripts.Simulation.Towers;
 global using Assets.Scripts.Simulation.Towers.Weapons;
+global using Assets.Scripts.Unity.Audio;
+global using Assets.Scripts.Unity.Bridge;
 global using Assets.Scripts.Unity.Display;
 global using Assets.Scripts.Unity.Player;
 global using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
+global using Assets.Scripts.Unity.UI_New.InGame.TowerSelectionMenu;
+global using Assets.Scripts.Unity.UI_New.Main.MapSelect;
 global using Assets.Scripts.Unity.UI_New.Upgrade;
 global using Assets.Scripts.Utils;
 
@@ -48,22 +54,18 @@ global using Color = UnityEngine.Color;
 global using Object = UnityEngine.Object;
 global using Image = UnityEngine.UI.Image;
 
-global using Assets.Scripts.Unity.UI_New.InGame.TowerSelectionMenu;
-global using Assets.Scripts.Unity.UI_New.Main.MapSelect;
-global using Assets.Scripts.Unity.UI_New.Main.MonkeySelect;
-using System.IO;
-
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.5", "1330 Studios LLC")]
+[assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.6", "1330 Studios LLC")]
 
 namespace GodTier {
     public class GodTier : MelonMod {
 
         public override void OnApplicationStart() {
-            Godzilla.Assets = AssetBundle.LoadFromMemory(Models.model);
+            Godzilla.Assets = AssetBundle.LoadFromMemory(Models.godzilla);
             Spider_Man.Assets = AssetBundle.LoadFromMemory(Models.spiderman);
             Carnage.Assets = AssetBundle.LoadFromMemory(Models.carnage);
             Venom.Assets = AssetBundle.LoadFromMemory(Models.venom);
+            MiniPekka.Assets = AssetBundle.LoadFromMemory(Models.minipekka);
         }
 
         [HarmonyPatch(typeof(Btd6Player), "CheckForNewParagonPipEvent")]
@@ -109,11 +111,17 @@ namespace GodTier {
 
                 if (__instance.baseTowerModel.emoteSpriteLarge != null)
                     switch (__instance.baseTowerModel.emoteSpriteLarge.guidRef) {
+                        case "Dark":
+                            __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.TowerContainerDark));
+                            break;
                         case "Movie":
                             __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.TowerContainerMovie));
                             break;
                         case "Paragon":
                             __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.TowerContainerParagonLarge));
+                            break;
+                        case "None":
+                            __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.none));
                             break;
                     }
 
@@ -122,7 +130,7 @@ namespace GodTier {
         }
 
         public static Texture2D LoadTextureFromBytes(byte[] FileData) {
-            Texture2D Tex2D = new(2, 2);
+            Texture2D Tex2D = new(64, 64);
             if (ImageConversion.LoadImage(Tex2D, FileData)) return Tex2D;
 
             return null;
@@ -137,7 +145,8 @@ namespace GodTier {
         internal static Dictionary<string, UpgradeBG> CustomUpgrades = new();
 
         public enum UpgradeBG {
-            AntiVenom
+            AntiVenom,
+            MiniPekka
         }
 
         [HarmonyPatch(typeof(ProfileModel), "Validate")]
@@ -148,15 +157,19 @@ namespace GodTier {
                 var unlockedUpgrades = __instance.acquiredUpgrades;
 
                 foreach (var paragon in paragons)
-                    if (!unlockedTowers.Contains(paragon.Item1.baseId))
-                        unlockedTowers.Add(paragon.Item1.baseId);
+                    if (paragon.Item1 != null)
+                        if (!unlockedTowers.Contains(paragon.Item1.baseId))
+                            unlockedTowers.Add(paragon.Item1.baseId);
+
                 foreach (var tower in towers) {
-                    if (!unlockedTowers.Contains(tower.Item1.baseId))
-                        unlockedTowers.Add(tower.Item1.baseId);
+                    if (tower.Item1 != null)
+                        if (!unlockedTowers.Contains(tower.Item1.baseId))
+                            unlockedTowers.Add(tower.Item1.baseId);
 
                     foreach (var upgrade in tower.Item4)
-                        if (!unlockedUpgrades.Contains(upgrade.name))
-                            unlockedUpgrades.Add(upgrade.name);
+                        if (upgrade != null)
+                            if (!unlockedUpgrades.Contains(upgrade.name))
+                                unlockedUpgrades.Add(upgrade.name);
                 }
 
             }
@@ -173,6 +186,8 @@ namespace GodTier {
                 towers.Add(Spider_Man.GetTower(__result));
                 towers.Add(Carnage.GetTower(__result));
                 towers.Add(Venom.GetTower(__result));
+                towers.Add(MiniPekka.GetTower(__result));
+                towers.Add(Grim_Reaper.GetTower(__result));
 
                 foreach (var paragon in paragons) {
                     __result.towers = __result.towers.Add(paragon.Item1);
@@ -184,7 +199,8 @@ namespace GodTier {
                     __result.towerSet = __result.towerSet.Add(tower.Item2);
                     __result.upgrades = __result.upgrades.Add(tower.Item4);
                     foreach (var upgrade in tower.Item4) {
-                        __result.upgradesByName.Add(upgrade.name, upgrade);
+                        if (upgrade != null)
+                            __result.upgradesByName.Add(upgrade.name, upgrade);
                     }
                 }
             }
@@ -204,11 +220,16 @@ namespace GodTier {
                     __instance.purchaseArrowGlow.active = CustomUpgrades.ContainsKey(__instance.upgrade.name);
                     if (CustomUpgrades.ContainsKey(__instance.upgrade.name)) {
                         string resourceName = "";
-                        Sprite resourceSprite = null; 
+                        Sprite resourceSprite = null;
                         switch (CustomUpgrades[__instance.upgrade.name]) {
                             case UpgradeBG.AntiVenom: {
                                     resourceName = "AntiVenomUBG";
                                     resourceSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.AVenomUBG));
+                                    break;
+                                }
+                            case UpgradeBG.MiniPekka: {
+                                    resourceName = "MiniPekkaUBG";
+                                    resourceSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.MPUBG));
                                     break;
                                 }
                         }

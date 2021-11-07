@@ -83,6 +83,116 @@ namespace GodlyTowers.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] GrimReaper0 {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaper0", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaper1 {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaper1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaper2 {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaper2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaper3 {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaper3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaper4 {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaper4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaper5 {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaper5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaperBringBackTheDead {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaperBringBackTheDead", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaperFastDeath {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaperFastDeath", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaperHellishFlames {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaperHellishFlames", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaperRageOfFallen {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaperRageOfFallen", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GrimReaperStrongerSouls {
+            get {
+                object obj = ResourceManager.GetObject("GrimReaperStrongerSouls", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] Knull {
             get {
                 object obj = ResourceManager.GetObject("Knull", resourceCulture);
@@ -96,6 +206,56 @@ namespace GodlyTowers.Properties {
         internal static byte[] MaxCarnagePortrait {
             get {
                 object obj = ResourceManager.GetObject("MaxCarnagePortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MPPortrait {
+            get {
+                object obj = ResourceManager.GetObject("MPPortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MPTSM {
+            get {
+                object obj = ResourceManager.GetObject("MPTSM", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MPUBG {
+            get {
+                object obj = ResourceManager.GetObject("MPUBG", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] none {
+            get {
+                object obj = ResourceManager.GetObject("none", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ReaperPortrait {
+            get {
+                object obj = ResourceManager.GetObject("ReaperPortrait", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -136,6 +296,16 @@ namespace GodlyTowers.Properties {
         internal static byte[] SMPortrait3 {
             get {
                 object obj = ResourceManager.GetObject("SMPortrait3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TowerContainerDark {
+            get {
+                object obj = ResourceManager.GetObject("TowerContainerDark", resourceCulture);
                 return ((byte[])(obj));
             }
         }

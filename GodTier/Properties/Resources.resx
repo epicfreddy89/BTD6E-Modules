@@ -124,6 +124,9 @@
   <data name="TowerContainerMovie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TowerContainerMovie.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TowerContainerDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TowerContainerDark.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="SMPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SMPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -147,5 +150,53 @@
   </data>
   <data name="AVenomUBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AVenomUBG.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MPUBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MPUBG.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MPPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MPPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MPTSM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MPTSM.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="none" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\none.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ReaperPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\ReaperPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaper0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaper0.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaper1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaper1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaper2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaper2.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaper3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaper3.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaper4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaper4.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaper5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaper5.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaperBringBackTheDead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaperBringBackTheDead.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaperFastDeath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaperFastDeath.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaperHellishFlames" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaperHellishFlames.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaperRageOfFallen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaperRageOfFallen.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GrimReaperStrongerSouls" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Reaper\GrimReaperStrongerSouls.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
