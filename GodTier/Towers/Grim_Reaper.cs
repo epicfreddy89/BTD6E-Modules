@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace GodlyTowers.Towers {
+﻿namespace GodlyTowers.Towers {
     class Grim_Reaper {
         public static string name = "GrimReaper";
 
@@ -187,11 +185,11 @@ namespace GodlyTowers.Towers {
                         instance.name = objectId + "(Clone)";
                         instance.RecalculateGenericRenderers();
                         foreach (Renderer r in instance.genericRenderers)
-                                try {
-                                    r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper0);
-                                } catch {
-                                    MelonLogger.Error("You Suck! " + objectId);
-                                }
+                            try {
+                                r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper0);
+                            } catch {
+                                MelonLogger.Error("You Suck! " + objectId);
+                            }
 
                         udn = instance;
                         onComplete.Invoke(udn);
