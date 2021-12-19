@@ -357,7 +357,7 @@ namespace GodlyTowers.Towers {
         }
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.ProtoFlush))]
-        public class PrototypeFlushUDN_Patch {
+        public sealed class PrototypeFlushUDN_Patch {
             [HarmonyPostfix]
             public static void Postfix() {
                 foreach (var proto in PrototypeUDN_Patch.protos.Values)
@@ -368,7 +368,7 @@ namespace GodlyTowers.Towers {
 
 
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-        public class ResourceLoader_Patch {
+        public sealed class ResourceLoader_Patch {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, ref Image image) {
                 if (reference != null && reference.guidRef.Equals("VenomPortrait"))

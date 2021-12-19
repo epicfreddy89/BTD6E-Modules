@@ -77,6 +77,34 @@
             return (paragon, paragonDetails, "NinjaMonkey", origParagon);
         }
 
+        public static (TowerModel, ShopTowerDetailsModel, string, TowerModel) GetMonkeyBuccaneer(GameModel model) {
+            var origParagon = model.towers.First(t => t.name.Equals("MonkeyBuccaneer-Paragon"));
+            var paragon = origParagon.Clone().Cast<TowerModel>();
+            paragon.baseId = "ParagonMonkeyBuccaneer";
+            paragon.display = "36fc7f0fbe5ad944bb44d14820671b47";
+            paragon.name = "ParagonMonkeyBuccaneer";
+            paragon.towerSet = "Primary";
+            paragon.emoteSpriteLarge = new("Paragon");
+            paragon.tier = 0;
+            paragon.tiers = new int[] { 0, 0, 0 };
+            paragon.cost = 612750;
+            paragon.canAlwaysBeSold = true;
+            paragon.isParagon = false;
+            paragon.dontDisplayUpgrades = true;
+            paragon.icon = paragon.portrait;
+
+            if (!LocalizationManager.Instance.textTable.ContainsKey("ParagonMonkeyBuccaneer"))
+                LocalizationManager.Instance.textTable.Add("ParagonMonkeyBuccaneer", "Navarch of the Seas");
+
+            var paragonDetails = model.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
+            paragonDetails.towerId = "ParagonMonkeyBuccaneer";
+            paragonDetails.towerIndex = ++index;
+
+            FileIOUtil.SaveObject("navarch", origParagon);
+
+            return (paragon, paragonDetails, "MonkeyBuccaneer", origParagon);
+        }
+
         /*public static (TowerModel, TowerDetailsModel, string, TowerModel) GetSuperMonkey(GameModel model) {
             var origParagon = model.towers.First(t => t.name.Equals("SuperMonkey-520"));
             FileIOUtil.SaveFile("supermonkey_vengeful", Properties.Resources.supermonkey_vengeful);

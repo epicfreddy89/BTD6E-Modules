@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Simulation.Behaviors;
 
 namespace AdditionalTiers.Tasks {
-    public class Assets {
+    public sealed class Assets {
         [HideFromIl2Cpp]
         public static Dictionary<string, Type> Types { get; set; } = new() {
             { "WhitesnakeProj", Il2CppType.Of<AnimatedEnergyTexture>() },
@@ -178,6 +178,40 @@ namespace AdditionalTiers.Tasks {
                         udn.genericRenderers[i].material.SetColor("_OutlineColor", new Color32(177, 135, 255, 255));
                     }
                 }
+            },
+            {
+                "BurningDownTheHouse",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++) {
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.05f);
+                        udn.genericRenderers[i].material.SetColor("_OutlineColor", new Color32(0, 254, 254, 255));
+                    }
+                }
+            },
+            {
+                "SheerHeartAttack",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++) {
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.05f);
+                        udn.genericRenderers[i].material.SetColor("_OutlineColor", new Color32(206, 141, 0, 255));
+                    }
+                }
+            },
+            {
+                "AOBTD",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++) {
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.02f);
+                        udn.genericRenderers[i].material.SetColor("_OutlineColor", new Color32(162, 0, 255, 255));
+                    }
+                }
+            },
+            {
+                "HeyYa",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++)
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 1);
+                }
             }
         };
         [HideFromIl2Cpp]
@@ -201,19 +235,19 @@ namespace AdditionalTiers.Tasks {
         public static Dictionary<string, Color> SpecialColors { get; set; } = new() {
             { "FMTTM", new Color32(177, 135, 255, 255) },
             { "FMTTM2", new Color32(177, 135, 255, 255) },
-            { "FMTTM3", new Color32(177, 135, 255, 255) }
+            { "FMTTM3", new Color32(177, 135, 255, 255) },
+            { "BurningDownTheHouse", new Color32(0, 254, 254, 255) },
+            { "SheerHeartAttack", new Color32(206, 141, 0, 255) },
+            { "AOBTD", new Color32(162, 0, 255, 255) }
         };
 
         public static Color GetResetColor(DisplayBehavior beh) {
-            if (beh != null)
-                if (beh.displayModel != null)
-                    if (beh.displayModel.display != null)
-                        if (SpecialColors.ContainsKey(beh.displayModel.display))
-                            return SpecialColors[beh.displayModel.display];
+            if (beh?.displayModel?.display != null && SpecialColors.ContainsKey(beh.displayModel.display))
+                return SpecialColors[beh.displayModel.display];
             return Color.black;
         }
 
-        private static AssetBundle _shader = null;
+        private static AssetBundle _shader;
 
         public static AssetBundle ShaderBundle {
             get {
@@ -262,97 +296,94 @@ namespace AdditionalTiers.Tasks {
         }
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.FindAndSetupPrototypeAsync))]
-        public class DisplayFactory {
+        public sealed class DisplayFactory {
             public static List<AssetInfo> allAssetsKnown = new();
 
             [HarmonyPrefix]
             public static bool Prefix(Factory __instance, string objectId, Il2CppSystem.Action<UnityDisplayNode> onComplete) {
                 var assets = ShaderBundle.LoadAllAssets();
 
-                using (var enumerator = allAssetsKnown.GetEnumerator()) {
-                    while (enumerator.MoveNext()) {
-                        var curAsset = enumerator.Current;
-                        if (objectId.Equals(curAsset.CustomAssetName)) {
-                            UnityDisplayNode udn = null;
-                            __instance.FindAndSetupPrototypeAsync(curAsset.BTDAssetName,
-                                new Action<UnityDisplayNode>(
-                                    btdUdn => {
-                                        var instance = Object.Instantiate(btdUdn, __instance.PrototypeRoot);
-                                        instance.name = objectId + "(Clone)";
-                                        if (curAsset.RendererType == RendererType.SPRITERENDERER)
-                                            instance.isSprite = true;
-                                        instance.RecalculateGenericRenderers();
+                foreach (var curAsset in allAssetsKnown) {
+                    if (objectId.Equals(curAsset.CustomAssetName)) {
+                        UnityDisplayNode udn = null;
+                        __instance.FindAndSetupPrototypeAsync(curAsset.BTDAssetName,
+                            new Action<UnityDisplayNode>(
+                                btdUdn => {
+                                    var instance = Object.Instantiate(btdUdn, __instance.PrototypeRoot);
+                                    instance.name = objectId + "(Clone)";
+                                    if (curAsset.RendererType == RendererType.SPRITERENDERER)
+                                        instance.isSprite = true;
+                                    instance.RecalculateGenericRenderers();
 
-                                        Type rendererType = null;
-                                        switch (curAsset.RendererType) {
-                                            case RendererType.MESHRENDERER:
-                                                rendererType = Il2CppType.Of<MeshRenderer>();
-                                                break;
-                                            case RendererType.SPRITERENDERER:
-                                                rendererType = Il2CppType.Of<SpriteRenderer>();
-                                                break;
-                                            case RendererType.SKINNEDMESHRENDERER:
-                                                rendererType = Il2CppType.Of<SkinnedMeshRenderer>();
-                                                break;
-                                            case RendererType.PARTICLESYSTEMRENDERER:
-                                                rendererType = Il2CppType.Of<ParticleSystemRenderer>();
-                                                break;
-                                        }
+                                    Type rendererType = null;
+                                    switch (curAsset.RendererType) {
+                                        case RendererType.MESHRENDERER:
+                                            rendererType = Il2CppType.Of<MeshRenderer>();
+                                            break;
+                                        case RendererType.SPRITERENDERER:
+                                            rendererType = Il2CppType.Of<SpriteRenderer>();
+                                            break;
+                                        case RendererType.SKINNEDMESHRENDERER:
+                                            rendererType = Il2CppType.Of<SkinnedMeshRenderer>();
+                                            break;
+                                        case RendererType.PARTICLESYSTEMRENDERER:
+                                            rendererType = Il2CppType.Of<ParticleSystemRenderer>();
+                                            break;
+                                    }
 
-                                        if (rendererType == null && curAsset.RendererType != RendererType.SKINNEDANDUNSKINNEDMESHRENDERER)
-                                            throw new NullReferenceException("rendererType is still null, don't leave things unset.");
+                                    if (rendererType == null && curAsset.RendererType != RendererType.SKINNEDANDUNSKINNEDMESHRENDERER)
+                                        throw new NullReferenceException("rendererType is still null, don't leave things unset.");
 
-                                        for (var i = 0; i < instance.genericRenderers.Length; i++) {
-                                            if (instance.genericRenderers[i].GetIl2CppType() == rendererType) {
-                                                if (curAsset.RendererType != RendererType.SPRITERENDERER && curAsset.RendererType != RendererType.SKINNEDANDUNSKINNEDMESHRENDERER && curAsset.RendererType != RendererType.PARTICLESYSTEMRENDERER) {
-                                                    var renderer = instance.genericRenderers[i].Cast<Renderer>();
-                                                    if (!SpecialShaderIndicies.ContainsKey(objectId))
-                                                        renderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
-                                                    else
-                                                        renderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
-                                                    renderer.material.SetColor("_OutlineColor", Color.black);
-                                                    renderer.material.mainTexture = CacheBuilder.Get(objectId);
-                                                } else if (curAsset.RendererType == RendererType.SPRITERENDERER) {
-                                                    var spriteRenderer = instance.genericRenderers[i].Cast<SpriteRenderer>();
-                                                    if (SpriteCreation.ContainsKey(objectId))
-                                                        spriteRenderer.sprite = SpriteCreation[objectId](objectId);
-                                                    else
-                                                        spriteRenderer.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
-                                                    if (Types.ContainsKey(objectId)) {
-                                                        spriteRenderer.gameObject.AddComponent(Types[objectId]);
-                                                    }
-                                                }
-                                            } else if (curAsset.RendererType == RendererType.SKINNEDANDUNSKINNEDMESHRENDERER) {
-                                                if (instance.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SkinnedMeshRenderer>()) {
-                                                    var skinnedRenderer = instance.genericRenderers[i].Cast<SkinnedMeshRenderer>();
-                                                    if (!SpecialShaderIndicies.ContainsKey(objectId))
-                                                        skinnedRenderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
-                                                    else
-                                                        skinnedRenderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
-                                                    skinnedRenderer.material.SetColor("_OutlineColor", Color.black);
-                                                    skinnedRenderer.material.mainTexture = CacheBuilder.Get(objectId);
-
-                                                } else if (instance.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<MeshRenderer>()) {
-                                                    var meshRenderer = instance.genericRenderers[i].Cast<MeshRenderer>();
-                                                    if (!SpecialShaderIndicies.ContainsKey(objectId))
-                                                        meshRenderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
-                                                    else
-                                                        meshRenderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
-                                                    meshRenderer.material.SetColor("_OutlineColor", Color.black);
-                                                    meshRenderer.material.mainTexture = CacheBuilder.Get(objectId);
+                                    for (var i = 0; i < instance.genericRenderers.Length; i++) {
+                                        if (instance.genericRenderers[i].GetIl2CppType() == rendererType) {
+                                            if (curAsset.RendererType != RendererType.SPRITERENDERER && curAsset.RendererType != RendererType.SKINNEDANDUNSKINNEDMESHRENDERER && curAsset.RendererType != RendererType.PARTICLESYSTEMRENDERER) {
+                                                var renderer = instance.genericRenderers[i].Cast<Renderer>();
+                                                if (!SpecialShaderIndicies.ContainsKey(objectId))
+                                                    renderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
+                                                else
+                                                    renderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
+                                                renderer.material.SetColor("_OutlineColor", Color.black);
+                                                renderer.material.mainTexture = CacheBuilder.Get(objectId);
+                                            } else if (curAsset.RendererType == RendererType.SPRITERENDERER) {
+                                                var spriteRenderer = instance.genericRenderers[i].Cast<SpriteRenderer>();
+                                                if (SpriteCreation.ContainsKey(objectId))
+                                                    spriteRenderer.sprite = SpriteCreation[objectId](objectId);
+                                                else
+                                                    spriteRenderer.sprite = SpriteBuilder.createProjectile(CacheBuilder.Get(objectId));
+                                                if (Types.ContainsKey(objectId)) {
+                                                    spriteRenderer.gameObject.AddComponent(Types[objectId]);
                                                 }
                                             }
+                                        } else if (curAsset.RendererType == RendererType.SKINNEDANDUNSKINNEDMESHRENDERER) {
+                                            if (instance.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<SkinnedMeshRenderer>()) {
+                                                var skinnedRenderer = instance.genericRenderers[i].Cast<SkinnedMeshRenderer>();
+                                                if (!SpecialShaderIndicies.ContainsKey(objectId))
+                                                    skinnedRenderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
+                                                else
+                                                    skinnedRenderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
+                                                skinnedRenderer.material.SetColor("_OutlineColor", Color.black);
+                                                skinnedRenderer.material.mainTexture = CacheBuilder.Get(objectId);
+
+                                            } else if (instance.genericRenderers[i].GetIl2CppType() == Il2CppType.Of<MeshRenderer>()) {
+                                                var meshRenderer = instance.genericRenderers[i].Cast<MeshRenderer>();
+                                                if (!SpecialShaderIndicies.ContainsKey(objectId))
+                                                    meshRenderer.material.shader = assets.First(a => a.name.StartsWith("Unlit/CelShading")).Cast<Shader>();
+                                                else
+                                                    meshRenderer.material.shader = assets.First(SpecialShaderIndicies[objectId]).Cast<Shader>();
+                                                meshRenderer.material.SetColor("_OutlineColor", Color.black);
+                                                meshRenderer.material.mainTexture = CacheBuilder.Get(objectId);
+                                            }
                                         }
+                                    }
 
 
-                                        if (Actions.ContainsKey(objectId))
-                                            Actions[objectId](instance);
+                                    if (Actions.ContainsKey(objectId))
+                                        Actions[objectId](instance);
 
-                                        udn = instance;
-                                        onComplete.Invoke(udn);
-                                    }));
-                            return false;
-                        }
+                                    udn = instance;
+                                    onComplete.Invoke(udn);
+                                }));
+                        return false;
                     }
                 }
 
@@ -398,7 +429,7 @@ namespace AdditionalTiers.Tasks {
         }
 
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-        public class ResourceLoader_Patch {
+        public sealed class ResourceLoader_Patch {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, Image image) {
                 if (reference != null) {
@@ -423,7 +454,7 @@ namespace AdditionalTiers.Tasks {
         }
 
         public static class AnimatedAssets {
-            private static List<Sprite> _energySprites = new();
+            private static readonly List<Sprite> _energySprites = new();
 
             public static List<Sprite> EnergySprites {
                 get {
@@ -431,7 +462,7 @@ namespace AdditionalTiers.Tasks {
                     return _energySprites;
                 }
             }
-            private static List<Sprite> _flameSprites = new();
+            private static readonly List<Sprite> _flameSprites = new();
 
             public static List<Sprite> FlameSprites {
                 get {
@@ -439,7 +470,7 @@ namespace AdditionalTiers.Tasks {
                     return _flameSprites;
                 }
             }
-            private static List<Sprite> _darkFlameSprites = new();
+            private static readonly List<Sprite> _darkFlameSprites = new();
 
             public static List<Sprite> DarkFlameSprites {
                 get {
@@ -449,9 +480,9 @@ namespace AdditionalTiers.Tasks {
             }
 
             static AnimatedAssets() {
-                var gcMe = EnergySprites;
-                gcMe = FlameSprites;
-                gcMe = DarkFlameSprites;
+                _ = EnergySprites;
+                _ = FlameSprites;
+                _ = DarkFlameSprites;
             }
         }
     }

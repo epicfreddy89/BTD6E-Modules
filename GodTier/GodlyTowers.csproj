@@ -444,9 +444,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\model.bundle" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\SMPortrait.png" />
   </ItemGroup>
   <ItemGroup>
@@ -457,9 +454,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SMPortrait3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\supermonkey_vengeful.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

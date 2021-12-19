@@ -63,6 +63,26 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] AOBTD {
+            get {
+                object obj = ResourceManager.GetObject("AOBTD", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AOBTDPortrait {
+            get {
+                object obj = ResourceManager.GetObject("AOBTDPortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] APMGold {
             get {
                 object obj = ResourceManager.GetObject("APMGold", resourceCulture);
@@ -286,6 +306,36 @@ namespace AdditionalTiers.Resources {
         internal static byte[] BTD4SunGodV {
             get {
                 object obj = ResourceManager.GetObject("BTD4SunGodV", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BurningDownTheHouse {
+            get {
+                object obj = ResourceManager.GetObject("BurningDownTheHouse", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BurningDownTheHousePortrait {
+            get {
+                object obj = ResourceManager.GetObject("BurningDownTheHousePortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BurningDownTheHouseProj {
+            get {
+                object obj = ResourceManager.GetObject("BurningDownTheHouseProj", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -1263,6 +1313,26 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] HeyYa {
+            get {
+                object obj = ResourceManager.GetObject("HeyYa", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] HeyYaPortrait {
+            get {
+                object obj = ResourceManager.GetObject("HeyYaPortrait", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] MrRoboto {
             get {
                 object obj = ResourceManager.GetObject("MrRoboto", resourceCulture);
@@ -1446,6 +1516,36 @@ namespace AdditionalTiers.Resources {
         internal static byte[] shader {
             get {
                 object obj = ResourceManager.GetObject("shader", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SheerHeartAttack {
+            get {
+                object obj = ResourceManager.GetObject("SheerHeartAttack", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SheerHeartAttackBomb {
+            get {
+                object obj = ResourceManager.GetObject("SheerHeartAttackBomb", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SheerHeartAttackPortrait {
+            get {
+                object obj = ResourceManager.GetObject("SheerHeartAttackPortrait", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -1,20 +1,27 @@
-﻿[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.5", "1330 Studios LLC")]
+﻿using System.Threading;
+
+[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
+[assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.6", "1330 Studios LLC")]
 
 namespace AdditionalTiers {
     public sealed class AdditionalTiers : MelonMod {
         public static TowerTask[] Towers;
+        public static string Version;
+        public static bool ShouldRestart;
 
         public override void OnApplicationStart() {
+            Version = Assembly.GetCustomAttribute<MelonInfoAttribute>().Version;
+
             var asmTypes = Assembly.GetTypes();
             var ttypes = new Stack<SType>();
             for (int i = 0; i < asmTypes.Length; i++)
                 if (typeof(TowerTask).IsAssignableFrom(asmTypes[i]) && !typeof(TowerTask).FullName.Equals(asmTypes[i].FullName))
                     ttypes.Push(asmTypes[i]);
+
             List<TowerTask> tts = new();
             foreach (var type in ttypes) {
                 var tt = (TowerTask)Activator.CreateInstance(type);
-                if (((long)tt.tower) != -1)
+                if ((long)tt.tower != -1)
                     tts.Add(tt);
             }
             Towers = tts.ToArray();
@@ -33,6 +40,12 @@ namespace AdditionalTiers {
             MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
             DisplayFactory.Build();
+
+            AppDomain.CurrentDomain.FirstChanceException += (sender, args) => {
+                if (args.Exception.TargetSite.DeclaringType.Assembly.FullName == Assembly.FullName) {
+                    ShouldRestart = true;
+                }
+            };
         }
 
         public override void OnApplicationQuit() {
@@ -51,8 +64,21 @@ namespace AdditionalTiers {
                     textColor = Color.white
                 }
             };
-            GUI.Label(new Rect(0, Screen.height - 20, 100, 90), "Additional Tiers v1.5", guiStyle);
+            GUI.Label(new Rect(0, Screen.height - 20, 100, 90), $"Additional Tiers v{Version}", guiStyle);
             GUI.color = guiCol;
+
+            if (ShouldRestart) {
+                var errGuiCol = GUI.color;
+                GUI.color = new Color32(255, 50, 50, 255);
+                var errGuiStyle = new GUIStyle {
+                    normal =
+                    {
+                    textColor = Color.white
+                }
+                };
+                GUI.Label(new Rect(0, 20, 100, 90), "Additional Tiers has detected an error, please restart the game and if this issue persists please contact Kosmic @ the 1330 Studios discord.", errGuiStyle);
+                GUI.color = errGuiCol;
+            }
         }
 
         public override void OnUpdate() {
@@ -76,7 +102,7 @@ namespace AdditionalTiers {
                             else if (TransformationManager.VALUE.Contains(towerToSimulation.tower)) allAdditionalTiers[indexOfAdditionalTiers].recurring(towerToSimulation);
                         }
                         else if (!TransformationManager.VALUE.Contains(towerToSimulation.tower))
-                            ADisplay.towerdata.Add((allAdditionalTiers[indexOfAdditionalTiers].identifier, towerToSimulation.damageDealt, (int) allAdditionalTiers[indexOfAdditionalTiers].tower));
+                            ADisplay.towerdata.Add((allAdditionalTiers[indexOfAdditionalTiers].identifier, towerToSimulation.damageDealt, popsNeeded));
                     }
             }
         }

@@ -356,7 +356,7 @@ namespace GodlyTowers.Towers {
         }
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.ProtoFlush))]
-        public class PrototypeFlushUDN_Patch {
+        public sealed class PrototypeFlushUDN_Patch {
             [HarmonyPostfix]
             public static void Postfix() {
                 foreach (var proto in PrototypeUDN_Patch.protos.Values)
@@ -367,7 +367,7 @@ namespace GodlyTowers.Towers {
 
 
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-        public class ResourceLoader_Patch {
+        public sealed class ResourceLoader_Patch {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, ref Image image) {
                 if (reference != null && reference.guidRef.Equals("SMPortrait"))
@@ -409,7 +409,7 @@ namespace GodlyTowers.Towers {
         }
 
         [HarmonyPatch(typeof(Weapon), nameof(Weapon.SpawnDart))]
-        public static class WI {
+        public sealed class WI {
             [HarmonyPostfix]
             public static void Postfix(ref Weapon __instance) => RunAnimations(__instance);
 

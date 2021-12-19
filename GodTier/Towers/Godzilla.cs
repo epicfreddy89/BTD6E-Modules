@@ -1,4 +1,6 @@
-﻿namespace GodTier.Towers {
+﻿using System.Threading;
+
+namespace GodTier.Towers {
     public class Godzilla {
         public static string name = "Godzilla: The King of all Monsters";
 
@@ -294,7 +296,7 @@
         }
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.FindAndSetupPrototypeAsync))]
-        public class PrototypeUDN_Patch {
+        public sealed class PrototypeUDN_Patch {
             public static Dictionary<string, UnityDisplayNode> protos = new();
 
             [HarmonyPrefix]
@@ -391,22 +393,18 @@
             }
         }
 
-        private static AssetBundle __asset;
-
-        public static AssetBundle Assets {
-            get => __asset;
-            set => __asset = value;
-        }
+        public static AssetBundle Assets { get; set; }
 
         public static UnityDisplayNode GetGodzilla(Transform transform) {
             var udn = Object.Instantiate(Assets.LoadAsset("Godzilla").Cast<GameObject>(), transform).AddComponent<UnityDisplayNode>();
             udn.Active = false;
             udn.transform.position = new(-3000, 0);
+            udn.gameObject.AddComponent<SetScale7>();
             return udn;
         }
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.ProtoFlush))]
-        public class PrototypeFlushUDN_Patch {
+        public sealed class PrototypeFlushUDN_Patch {
             [HarmonyPostfix]
             public static void Postfix() {
                 foreach (var proto in PrototypeUDN_Patch.protos.Values)
@@ -416,7 +414,7 @@
         }
 
         [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-        public record ResourceLoader_Patch {
+        public sealed class ResourceLoader_Patch {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, ref Image image) {
                 if (reference != null && reference.guidRef.Equals("GodzillaPortrait"))
@@ -452,9 +450,7 @@
         [HarmonyPatch(typeof(Weapon), nameof(Weapon.SpawnDart))]
         public static class WI {
             [HarmonyPostfix]
-            public static void Postfix(ref Weapon __instance) => RunAnimations(__instance);
-
-            private static async Task RunAnimations(Weapon __instance) {
+            private static void Postfix(Weapon __instance) {
                 if (__instance == null) return;
                 if (__instance.weaponModel == null) return;
                 if (__instance.weaponModel.name == null) return;
@@ -465,34 +461,30 @@
 
                 try {
                     if (__instance.weaponModel.name.EndsWith("Swipe")) {
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().StopPlayback();
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().Play("metarig|metarigSwipe");
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", true);
+                        __instance.attack.tower.Node.graphic.GetComponent<Animator>().StopPlayback();
+                        __instance.attack.tower.Node.graphic.GetComponent<Animator>().Play("swipe");
                         var wait = 2300f;
-                        await Task.Run(() => {
+                        new Thread(async () => {
                             while (wait > 0) {
                                 wait -= TimeManager.timeScaleWithoutNetwork + 1;
-                                Task.Delay(1);
+                                await Task.Delay(1).ConfigureAwait(false);
                             }
 
-                            return;
-                        });
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", false);
+                            __instance.attack.tower.Node.graphic.GetComponent<Animator>().Play("start");
+                        }).Start();
                     }
                     if (__instance.weaponModel.name.EndsWith("Breath")) {
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().StopPlayback();
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().Play("metarig|metarigFireball");
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", true);
+                        __instance.attack.tower.Node.graphic.GetComponent<Animator>().StopPlayback();
+                        __instance.attack.tower.Node.graphic.GetComponent<Animator>().Play("fireball");
                         var wait = 2300f;
-                        await Task.Run(() => {
+                        new Thread(async () => {
                             while (wait > 0) {
                                 wait -= TimeManager.timeScaleWithoutNetwork + 1;
-                                Task.Delay(1);
+                                await Task.Delay(1).ConfigureAwait(false);
                             }
 
-                            return;
+                            __instance.attack.tower.Node.graphic.GetComponent<Animator>().Play("start");
                         });
-                        __instance.attack.tower.Node.graphic.GetComponentInParent<Animator>().SetBool("Attack", false);
                     }
                 } catch (Exception) { }
             }

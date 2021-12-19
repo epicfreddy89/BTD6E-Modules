@@ -1,5 +1,5 @@
 ﻿namespace AdditionalTiers.Utils.Towers {
-    public class TaskRunner {
+    public sealed class TaskRunner {
 
         [HarmonyPatch(typeof(InGame), nameof(InGame.Quit))]
         [HarmonyPatch(typeof(InGame), nameof(InGame.Restart))]
@@ -9,6 +9,7 @@
                 var allAdditionalTiers = AdditionalTiers.Towers;
                 for (var towerIndex = allAdditionalTiers.Length - 1; towerIndex >= 0; towerIndex--)
                     allAdditionalTiers[towerIndex].onLeave();
+                TransformationManager.VALUE.Clear();
             }
         }
     }

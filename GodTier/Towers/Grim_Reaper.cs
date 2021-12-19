@@ -188,7 +188,6 @@
                             try {
                                 r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper0);
                             } catch {
-                                MelonLogger.Error("You Suck! " + objectId);
                             }
 
                         udn = instance;
@@ -207,7 +206,6 @@
                                 try {
                                     r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper1);
                                 } catch {
-                                    MelonLogger.Error("You Suck! " + objectId);
                                 }
 
                         udn = instance;
@@ -228,7 +226,6 @@
                                 try {
                                     r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper2);
                                 } catch {
-                                    MelonLogger.Error("You Suck! " + objectId);
                                 }
 
                         udn = instance;
@@ -249,7 +246,6 @@
                                 try {
                                     r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper3);
                                 } catch {
-                                    MelonLogger.Error("You Suck! " + objectId);
                                 }
 
                         udn = instance;
@@ -270,7 +266,6 @@
                                 try {
                                     r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper4);
                                 } catch {
-                                    MelonLogger.Error("You Suck! " + objectId);
                                 }
 
                         udn = instance;
@@ -291,7 +286,6 @@
                                 try {
                                     r.material.mainTexture = LoadTextureFromBytes(Properties.Resources.GrimReaper5);
                                 } catch {
-                                    MelonLogger.Error("You Suck! " + objectId);
                                 }
 
                         udn = instance;
@@ -322,7 +316,7 @@
     }
 
     [HarmonyPatch(typeof(ResourceLoader), nameof(ResourceLoader.LoadSpriteFromSpriteReferenceAsync))]
-    public class ResourceLoader_Patch {
+    public sealed class ResourceLoader_Patch {
         [HarmonyPostfix]
         public static void Postfix(SpriteReference reference, ref Image image) {
             if (reference != null && reference.guidRef.Equals("GrimReaperIcon"))
@@ -376,7 +370,4 @@
             return Sprite.Create(text, new(0, 0, text.width, text.height), new());
         }
     }
-
-    // 191cc21b4fb5dfa4ba4b81565d2a5d4c
-
 }

@@ -54,6 +54,11 @@ global using Color = UnityEngine.Color;
 global using Object = UnityEngine.Object;
 global using Image = UnityEngine.UI.Image;
 
+using System.Threading;
+
+using Assets.Scripts.Models.ServerEvents;
+using Assets.Scripts.Simulation.Input;
+
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.6", "1330 Studios LLC")]
 
@@ -182,6 +187,7 @@ namespace GodTier {
                 paragons.Add(Paragons.GetDartMonkey(__result));
                 paragons.Add(Paragons.GetBoomerangMonkey(__result));
                 paragons.Add(Paragons.GetNinjaMonkey(__result));
+                paragons.Add(Paragons.GetMonkeyBuccaneer(__result));
                 towers.Add(Godzilla.GetTower(__result));
                 towers.Add(Spider_Man.GetTower(__result));
                 towers.Add(Carnage.GetTower(__result));

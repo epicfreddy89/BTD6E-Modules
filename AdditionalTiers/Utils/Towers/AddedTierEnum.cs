@@ -19,7 +19,11 @@
         VITAMINC = 1000000,
         DAFTPUNK = 1000000,
         BLACKANDYELLOW = 100000,
-        FLYMETOTHEMOON = 1000000
+        FLYMETOTHEMOON = 1000000,
+        BURNINGDOWNTHEHOUSE = 100000,
+        SHEERHEARTATTACK = 100000,
+        ANOTHERONEBITESTHEDUST = 100000,
+        HEYYA = 100000
     }
 
     public sealed class AddedTierName {
@@ -43,5 +47,9 @@
         public static readonly string DAFTPUNK = "Quincy 20";
         public static readonly string BLACKANDYELLOW = "HeliPilot-520";
         public static readonly string FLYMETOTHEMOON = "CaptainChurchill 20";
+        public static readonly string BURNINGDOWNTHEHOUSE = "TackShooter-205";
+        public static readonly string SHEERHEARTATTACK = "BombShooter-205";
+        public static readonly string ANOTHERONEBITESTHEDUST = "SniperMonkey-502";
+        public static readonly string HEYYA = "BoomerangMonkey-205";
     }
 }
