@@ -1,30 +1,27 @@
-﻿using System.Threading;
-
-[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
+﻿[assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(AdditionalTiers.AdditionalTiers), "Additional Tier Addon", "1.6", "1330 Studios LLC")]
 
 namespace AdditionalTiers {
     public sealed class AdditionalTiers : MelonMod {
         public static TowerTask[] Towers;
         public static string Version;
-        public static bool ShouldRestart;
 
         public override void OnApplicationStart() {
+            ErrorHandler.VALUE.Initialize();
+
             Version = Assembly.GetCustomAttribute<MelonInfoAttribute>().Version;
 
-            var asmTypes = Assembly.GetTypes();
-            var ttypes = new Stack<SType>();
-            for (int i = 0; i < asmTypes.Length; i++)
-                if (typeof(TowerTask).IsAssignableFrom(asmTypes[i]) && !typeof(TowerTask).FullName.Equals(asmTypes[i].FullName))
-                    ttypes.Push(asmTypes[i]);
+            List<TowerTask> towers = new();
 
-            List<TowerTask> tts = new();
-            foreach (var type in ttypes) {
-                var tt = (TowerTask)Activator.CreateInstance(type);
-                if ((long)tt.tower != -1)
-                    tts.Add(tt);
-            }
-            Towers = tts.ToArray();
+            Assembly.GetTypes().AsParallel().ForAll(type => {
+                if (typeof(TowerTask).IsAssignableFrom(type) && !typeof(TowerTask).FullName.Equals(type.FullName)) {
+                    var tower = (TowerTask)Activator.CreateInstance(type);
+                    if ((long)tower.tower != -1)
+                        towers.Add(tower);
+                }
+            });
+
+            Towers = towers.ToArray();
 
             if (!MelonPreferences.HasEntry("Additional Tier Addon Config", "Tier 6 required pop count multiplier")) {
                 MelonPreferences.CreateCategory("Additional Tier Addon Config", "Additional Tier Addon Config");
@@ -37,19 +34,15 @@ namespace AdditionalTiers {
             HarmonyInstance.Patch(Method(typeof(Tower), nameof(Tower.Hilight)), postfix: new HarmonyMethod(Method(typeof(HighlightManager), nameof(HighlightManager.Highlight))));
             HarmonyInstance.Patch(Method(typeof(Tower), nameof(Tower.UnHighlight)), postfix: new HarmonyMethod(Method(typeof(HighlightManager), nameof(HighlightManager.UnHighlight))));
 
-            MelonLogger.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
+            LoggerInstance.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
             CacheBuilder.Build();
             DisplayFactory.Build();
 
-            AppDomain.CurrentDomain.FirstChanceException += (sender, args) => {
-                if (args.Exception.TargetSite.DeclaringType.Assembly.FullName == Assembly.FullName) {
-                    ShouldRestart = true;
-                }
-            };
+            LoggerInstance.Error("OETNMAIOTNIAOS");
         }
 
         public override void OnApplicationQuit() {
-            MelonLogger.Msg($"Last Win32 Error - {Marshal.GetLastWin32Error()}");
+            LoggerInstance.Msg($"Last Win32 Error - {Marshal.GetLastWin32Error()}");
             DisplayFactory.Flush();
             CacheBuilder.Flush();
         }
@@ -67,18 +60,7 @@ namespace AdditionalTiers {
             GUI.Label(new Rect(0, Screen.height - 20, 100, 90), $"Additional Tiers v{Version}", guiStyle);
             GUI.color = guiCol;
 
-            if (ShouldRestart) {
-                var errGuiCol = GUI.color;
-                GUI.color = new Color32(255, 50, 50, 255);
-                var errGuiStyle = new GUIStyle {
-                    normal =
-                    {
-                    textColor = Color.white
-                }
-                };
-                GUI.Label(new Rect(0, 20, 100, 90), "Additional Tiers has detected an error, please restart the game and if this issue persists please contact Kosmic @ the 1330 Studios discord.", errGuiStyle);
-                GUI.color = errGuiCol;
-            }
+            ErrorHandler.VALUE.OnGUI();
         }
 
         public override void OnUpdate() {
@@ -91,18 +73,18 @@ namespace AdditionalTiers {
             for (var indexOfTowers = 0; indexOfTowers < allTowers.Count; indexOfTowers++) {
                 var towerToSimulation = allTowers.ToArray()[indexOfTowers];
                 if (towerToSimulation != null && !towerToSimulation.destroyed)
-                    for (var indexOfAdditionalTiers = 0; indexOfAdditionalTiers < allAdditionalTiers.Length; indexOfAdditionalTiers++) {
-                        if (!allAdditionalTiers[indexOfAdditionalTiers].requirements(towerToSimulation)) continue;
+                    foreach (var addedTier in allAdditionalTiers) {
+                        if (!addedTier.requirements(towerToSimulation)) continue;
 
-                        var popsNeeded = (int) ((int) allAdditionalTiers[indexOfAdditionalTiers].tower * Globals.SixthTierPopCountMulti);
+                        var popsNeeded = (int) ((int) addedTier.tower * Globals.SixthTierPopCountMulti);
 
                         if (popsNeeded < towerToSimulation.damageDealt) {
                             if (!TransformationManager.VALUE.Contains(towerToSimulation.tower))
-                                allAdditionalTiers[indexOfAdditionalTiers].onComplete(towerToSimulation);
-                            else if (TransformationManager.VALUE.Contains(towerToSimulation.tower)) allAdditionalTiers[indexOfAdditionalTiers].recurring(towerToSimulation);
+                                addedTier.onComplete(towerToSimulation);
+                            else if (TransformationManager.VALUE.Contains(towerToSimulation.tower)) addedTier.recurring(towerToSimulation);
                         }
                         else if (!TransformationManager.VALUE.Contains(towerToSimulation.tower))
-                            ADisplay.towerdata.Add((allAdditionalTiers[indexOfAdditionalTiers].identifier, towerToSimulation.damageDealt, popsNeeded));
+                            ADisplay.towerdata.Add((addedTier.identifier, towerToSimulation.damageDealt, popsNeeded));
                     }
             }
         }
