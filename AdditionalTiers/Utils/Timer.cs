@@ -1,5 +1,5 @@
 ﻿namespace AdditionalTiers.Utils {
-    public class Timer {
+    public sealed class Timer {
         public static IEnumerator Countdown(int seconds, Action after, Action<int> during) {
             var counter = seconds;
             while (counter > 0) {
@@ -19,19 +19,15 @@
             after();
         }
         public static IEnumerator Run<T>(Action<T>[] actions, T @object) {
-            var index = 0;
-            while (index < actions.Length) {
-                actions[index](@object);
+            foreach (var action in actions) {
+                action(@object);
                 yield return new WaitForEndOfFrame();
-                index++;
             }
         }
         public static IEnumerator Run(Action[] actions) {
-            var index = 0;
-            while (index < actions.Length) {
-                actions[index]();
+            foreach (var action in actions) {
+                action();
                 yield return new WaitForEndOfFrame();
-                index++;
             }
         }
         public static IEnumerator BuildAssetList() {
@@ -41,10 +37,10 @@
             for (var i = 0; i < AdditionalTiers.Towers.Length; i++) {
                 var assets = AdditionalTiers.Towers[i].assetsToRead;
                 if (assets != null) {
-                    using var enumerator = assets.GetEnumerator();
-                    while (enumerator.MoveNext())
-                        if (!DisplayFactory.allAssetsKnown.Contains(enumerator.Current))
-                            DisplayFactory.allAssetsKnown.Add(enumerator.Current);
+                    foreach (var asset in assets) {
+                        if (!DisplayFactory.allAssetsKnown.Contains(asset))
+                            DisplayFactory.allAssetsKnown.Add(asset);
+                    }
                 }
                 yield return new WaitForEndOfFrame();
             }

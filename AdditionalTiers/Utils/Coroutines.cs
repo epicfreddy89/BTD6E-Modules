@@ -47,14 +47,12 @@ namespace AdditionalTiers.Utils {
         }
 
         public static void UpdateCoroutines() {
-            for (int i = 0; i < Active.Count; i++) {
-                if (!Active[i].Enumerable.MoveNext())
-                    ToRemove.Add(Active[i]);
+            lock (Active) {
+                for (int i = 0; i < Active.Count; i++) {
+                    if (!Active[i].Enumerable.MoveNext())
+                        Active.Remove(Active[i]);
+                }
             }
-
-            for (int i = 0; i < ToRemove.Count; i++)
-                Active.Remove(ToRemove[i]);
-            ToRemove.Clear();
         }
 
         // System.Void can't be used as a type :1984:

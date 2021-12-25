@@ -433,8 +433,7 @@ namespace AdditionalTiers.Tasks {
             [HarmonyPostfix]
             public static void Postfix(SpriteReference reference, Image image) {
                 if (reference != null) {
-                    var bitmap = Images.ResourceManager.GetObject(reference.guidRef) as byte[];
-                    if (bitmap != null) {
+                    if (Images.ResourceManager.GetObject(reference.guidRef) is byte[] bitmap) {
                         var texture = new Texture2D(0, 0);
                         ImageConversion.LoadImage(texture, bitmap);
                         image.canvasRenderer.SetTexture(texture);
