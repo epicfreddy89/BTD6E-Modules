@@ -1613,6 +1613,26 @@ namespace AdditionalTiers.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] SpaceTruckin {
+            get {
+                object obj = ResourceManager.GetObject("SpaceTruckin", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpaceTruckinIcon {
+            get {
+                object obj = ResourceManager.GetObject("SpaceTruckinIcon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SuperFly {
             get {
                 object obj = ResourceManager.GetObject("SuperFly", resourceCulture);

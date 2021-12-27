@@ -23,7 +23,8 @@
         BURNINGDOWNTHEHOUSE = 100000,
         SHEERHEARTATTACK = 100000,
         ANOTHERONEBITESTHEDUST = 100000,
-        HEYYA = 100000
+        HEYYA = 100000,
+        SPACETRUCKIN = 100000
     }
 
     public sealed class AddedTierName {
@@ -51,5 +52,6 @@
         public static readonly string SHEERHEARTATTACK = "BombShooter-205";
         public static readonly string ANOTHERONEBITESTHEDUST = "SniperMonkey-502";
         public static readonly string HEYYA = "BoomerangMonkey-205";
+        public static readonly string SPACETRUCKIN = "MortarMonkey-502";
     }
 }

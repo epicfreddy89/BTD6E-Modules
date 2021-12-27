@@ -12,7 +12,22 @@ public sealed class ErrorHandler : Instanced<ErrorHandler> {
                 var modTuple = ModsWithErrors.First(tuple => tuple.Item1.Equals(namesection));
                 var position = ModsWithErrors.IndexOf(modTuple);
                 var newModTuple = (namesection, modTuple.Item2 + 1);
-                
+
+                ModsWithErrors.Remove(modTuple);
+                ModsWithErrors.Insert(position, newModTuple);
+                return;
+            }
+
+            ModsWithErrors.Add((namesection, 1));
+        };
+        Logger13.ErrorEvent += (namesection, _) => {
+            Error = true;
+
+            if (ModsWithErrors.Any(tuple => tuple.Item1.Equals(namesection))) {
+                var modTuple = ModsWithErrors.First(tuple => tuple.Item1.Equals(namesection));
+                var position = ModsWithErrors.IndexOf(modTuple);
+                var newModTuple = (namesection, modTuple.Item2 + 1);
+
                 ModsWithErrors.Remove(modTuple);
                 ModsWithErrors.Insert(position, newModTuple);
                 return;

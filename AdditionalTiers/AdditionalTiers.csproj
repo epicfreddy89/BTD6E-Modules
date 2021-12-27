@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <FileAlignment>8192</FileAlignment>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -470,6 +470,7 @@
     <Compile Include="Tasks\Towers\Tier6s\ScaryMonsters.cs" />
     <Compile Include="Tasks\Towers\Tier6s\SheerHeartAttack.cs" />
     <Compile Include="Tasks\Towers\Tier6s\SkyHigh.cs" />
+    <Compile Include="Tasks\Towers\Tier6s\SpaceTruckin.cs" />
     <Compile Include="Tasks\Towers\Tier6s\SuperFly.cs" />
     <Compile Include="Tasks\Towers\Tier6s\Survivor.cs" />
     <Compile Include="Tasks\Towers\Tier6s\UnderWorld.cs" />
@@ -492,17 +493,14 @@
     <Compile Include="Utils\Components\AnimatedFlameTexture.cs" />
     <Compile Include="Utils\Components\FastRotation.cs" />
     <Compile Include="Utils\Components\SetHeight1.cs" />
-    <Compile Include="Utils\Coroutines.cs" />
     <Compile Include="Utils\Display.cs" />
     <Compile Include="Utils\ErrorHandler.cs" />
-    <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Globals.cs" />
     <Compile Include="Utils\Instanced.cs" />
     <Compile Include="Utils\Math\Bounds.cs" />
     <Compile Include="Utils\Math\NumericExtensions.cs" />
     <Compile Include="Utils\RefAction.cs" />
     <Compile Include="Utils\Scene\CameraUtil.cs" />
-    <Compile Include="Utils\Timer.cs" />
     <Compile Include="Utils\TowerStruct.cs" />
     <Compile Include="Utils\Towers\AddedTierEnum.cs" />
     <Compile Include="Utils\Towers\HighlightManager.cs" />
@@ -524,6 +522,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\BTD6E Module Helper\BTD6E Module Helper.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "Z:\Program Files (x86)\Steam\steamapps\common\BloonsTD6\Mods\$(TargetFileName)" /y &gt;NUL

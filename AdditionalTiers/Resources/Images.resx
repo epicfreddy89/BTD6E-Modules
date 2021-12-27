@@ -403,6 +403,12 @@
   <data name="HeyYaPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>HeyYaPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SpaceTruckin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SpaceTruckin.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpaceTruckinIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>SpaceTruckinIcon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="shader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>shader.bundle;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

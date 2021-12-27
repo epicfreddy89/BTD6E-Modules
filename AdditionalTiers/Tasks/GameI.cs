@@ -8,7 +8,21 @@
             public static void Postfix(ref GameModel __result) {
                 Model = __result;
 
-                AddCoroutine(new ACoroutine(Timer.Run(AdditionalTiers.Towers.Select(a => a.gameLoad).ToArray(), __result), null));
+                if (AdditionalTiers.Towers is not null)
+                    foreach (var tower in AdditionalTiers.Towers) {
+                        if (tower is null) {
+                            Logger13.Error("tower element in AdditionalTiers.Towers foreach loop was null! This is not good!");
+                            continue;
+                        }
+                        var nextOne = tower?.identifier;
+                        try {
+                            tower?.gameLoad(__result);
+                        } catch (Exception ex) {
+                            Logger13.Error($"Error when trying to initialize {nextOne}, {ex.GetType().Name}");
+                        }
+                    }
+                else
+                    Logger13.Error("AdditionalTiers.Towers is null! This is not good!");
             }
         }
     }

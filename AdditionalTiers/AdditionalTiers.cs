@@ -35,10 +35,13 @@ namespace AdditionalTiers {
             HarmonyInstance.Patch(Method(typeof(Tower), nameof(Tower.UnHighlight)), postfix: new HarmonyMethod(Method(typeof(HighlightManager), nameof(HighlightManager.UnHighlight))));
 
             LoggerInstance.Msg(ConsoleColor.Red, "Additional Tier Addon Loaded!");
+
+            Logger13.Log("Success!");
+
+            InternalVerification.Verify();
+
             CacheBuilder.Build();
             DisplayFactory.Build();
-
-            LoggerInstance.Error("OETNMAIOTNIAOS");
         }
 
         public override void OnApplicationQuit() {
@@ -64,7 +67,8 @@ namespace AdditionalTiers {
         }
 
         public override void OnUpdate() {
-            UpdateCoroutines();
+            if (!DisplayFactory.hasBeenBuilt)
+                DisplayFactory.Build();
 
             if (InGame.instance == null || InGame.instance.bridge == null || InGame.instance.bridge.GetAllTowers() == null) return;
 

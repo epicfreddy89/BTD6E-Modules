@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Simulation.Behaviors;
+﻿using System.Threading;
+
+using Assets.Scripts.Simulation.Behaviors;
 
 namespace AdditionalTiers.Tasks {
     public sealed class Assets {
@@ -212,6 +214,13 @@ namespace AdditionalTiers.Tasks {
                     for (int i = 0; i < udn.genericRenderers.Length; i++)
                         udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 1);
                 }
+            },
+            {
+                "SpaceTruckin",
+                udn => {
+                    for (int i = 0; i < udn.genericRenderers.Length; i++)
+                        udn.genericRenderers[i].material.SetFloat("_OutlineWidth", 0.02f);
+                }
             }
         };
         [HideFromIl2Cpp]
@@ -238,7 +247,8 @@ namespace AdditionalTiers.Tasks {
             { "FMTTM3", new Color32(177, 135, 255, 255) },
             { "BurningDownTheHouse", new Color32(0, 254, 254, 255) },
             { "SheerHeartAttack", new Color32(206, 141, 0, 255) },
-            { "AOBTD", new Color32(162, 0, 255, 255) }
+            { "AOBTD", new Color32(162, 0, 255, 255) },
+            { "SpaceTruckin", new Color32(255, 25, 25, 255) }
         };
 
         public static Color GetResetColor(DisplayBehavior beh) {
@@ -297,6 +307,7 @@ namespace AdditionalTiers.Tasks {
 
         [HarmonyPatch(typeof(Factory), nameof(Factory.FindAndSetupPrototypeAsync))]
         public sealed class DisplayFactory {
+            public static bool hasBeenBuilt;
             public static List<AssetInfo> allAssetsKnown = new();
 
             [HarmonyPrefix]
@@ -423,7 +434,19 @@ namespace AdditionalTiers.Tasks {
                 return true;
             }
 
-            public static void Build() => AddCoroutine(new(Timer.BuildAssetList(), null));
+            public static void Build() {
+                for (var i = 0; i < AdditionalTiers.Towers.Length; i++) {
+                    var assets = AdditionalTiers.Towers?[i]?.assetsToRead;
+                    if (assets != null) {
+                        foreach (var asset in assets) {
+                            if (asset != null && !allAssetsKnown.Contains(asset))
+                                allAssetsKnown.Add(asset);
+                        }
+                    }
+                }
+
+                hasBeenBuilt = true;
+            }
 
             public static void Flush() => allAssetsKnown.Clear();
         }

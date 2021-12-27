@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>19803a05-c28b-49e1-90c3-230564deabfd</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>BTD6E_Module_Helper</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)globals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HelpedAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Il2CppExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InternalVerification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger13.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Module Helper Information.cs" />
+  </ItemGroup>
+</Project>
