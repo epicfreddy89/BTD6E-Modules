@@ -10,10 +10,6 @@
 
                 if (AdditionalTiers.Towers is not null)
                     foreach (var tower in AdditionalTiers.Towers) {
-                        if (tower is null) {
-                            Logger13.Error("tower element in AdditionalTiers.Towers foreach loop was null! This is not good!");
-                            continue;
-                        }
                         var nextOne = tower?.identifier;
                         try {
                             tower?.gameLoad(__result);

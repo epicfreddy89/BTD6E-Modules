@@ -509,6 +509,7 @@
     <Compile Include="Utils\Towers\TaskRunner.cs" />
     <Compile Include="Utils\Towers\TransformationManager.cs" />
     <Compile Include="Utils\Towers\TowerModelExt.cs" />
+    <Compile Include="Utils\UpdateHelper.cs" />
     <Compile Include="Utils\URandom.cs" />
     <Compile Include="Utils\Win32.cs" />
   </ItemGroup>

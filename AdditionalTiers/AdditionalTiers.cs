@@ -16,6 +16,9 @@ namespace AdditionalTiers {
             Assembly.GetTypes().AsParallel().ForAll(type => {
                 if (typeof(TowerTask).IsAssignableFrom(type) && !typeof(TowerTask).FullName.Equals(type.FullName)) {
                     var tower = (TowerTask)Activator.CreateInstance(type);
+                    while (tower is null)
+                        tower = (TowerTask)Activator.CreateInstance(type);
+
                     if ((long)tower.tower != -1)
                         towers.Add(tower);
                 }
@@ -42,6 +45,8 @@ namespace AdditionalTiers {
 
             CacheBuilder.Build();
             DisplayFactory.Build();
+
+            UpdateHelper.Init();
         }
 
         public override void OnApplicationQuit() {
@@ -64,6 +69,7 @@ namespace AdditionalTiers {
             GUI.color = guiCol;
 
             ErrorHandler.VALUE.OnGUI();
+            UpdateHelper.OnGUI();
         }
 
         public override void OnUpdate() {

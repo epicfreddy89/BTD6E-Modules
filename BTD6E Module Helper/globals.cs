@@ -2,8 +2,10 @@
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Drawing;
+global using System.Diagnostics;
 global using System.IO;
 global using System.Linq;
+global using System.Net;
 global using System.Reflection;
 global using System.Reflection.Emit;
 global using System.Runtime.InteropServices;
@@ -34,6 +36,8 @@ global using Assets.Scripts.Utils;
 global using BTD6E_Module_Helper;
 
 global using HarmonyLib;
+
+global using Newtonsoft.Json;
 
 global using MelonLoader;
 
