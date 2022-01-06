@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace GodTier.Towers {
+﻿namespace GodlyTowers.Towers {
     public class Godzilla {
         public static string name = "Godzilla: The King of all Monsters";
 

@@ -1,5 +1,4 @@
 ﻿namespace AdditionalTiers.Tasks {
-    [StructLayout(LayoutKind.Sequential)]
     public unsafe class TowerTask {
         public Func<TowerToSimulation, bool> requirements;
         public Action<TowerToSimulation> onComplete;

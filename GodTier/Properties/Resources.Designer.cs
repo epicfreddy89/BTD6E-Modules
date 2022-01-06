@@ -303,9 +303,29 @@ namespace GodlyTowers.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] TMSUBG {
+            get {
+                object obj = ResourceManager.GetObject("TMSUBG", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] TowerContainerDark {
             get {
                 object obj = ResourceManager.GetObject("TowerContainerDark", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TowerContainerMarvel {
+            get {
+                object obj = ResourceManager.GetObject("TowerContainerMarvel", resourceCulture);
                 return ((byte[])(obj));
             }
         }

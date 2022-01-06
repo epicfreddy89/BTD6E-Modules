@@ -13,7 +13,7 @@
         public static (TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
             var minipekkaDetails = gameModel.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
             minipekkaDetails.towerId = name;
-            minipekkaDetails.towerIndex = 35;
+            minipekkaDetails.towerIndex = 36;
 
 
             if (!LocalizationManager.Instance.textTable.ContainsKey("MiniPekka"))

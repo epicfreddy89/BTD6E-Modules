@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Models.Towers.TowerFilters;
-
-namespace GodlyTowers.Towers {
+﻿namespace GodlyTowers.Towers {
     public sealed class Venom {
         public static string name = "Venom";
 
@@ -18,8 +16,10 @@ namespace GodlyTowers.Towers {
         public static (TowerModel, ShopTowerDetailsModel, TowerModel[], UpgradeModel[]) GetTower(GameModel gameModel) {
             var VenomDetails = gameModel.towerSet[0].Clone().Cast<ShopTowerDetailsModel>();
             VenomDetails.towerId = name;
-            VenomDetails.towerIndex = 35;
+            VenomDetails.towerIndex = 36;
 
+            if (!LocalizationManager.Instance.textTable.ContainsKey("Venom"))
+                LocalizationManager.Instance.textTable.Add("Venom", "Venom (Earth 120703)");
             if (!LocalizationManager.Instance.textTable.ContainsKey("DeadlyPunch"))
                 LocalizationManager.Instance.textTable.Add("DeadlyPunch", "Deadly Punch");
             if (!LocalizationManager.Instance.textTable.ContainsKey("DeadlyPunch Description"))
@@ -53,7 +53,7 @@ namespace GodlyTowers.Towers {
             Venom.portrait = new("VenomPortrait");
             Venom.icon = new("VenomPortrait");
             Venom.towerSet = "Military";
-            Venom.emoteSpriteLarge = new("Movie");
+            Venom.emoteSpriteLarge = new("Marvel");
             Venom.tier = 0;
             Venom.tiers = new[] { 0, 0, 0 };
             Venom.radius = 15;

@@ -127,6 +127,9 @@
   <data name="TowerContainerDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TowerContainerDark.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TowerContainerMarvel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TowerContainerMarvel.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="SMPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SMPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -153,6 +156,9 @@
   </data>
   <data name="MPUBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MPUBG.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TMSUBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TMSUBG.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="MPPortrait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MPPortrait.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

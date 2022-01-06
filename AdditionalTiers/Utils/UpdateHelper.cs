@@ -23,7 +23,7 @@
 
             var top = Screen.height / 2 - 75;
             var left = Screen.width / 2 - 150;
-            GUI.Box(new Rect(left, top, 300, 150), $"Update Tool for {modName} {(int)(5 - (DateTime.Now - startTime).TotalSeconds)}");
+            GUI.Box(new Rect(left, top, 300, 150), $"Update Tool for {modName} {(int)(5 - System.Math.Ceiling((DateTime.Now - startTime).TotalSeconds))}s");
             GUI.Label(new Rect(left + 15, top + 25, 300, 150), "Check for updates?");
             if (GUI.Button(new Rect(left + 15, top + 45, 80, 20), "Confirm") && UpdateAvailable()) Environment.Exit(0);
 

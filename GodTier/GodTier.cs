@@ -1,63 +1,6 @@
-﻿global using System;
-global using System.Collections.Generic;
-global using System.Linq;
-global using System.Threading.Tasks;
-
-global using Assets.Scripts.Models;
-global using Assets.Scripts.Models.Bloons.Behaviors;
-global using Assets.Scripts.Models.Effects;
-global using Assets.Scripts.Models.GenericBehaviors;
-global using Assets.Scripts.Models.Map;
-global using Assets.Scripts.Models.Profile;
-global using Assets.Scripts.Models.Towers;
-global using Assets.Scripts.Models.Towers.Behaviors;
-global using Assets.Scripts.Models.Towers.Behaviors.Abilities;
-global using Assets.Scripts.Models.Towers.Behaviors.Abilities.Behaviors;
-global using Assets.Scripts.Models.Towers.Behaviors.Attack;
-global using Assets.Scripts.Models.Towers.Behaviors.Emissions;
-global using Assets.Scripts.Models.Towers.Filters;
-global using Assets.Scripts.Models.Towers.Mods;
-global using Assets.Scripts.Models.Towers.Projectiles.Behaviors;
-global using Assets.Scripts.Models.Towers.Upgrades;
-global using Assets.Scripts.Models.Towers.Weapons;
-global using Assets.Scripts.Models.TowerSets;
-global using Assets.Scripts.Simulation.Towers;
-global using Assets.Scripts.Simulation.Towers.Weapons;
-global using Assets.Scripts.Unity.Audio;
-global using Assets.Scripts.Unity.Bridge;
-global using Assets.Scripts.Unity.Display;
-global using Assets.Scripts.Unity.Player;
-global using Assets.Scripts.Unity.UI_New.InGame.StoreMenu;
-global using Assets.Scripts.Unity.UI_New.InGame.TowerSelectionMenu;
-global using Assets.Scripts.Unity.UI_New.Main.MapSelect;
-global using Assets.Scripts.Unity.UI_New.Upgrade;
-global using Assets.Scripts.Utils;
-
+﻿global using GodlyTowers.Util;
 global using GodlyTowers.Models;
 global using GodlyTowers.Towers;
-global using GodlyTowers.Util;
-
-global using GodTier.Towers;
-global using GodTier.Utils;
-
-global using HarmonyLib;
-
-global using MelonLoader;
-
-global using NinjaKiwi.Common;
-
-global using UnhollowerRuntimeLib;
-
-global using UnityEngine;
-
-global using Color = UnityEngine.Color;
-global using Object = UnityEngine.Object;
-global using Image = UnityEngine.UI.Image;
-
-using System.Threading;
-
-using Assets.Scripts.Models.ServerEvents;
-using Assets.Scripts.Simulation.Input;
 
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 [assembly: MelonInfo(typeof(GodTier.GodTier), "God Tiers", "1.6", "1330 Studios LLC")]
@@ -71,16 +14,17 @@ namespace GodTier {
             Carnage.Assets = AssetBundle.LoadFromMemory(Models.carnage);
             Venom.Assets = AssetBundle.LoadFromMemory(Models.venom);
             MiniPekka.Assets = AssetBundle.LoadFromMemory(Models.minipekka);
+            TobeyMaguireSM.Assets = AssetBundle.LoadFromMemory(Models.tobeymaguirespiderman);
         }
 
         [HarmonyPatch(typeof(Btd6Player), "CheckForNewParagonPipEvent")]
-        public class Btd6PlayerIsBad {
+        public sealed class Btd6PlayerIsBad {
             [HarmonyPrefix]
             public static bool Prefix(string checkSpecificTowerId, string checkSpecificTowerSet, ref bool __result) => __result = false;
         }
 
         [HarmonyPatch(typeof(UpgradeScreen), "UpdateUi")]
-        public class AddShopDetails {
+        public sealed class AddShopDetails {
             [HarmonyPrefix]
             public static bool Prefix(ref UpgradeScreen __instance, ref string towerId) {
                 foreach (var tower in towers)
@@ -99,7 +43,7 @@ namespace GodTier {
         }
 
         [HarmonyPatch(typeof(MonkeyTeamsIcon), nameof(MonkeyTeamsIcon.Init))]
-        public class MTIcon {
+        public sealed class MTIcon {
             [HarmonyPrefix]
             public static bool Prefix(ref MonkeyTeamsIcon __instance) {
                 __instance.enabled = false;
@@ -109,7 +53,7 @@ namespace GodTier {
         }
 
         [HarmonyPatch(typeof(StandardTowerPurchaseButton), nameof(StandardTowerPurchaseButton.UpdateTowerDisplay))]
-        public class SetBG {
+        public sealed class SetBG {
             [HarmonyPostfix]
             public static void Postfix(ref StandardTowerPurchaseButton __instance) {
                 __instance.bg = __instance.gameObject.GetComponent<Image>();
@@ -124,6 +68,9 @@ namespace GodTier {
                             break;
                         case "Paragon":
                             __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.TowerContainerParagonLarge));
+                            break;
+                        case "Marvel":
+                            __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.TowerContainerMarvel));
                             break;
                         case "None":
                             __instance.bg.overrideSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.none));
@@ -151,11 +98,12 @@ namespace GodTier {
 
         public enum UpgradeBG {
             AntiVenom,
-            MiniPekka
+            MiniPekka,
+            SymbioteSuit
         }
 
         [HarmonyPatch(typeof(ProfileModel), "Validate")]
-        public class ProfileModel_Patch {
+        public sealed class ProfileModel_Patch {
             [HarmonyPostfix]
             public static void Postfix(ref ProfileModel __instance) {
                 var unlockedTowers = __instance.unlockedTowers;
@@ -181,7 +129,7 @@ namespace GodTier {
         }
 
         [HarmonyPatch(typeof(GameModelLoader), nameof(GameModelLoader.Load))]
-        public static class GameStart {
+        public sealed class GameStart {
             [HarmonyPostfix]
             public static void Postfix(ref GameModel __result) {
                 paragons.Add(Paragons.GetDartMonkey(__result));
@@ -194,6 +142,7 @@ namespace GodTier {
                 towers.Add(Venom.GetTower(__result));
                 towers.Add(MiniPekka.GetTower(__result));
                 towers.Add(Grim_Reaper.GetTower(__result));
+                towers.Add(TobeyMaguireSM.GetTower(__result));
 
                 foreach (var paragon in paragons) {
                     __result.towers = __result.towers.Add(paragon.Item1);
@@ -212,7 +161,7 @@ namespace GodTier {
             }
 
             [HarmonyPatch(typeof(UpgradeButton), nameof(UpgradeButton.SetUpgradeModel))]
-            internal class TowerManager_UpgradeTower {
+            internal sealed class TowerManager_UpgradeTower {
                 [HarmonyPostfix]
                 internal static void fix(ref UpgradeButton __instance) {
                     if (__instance == null) return;
@@ -238,6 +187,11 @@ namespace GodTier {
                                     resourceSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.MPUBG));
                                     break;
                                 }
+                            case UpgradeBG.SymbioteSuit: {
+                                    resourceName = "SymbioteSuitUBG";
+                                    resourceSprite = LoadSprite(LoadTextureFromBytes(GodlyTowers.Properties.Resources.TMSUBG));
+                                    break;
+                                }
                         }
                         __instance.backgroundActive = new(resourceName);
                         __instance.background.overrideSprite = resourceSprite;
@@ -253,7 +207,7 @@ namespace GodTier {
             // Cancer I know, but at least it's an idea
 
             [HarmonyPatch(typeof(Tower), nameof(Tower.Hilight))]
-            public static class TH {
+            public sealed class TH {
                 [HarmonyPostfix]
                 public static void Postfix(ref Tower __instance) {
                     if (__instance?.Node?.graphic?.genericRenderers == null)
@@ -266,7 +220,7 @@ namespace GodTier {
             }
 
             [HarmonyPatch(typeof(Tower), nameof(Tower.UnHighlight))]
-            public static class TU {
+            public sealed class TU {
                 [HarmonyPostfix]
                 public static void Postfix(ref Tower __instance) {
                     if (__instance?.Node?.graphic?.genericRenderers == null)

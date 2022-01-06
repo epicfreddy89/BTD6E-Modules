@@ -18,7 +18,7 @@ namespace GodlyTowers.Towers {
 
 
             if (!LocalizationManager.Instance.textTable.ContainsKey("SpiderMan"))
-                LocalizationManager.Instance.textTable.Add("SpiderMan", "Spider-Man");
+                LocalizationManager.Instance.textTable.Add("SpiderMan", "Spider-Man (Earth 199999)");
             if (!LocalizationManager.Instance.textTable.ContainsKey("Iron Spider Description"))
                 LocalizationManager.Instance.textTable.Add("Iron Spider Description", "New technology allows for faster web-slinging.");
             if (!LocalizationManager.Instance.textTable.ContainsKey("Upgraded Stark Suit Description"))
@@ -38,7 +38,7 @@ namespace GodlyTowers.Towers {
             spiderman.portrait = new("SMPortrait");
             spiderman.icon = new("SMPortrait");
             spiderman.towerSet = "Military";
-            spiderman.emoteSpriteLarge = new("Movie");
+            spiderman.emoteSpriteLarge = new("Marvel");
             spiderman.radius = 8;
             spiderman.cost = 1250;
             spiderman.range = 75;

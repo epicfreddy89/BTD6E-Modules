@@ -65,7 +65,7 @@ namespace AdditionalTiers {
                     textColor = Color.white
                 }
             };
-            GUI.Label(new Rect(0, Screen.height - 20, 100, 90), $"Additional Tiers v{Version}", guiStyle);
+            GUI.Label(new Rect(10, Screen.height - 20, 100, 90), $"Additional Tiers v{Version}", guiStyle);
             GUI.color = guiCol;
 
             ErrorHandler.VALUE.OnGUI();

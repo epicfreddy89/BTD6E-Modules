@@ -9,7 +9,7 @@ using Assets.Scripts.Simulation.Track;
 using Assets.Scripts.Unity.UI_New.InGame;
 
 namespace AdditionalBloons.Tasks {
-    internal class BloonTaskRunner {
+    internal sealed class BloonTaskRunner {
         public static BloonQueue bloonQueue = new();
 
         // Key of bloontask which stores all needed info, Value of KeyValuePair with key of amount sent out of total and value of time spent
@@ -20,7 +20,7 @@ namespace AdditionalBloons.Tasks {
             //Add to dictionary from queue
             while (bloonQueue.Count > 0) bloonTasks.Add(bloonQueue.Dequeue(), new KeyValuePair<int, int>(0, 0));
 
-            if (InGame.instance != null && InGame.instance.bridge != null) {
+            if (InGame.instance?.bridge != null) {
                 #region Bloon Spawner
 
                 if (bloonTasks.Count > 0) {
@@ -71,12 +71,12 @@ namespace AdditionalBloons.Tasks {
             var model = __instance.bloonModel;
 
             if (model.icon.guidRef.Equals("CoconutIcon")) {
-                var healthPercent = (model.maxHealth / __instance.health);
+                var healthPercent = model.maxHealth / __instance.health / 5f;
 
                 if (__instance.spawnRound > 60)
-                    healthPercent /= 2;
+                    healthPercent /= 2f;
                 if (__instance.spawnRound > 100)
-                    healthPercent /= 5;
+                    healthPercent /= 5f;
 
                 __instance.Move(healthPercent);
                 totalAmount = 1;
@@ -100,7 +100,7 @@ namespace AdditionalBloons.Tasks {
 
                 if (i == 4) {
                     var coconut = BloonCreator.bloons.Find(a => a.icon.guidRef.Equals("CoconutIcon")).Clone().Cast<BloonModel>();
-                    if (__instance.currentRound.ValueInt > 20) coconut.maxHealth = __instance.currentRound.ValueInt;
+                    if (__instance.currentRound.ValueInt > 20) coconut.maxHealth = Math.Min(__instance.currentRound.ValueInt, 50);
                     __instance.Emit(coconut, __instance.currentRound.ValueInt, 0);
                 }
             }
@@ -111,7 +111,7 @@ namespace AdditionalBloons.Tasks {
         internal static void Quit() {
             bloonQueue.Clear();
             bloonTasks.Clear();
-            rand = new(System.DateTime.Now.Millisecond);
+            rand = new(DateTime.Now.Millisecond);
         }
     }
 }
